@@ -51,6 +51,14 @@ module.exports = function (grunt) {
 			}
 		},
 
+		// Configure the gh-pages to publish the demo directory to GitHub pages.
+		'gh-pages': {
+			options: {
+				base: 'demo'
+			},
+			src: ['**']
+		},
+
 		// Configure the jshint task to check the syntax of all JavaScript files.
 		jshint: {
 			all: {
@@ -100,6 +108,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-gh-pages');
 
 	// Aliases
 	grunt.registerTask('build', ['jshint', 'compass', 'concat', 'uglify', 'copy']);
