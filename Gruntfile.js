@@ -54,9 +54,21 @@ module.exports = function (grunt) {
 		// Configure the gh-pages to publish the demo directory to GitHub pages.
 		'gh-pages': {
 			options: {
-				base: 'demo'
+				base: '.'
 			},
-			src: ['**']
+			src: [
+				'code/**/*',
+				'css/**/*',
+				'demo/demo-web/css/**/*',
+				'demo/demo-web/fonts/**/*',
+				'demo/demo-web/images/**/*',
+				'demo/demo-web/js/**/*',
+				'demo/demo-web/index.html',
+				'fonts/**/*',
+				'images/**/*',
+				'js/**/*',
+				'index.html'
+			]
 		},
 
 		// Configure the jshint task to check the syntax of all JavaScript files.
