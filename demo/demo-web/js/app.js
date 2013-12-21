@@ -1,0 +1,1 @@
+window.App=Ember.Application.create({LOG_TRANSITIONS:!0,LOG_BINDINGS:!0,LOG_ACTIVE_GENERATION:!0});
