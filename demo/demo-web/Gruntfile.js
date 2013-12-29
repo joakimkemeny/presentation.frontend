@@ -21,13 +21,15 @@ module.exports = function (grunt) {
 			libs: {
 				src: [
 					'bower_components/jquery/jquery.min.js',
+					'bower_components/jquery-ui/ui/minified/jquery.ui.widget.js',
 					'bower_components/lodash/dist/lodash.min.js',
-					'bower_components/jquery-ui/ui/minifies/jquery.ui.widget.js',
 					'bower_components/handlebars/handlebars.min.js',
 					'bower_components/ember/ember.min.js',
 					'bower_components/ember-data/ember-data.min.js',
-					'bower_components/moment/moment.min.js',
-					'bower_components/d3/d3.min.js'
+					'bower_components/moment/min/moment.min.js',
+					'bower_components/d3/d3.min.js',
+					'bower_components/jke-d3-calendar/dist/jke-d3-calendar.min.js',
+					'bower_components/jke-d3-ecg/dist/jke-d3-ecg.min.js'
 				],
 				dest: 'js/libs.js'
 			}
@@ -79,7 +81,6 @@ module.exports = function (grunt) {
 				src: ['Gruntfile.js', 'src/js/**/*.js']
 			}
 		},
-
 
 		// Configure the uglify task to concatenate and optimize all JavaScript files.
 		uglify: {
