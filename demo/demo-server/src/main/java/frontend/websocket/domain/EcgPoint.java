@@ -1,19 +1,12 @@
-package frontend.core.domain;
+package frontend.websocket.domain;
 
 import frontend.events.ecg.EcgPointDetails;
 import org.springframework.beans.BeanUtils;
 
 public class EcgPoint {
 
-	private final long x;
-	private final double y;
-
-	// Constructors
-
-	public EcgPoint(long x, double y) {
-		this.x = x;
-		this.y = y;
-	}
+	private long x;
+	private double y;
 
 	// Helpers
 
@@ -25,16 +18,27 @@ public class EcgPoint {
 	}
 
 	public static EcgPoint fromEcgPointDetails(EcgPointDetails details) {
-		return new EcgPoint(details.getX(), details.getY());
+
+		EcgPoint ecgPoint = new EcgPoint();
+		BeanUtils.copyProperties(details, ecgPoint);
+		return ecgPoint;
 	}
 
-	// Getters
+	// Getters / Setters
 
 	public long getX() {
 		return x;
 	}
 
+	public void setX(long x) {
+		this.x = x;
+	}
+
 	public double getY() {
 		return y;
+	}
+
+	public void setY(double y) {
+		this.y = y;
 	}
 }

@@ -60,7 +60,7 @@ public class AppointmentCommandsController {
 	public ResponseEntity<Appointment> updateAppointment(@PathVariable Long id, @RequestBody Appointment appointment) {
 
 		AppointmentUpdatedEvent updatedEvent = appointmentService
-				.updateAppointment(new UpdateAppointmentEvent(id, appointment.toAppointmentDetails()));
+				.updateAppointment(new UpdateAppointmentEvent(id, appointment.toAppointmentDetails(id)));
 
 		if (!updatedEvent.isEntityFound()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

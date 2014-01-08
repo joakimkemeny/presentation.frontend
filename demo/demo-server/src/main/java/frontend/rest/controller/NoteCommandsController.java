@@ -56,7 +56,7 @@ public class NoteCommandsController {
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
 	public ResponseEntity<Note> updateNote(@PathVariable Long id, @RequestBody Note note) {
 
-		NoteUpdatedEvent updatedEvent = noteService.updateNote(new UpdateNoteEvent(id, note.toNoteDetails()));
+		NoteUpdatedEvent updatedEvent = noteService.updateNote(new UpdateNoteEvent(id, note.toNoteDetails(id)));
 
 		if (!updatedEvent.isEntityFound()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

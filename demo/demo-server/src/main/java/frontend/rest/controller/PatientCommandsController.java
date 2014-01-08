@@ -61,7 +61,7 @@ public class PatientCommandsController {
 	public ResponseEntity<Patient> updatePatient(@PathVariable Long id, @RequestBody Patient patient) {
 
 		PatientUpdatedEvent updatedEvent =
-				patientService.updatePatient(new UpdatePatientEvent(id, patient.toPatientDetails()));
+				patientService.updatePatient(new UpdatePatientEvent(id, patient.toPatientDetails(id)));
 
 		if (!updatedEvent.isEntityFound()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -76,13 +76,13 @@ public class PatientCommandsController {
 		return new ResponseEntity<>(updatedPatient, HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/startekg")
-	public void startEkg() {
+	@RequestMapping(method = RequestMethod.GET, value = "/startecg")
+	public void startEcg() {
 		ecgService.startRead();
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/stopekg")
-	public void stopEkg() {
+	@RequestMapping(method = RequestMethod.GET, value = "/stopecg")
+	public void stopEcg() {
 		ecgService.stopRead();
 	}
 }

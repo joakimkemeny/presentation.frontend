@@ -1,13 +1,11 @@
-package frontend.rest.domain;
+package frontend.websocket.domain;
 
-import com.fasterxml.jackson.annotation.JsonRootName;
 import frontend.events.note.NoteDetails;
 import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
 import java.util.Date;
 
-@JsonRootName("note")
 public class Note implements Serializable {
 
 	private Long id;

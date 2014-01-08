@@ -1,13 +1,11 @@
-package frontend.rest.domain;
+package frontend.websocket.domain;
 
-import com.fasterxml.jackson.annotation.JsonRootName;
 import frontend.events.appointment.AppointmentDetails;
 import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
 import java.util.Date;
 
-@JsonRootName("appointment")
 public class Appointment implements Serializable {
 
 	private Long id;

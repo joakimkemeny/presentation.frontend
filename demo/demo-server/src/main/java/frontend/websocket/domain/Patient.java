@@ -1,13 +1,11 @@
-package frontend.rest.domain;
+package frontend.websocket.domain;
 
-import com.fasterxml.jackson.annotation.JsonRootName;
 import frontend.events.patient.PatientDetails;
 import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
 import java.util.List;
 
-@JsonRootName("patient")
 public class Patient implements Serializable {
 
 	private Long id;

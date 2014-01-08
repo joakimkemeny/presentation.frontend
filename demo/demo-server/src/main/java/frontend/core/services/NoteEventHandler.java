@@ -1,8 +1,13 @@
 package frontend.core.services;
 
 import frontend.events.note.*;
+import frontend.events.patient.PatientDetailsEvent;
+import frontend.events.patient.PatientUpdatedEvent;
+import frontend.events.patient.RequestPatientDetailsEvent;
 import frontend.persistence.service.NotePersistenceService;
+import frontend.persistence.service.PatientPersistenceService;
 import frontend.websocket.service.NoteMessagingService;
+import frontend.websocket.service.PatientMessagingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

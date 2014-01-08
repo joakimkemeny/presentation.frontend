@@ -2,16 +2,16 @@ package frontend.events.ecg;
 
 public class EcgPointDetails {
 
-	private int x;
+	private long x;
 	private double y;
 
 	// Getters / Setters
 
-	public int getX() {
+	public long getX() {
 		return x;
 	}
 
-	public void setX(int x) {
+	public void setX(long x) {
 		this.x = x;
 	}
 
