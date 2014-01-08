@@ -6,6 +6,26 @@
 	margin-bottom: 0;
 }
 
+.navbar-default .navbar-nav > li > a.active {
+	color: #555;
+	background-color: #e7e7e7;
+}
+
+.table {
+	table-layout: fixed;
+}
+
+.table-hover {
+
+	tr:not(.t-empty) {
+		cursor: pointer;
+	}
+
+	tr.t-empty:hover td {
+		background-color: transparent;
+	}
+}
+
 @import "../../bower_components/font-awesome/scss/font-awesome";
 @import "../../bower_components/jke-d3-calendar/src/scss/jke-d3-calendar";
 @import "../../bower_components/jke-d3-ecg/src/scss/jke-d3-ecg";
@@ -13,4 +33,3 @@
 @import "general";
 @import "forms";
 @import "layout";
-@import "tables";

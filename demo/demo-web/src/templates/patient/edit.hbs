@@ -1,0 +1,43 @@
+<nav {{bindAttr class=":l-sideForm controllers.patient.showEditPatient:l-visible:l-hidden"}}>
+	<h3>Patientuppgifter</h3>
+
+	<div class="l-horizontal">
+		<div class="form-group f-floating-label-form-group">
+			{{input value=civicRegNr class="form-control" placeholder="Personnummer"}}
+		</div>
+	</div>
+	<div class="l-horizontal">
+		<div class="form-group f-floating-label-form-group">
+			{{input value=firstName class="form-control" placeholder="Förnamn"}}
+		</div>
+		<div class="form-group f-floating-label-form-group">
+			{{input value=lastName class="form-control" placeholder="Efternamn"}}
+		</div>
+	</div>
+	<div class="l-horizontal">
+		<div class="form-group f-floating-label-form-group">
+			{{input value=streetAddress class="form-control" placeholder="Gatuadress"}}
+		</div>
+	</div>
+	<div class="l-horizontal">
+		<div class="form-group f-floating-label-form-group">
+			{{input value=zipCode class="form-control" placeholder="Postnummer"}}
+		</div>
+		<div class="form-group f-floating-label-form-group">
+			{{input value=city class="form-control" placeholder="Postort"}}
+		</div>
+	</div>
+	<div class="l-horizontal">
+		<div class="form-group f-floating-label-form-group">
+			{{input value=phone class="form-control" placeholder="Telefon"}}
+		</div>
+		<div class="form-group f-floating-label-form-group">
+			{{input value=mobile class="form-control" placeholder="Mobil"}}
+		</div>
+	</div>
+
+	<div class="f-actions">
+		<button class="btn btn-success" {{action "save"}}><i class="fa fa-check"></i> Spara</button>
+		<button class="btn" {{action "cancel"}}>Avbryt</button>
+	</div>
+</nav>

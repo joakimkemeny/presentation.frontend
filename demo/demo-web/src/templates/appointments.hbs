@@ -1,0 +1,41 @@
+<header class="l-mainHeader">
+	<h2>Tidbok</h2>
+	<ul class="pull-right g-segmented-control" style="margin-left:10px;">
+		<li>
+			{{#link-to 'appointments.create'}}
+				<i class="fa fa-plus"></i> Ny
+			{{/link-to}}
+		</li>
+	</ul>
+	<ul class="pull-right g-segmented-control">
+		<li>
+			{{#link-to 'appointments.day'}}
+				Dag
+			{{/link-to}}
+		</li>
+		<li>
+			{{#link-to 'appointments.week'}}
+				Vecka
+			{{/link-to}}
+		</li>
+		<li>
+			{{#link-to 'appointments.month'}}
+				Månad
+			{{/link-to}}
+		</li>
+		<li>
+			{{#link-to 'appointments.year'}}
+				År
+			{{/link-to}}
+		</li>
+	</ul>
+</header>
+
+<div class="l-workspace">
+	<section class="l-mainContent">
+		{{calendar width=740 height=500 events=controller.content}}
+	</section>
+
+	{{outlet}}
+
+</div>

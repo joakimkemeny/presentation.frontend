@@ -1,0 +1,27 @@
+<nav {{bindAttr class=":l-sideForm controllers.appointments.showEditAppointment:l-visible:l-hidden"}}>
+	<h3>Bokning</h3>
+
+	<div class="l-horizontal">
+		<div class="form-group f-floating-label-form-group">
+			{{input value=startTime class="form-control" placeholder="Start"}}
+		</div>
+		<div class="form-group f-floating-label-form-group">
+			{{input value=endTime class="form-control" placeholder="Slut"}}
+		</div>
+	</div>
+	<div class="l-horizontal">
+		<div class="form-group f-floating-label-form-group">
+			{{input value=patient class="form-control" placeholder="Patient"}}
+		</div>
+	</div>
+	<div class="l-horizontal">
+		<div class="form-group f-floating-label-form-group">
+			{{textarea value=notes class="form-control" placeholder="Anteckningar"}}
+		</div>
+	</div>
+
+	<div class="f-actions">
+		<button class="btn btn-success" {{action "save"}}><i class="fa fa-check"></i> Spara</button>
+		<button class="btn" {{action "cancel"}}>Avbryt</button>
+	</div>
+</nav>

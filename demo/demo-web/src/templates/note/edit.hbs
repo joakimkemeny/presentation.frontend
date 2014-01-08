@@ -1,0 +1,25 @@
+<nav {{bindAttr class=":l-sideForm controllers.patient.showEditNote:l-visible:l-hidden"}}>
+	<h3>Journalanteckning</h3>
+
+	<div class="l-horizontal">
+		<div class="form-group f-floating-label-form-group">
+			<label style="display: block;">Journalposttyp</label>
+			{{view Ember.Select content=types optionValuePath='content.id' optionLabelPath='content.name' value=type }}
+		</div>
+	</div>
+	<div class="l-horizontal">
+		<div class="form-group f-floating-label-form-group">
+			{{input value=doctor class="form-control" placeholder="Läkare"}}
+		</div>
+	</div>
+	<div class="l-horizontal">
+		<div class="form-group f-floating-label-form-group">
+			{{textarea value=text class="form-control" placeholder="Fritext"}}
+		</div>
+	</div>
+
+	<div class="f-actions">
+		<button class="btn btn-success" {{action "save"}}><i class="fa fa-check"></i> Spara</button>
+		<button class="btn" {{action "cancel"}}>Avbryt</button>
+	</div>
+</nav>

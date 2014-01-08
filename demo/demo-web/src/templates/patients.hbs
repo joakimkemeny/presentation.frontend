@@ -1,0 +1,68 @@
+<header {{bindAttr class=":l-mainHeader showPatient:l-visible:l-hidden"}}>
+	{{outlet patientHeader}}
+</header>
+<header {{bindAttr class=":l-mainHeader showPatient:l-hidden:l-visible"}}>
+	{{outlet patientsHeader}}
+</header>
+
+<div class="l-workspace">
+
+	{{#unless showPatient}}
+		<nav {{bindAttr class=":l-sideMenu showSearch:l-visible:l-hidden"}}>
+			<h3>Sök</h3>
+
+			<div class="l-horizontal">
+				<div class="form-group f-floating-label-form-group">
+					{{input value=civicRegNrFilter class="form-control" placeholder="Personnummer"}}
+				</div>
+			</div>
+			<div class="l-horizontal">
+				<div class="form-group f-floating-label-form-group">
+					{{input value=firstNameFilter class="form-control" placeholder="Förnamn"}}
+				</div>
+			</div>
+			<div class="l-horizontal">
+				<div class="form-group f-floating-label-form-group">
+					{{input value=lastNameFilter class="form-control" placeholder="Efternamn"}}
+				</div>
+			</div>
+			<div class="l-horizontal">
+				<div class="form-group f-floating-label-form-group">
+					{{input value=cityFilter class="form-control" placeholder="Ort"}}
+				</div>
+			</div>
+		</nav>
+
+		<section class="l-mainContent">
+			<table class="table table-hover">
+				<colgroup>
+					<col style="width: 130px">
+					<col style="width: 160px">
+					<col style="width: 100%">
+				</colgroup>
+				<thead>
+				<tr>
+					<th>Personnummer</th>
+					<th>Namn</th>
+					<th>Ort</th>
+				</tr>
+				</thead>
+				<tbody>
+				{{#each patient in controller}}
+					{{#link-to 'patient' patient tagName='tr'}}
+						<td>{{patient.civicRegNr}}</td>
+						<td>{{patient.firstName}} {{patient.lastName}}</td>
+						<td>{{patient.city}}</td>
+					{{/link-to}}
+				{{else}}
+					<tr class="t-empty">
+						<td colspan="3">Inga patienter hittades</td>
+					</tr>
+				{{/each}}
+				</tbody>
+			</table>
+		</section>
+	{{/unless}}
+
+	{{outlet}}
+</div>

@@ -1,2 +1,94 @@
 @import "mixins";
 @import "constants";
+
+$sideMenuWidth: 200px;
+$sideFormWidth: 300px;
+
+body {
+	height: 100%;
+	overflow: hidden;
+
+	& > .ember-view {
+		@include m-flex-vertical;
+
+		height: 100%;
+		overflow: hidden;
+	}
+}
+
+html {
+	height: 100%;
+}
+
+.l-mainHeader {
+	background-color: $backgroundColorDark;
+	height: 60px;
+	padding: 15px;
+
+	& > h2 {
+		color: #fff;
+		display: inline-block;
+		font-size: 18px;
+		line-height: 30px;
+		margin: 0;
+
+		& > span {
+			font-size: 14px;
+		}
+	}
+}
+
+.l-workspace {
+	@include m-flex(1);
+	@include m-flex-horizontal;
+}
+
+.l-sideMenu {
+	background-color: $backgroundColorLight;
+	border-right: 1px solid $borderColor;
+	padding: 15px;
+	width: 200px;
+
+	ul {
+		list-style: none;
+		padding: 0;
+
+		a {
+			color: black;
+		}
+	}
+}
+
+.l-sideForm {
+	background-color: $backgroundColorLight;
+	border-left: 1px solid $borderColor;
+	padding: 15px;
+	width: 300px;
+}
+
+.l-mainContent {
+	@include m-flex(1);
+
+	overflow-y: scroll;
+	padding: 15px;
+}
+
+.l-visible {
+	display: block;
+}
+
+.l-hidden {
+	display: none;
+}
+
+.l-horizontal {
+	@include m-flex-horizontal;
+
+	& > .l-fixed {
+		@include m-flex(0);
+	}
+
+	& > :not(.l-fixed) {
+		@include m-flex(1);
+	}
+}

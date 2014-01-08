@@ -1,0 +1,61 @@
+{{#unless showEcg}}
+	<nav {{bindAttr class=":l-sideMenu showSearch:l-visible:l-hidden"}}>
+		<h3>Sök</h3>
+
+		<div class="l-horizontal">
+			<div class="form-group f-floating-label-form-group">
+				{{input value=startDateFilter class="form-control" placeholder="Från datum"}}
+			</div>
+		</div>
+		<div class="l-horizontal">
+			<div class="form-group f-floating-label-form-group">
+				{{input value=endDateFilter class="form-control" placeholder="Till datum"}}
+			</div>
+		</div>
+		<div class="l-horizontal">
+			<div class="form-group f-floating-label-form-group">
+				{{input value=doctorFilter class="form-control" placeholder="Läkare"}}
+			</div>
+		</div>
+		<div class="l-horizontal">
+			<div class="form-group f-floating-label-form-group">
+				{{input value=textFilter class="form-control" placeholder="Fritext"}}
+			</div>
+		</div>
+
+	</nav>
+	<section class="l-mainContent">
+		<table class="table table-hover">
+			<colgroup>
+				<col style="width: 100px">
+				<col style="width: 100px">
+				<col style="width: 100%">
+				<col style="width: 150px">
+			</colgroup>
+			<thead>
+			<tr>
+				<th>Datum</th>
+				<th>Typ</th>
+				<th>Information</th>
+				<th>Läkare</th>
+			</tr>
+			</thead>
+			<tbody>
+			{{#each note in controller}}
+				{{#link-to 'note.edit' note tagName='tr'}}
+					<td>{{formatDate note.createdTime}}</td>
+					<td>{{note.type}}</td>
+					<td>{{note.text}}</td>
+					<td>{{note.doctor}}</td>
+				{{/link-to}}
+			{{else}}
+				<tr class="t-empty">
+					<td colspan="3">Inga journalanteckningar hittades</td>
+				</tr>
+			{{/each}}
+			</tbody>
+		</table>
+	</section>
+{{/unless}}
+
+{{outlet}}

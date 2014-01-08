@@ -1,1 +1,32 @@
-<p>Callista Care</p>
+<nav class="navbar navbar-default">
+	<div class="navbar-header">
+		{{#link-to "index" class="navbar-brand"}}
+			Callista Care
+		{{/link-to}}
+	</div>
+
+	<ul class="nav navbar-nav navbar-right">
+		<li>
+			{{#link-to "appointments"}}
+				Tidbok
+			{{/link-to}}
+		</li>
+		<li>
+			{{#link-to "patients"}}
+				Patienter
+			{{/link-to}}
+		</li>
+		<li>
+			{{#link-to "reports"}}
+				Rapporter
+			{{/link-to}}
+		</li>
+		<li>
+			{{#link-to "administration"}}
+				Administration
+			{{/link-to}}
+		</li>
+	</ul>
+</nav>
+
+{{outlet}}
