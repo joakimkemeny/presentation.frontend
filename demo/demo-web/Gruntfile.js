@@ -18,18 +18,24 @@ module.exports = function (grunt) {
 
 		// Configure the concat task to combine all libraries into one file.
 		concat: {
+			app: {
+				src: 'src/js/**/*.js',
+				dest: 'js/app.js'
+			},
 			libs: {
 				src: [
 					'bower_components/jquery/jquery.min.js',
-					'bower_components/jquery-ui/ui/minified/jquery.ui.widget.js',
+					'bower_components/jquery-ui/ui/minified/jquery.ui.widget.min.js',
 					'bower_components/lodash/dist/lodash.min.js',
 					'bower_components/handlebars/handlebars.min.js',
 					'bower_components/ember/ember.min.js',
 					'bower_components/ember-data/ember-data.min.js',
 					'bower_components/moment/min/moment.min.js',
 					'bower_components/d3/d3.min.js',
-					'bower_components/jke-d3-calendar/dist/jke-d3-calendar.min.js',
-					'bower_components/jke-d3-ecg/dist/jke-d3-ecg.min.js'
+					'bower_components/jke-d3-calendar/src/js/jke-d3-calendar.js',
+					'bower_components/jke-d3-ecg/src/js/jke-d3-ecg.js',
+					'bower_components/stomp-websocket/lib/stomp.min.js',
+					'bower_components/floating-label/dist/floating-label.min.js'
 				],
 				dest: 'js/libs.js'
 			}
@@ -83,13 +89,13 @@ module.exports = function (grunt) {
 		},
 
 		// Configure the uglify task to concatenate and optimize all JavaScript files.
-		uglify: {
-			// TODO: Configure source maps.
-			dist: {
-				src: 'src/js/**/*.js',
-				dest: 'js/app.js'
-			}
-		},
+		//		uglify: {
+		//			// TODO: Configure source maps.
+		//			dist: {
+		//				src: 'src/js/**/*.js',
+		//				dest: 'js/app.js'
+		//			}
+		//		},
 
 		// Configure the watch task to listen to changes to relevant files and run the correct tasks.
 		watch: {
@@ -100,17 +106,21 @@ module.exports = function (grunt) {
 				files: ['Gruntfile.js', 'src/scss/**/*.scss'],
 				tasks: ['compass']
 			},
+			concat: {
+				files: ['Gruntfile.js', 'src/js/**/*.js'],
+				tasks: ['concat:app']
+			},
 			emberTemplates: {
 				files: ['Gruntfile.js', 'src/templates/**/*.hbs'],
 				tasks: ['emberTemplates']
 			},
+			//			uglify: {
+			//				files: ['Gruntfile.js', 'src/js/**/*.js'],
+			//				tasks: ['uglify']
+			//			},
 			jshint: {
 				files: ['Gruntfile.js', 'src/js/**/*.js'],
 				tasks: ['jshint']
-			},
-			uglify: {
-				files: ['Gruntfile.js', 'src/js/**/*.js'],
-				tasks: ['uglify']
 			}
 		}
 	});
@@ -122,10 +132,10 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-ember-templates');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
+	//	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	// Aliases
-	grunt.registerTask('build', ['jshint', 'compass', 'concat', 'emberTemplates', 'uglify', 'copy']);
+	grunt.registerTask('build', ['jshint', 'compass', 'concat', 'emberTemplates', 'copy']);
 	grunt.registerTask('default', ['build', 'connect', 'watch']);
 };

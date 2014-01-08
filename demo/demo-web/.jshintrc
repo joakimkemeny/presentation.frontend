@@ -1,11 +1,10 @@
 {
 	"bitwise": true,
-	"camelcase": true,
+	"camelcase": false,
 	"curly": true,
 	"eqeqeq": true,
 	"forin": true,
 	"immed": true,
-	"indent": 4,
 	"latedef": "nofunc",
 	"newcap": true,
 	"noarg": true,
@@ -13,7 +12,7 @@
 	"quotmark": "single",
 	"undef": true,
 	"unused": true,
-	"strict": true,
+	"strict": false,
 	"trailing": true,
 	"browser": true,
 	"devel": false,
@@ -21,6 +20,9 @@
 	"globals": {
 		"$": false,
 		"_": false,
-		"Ember": false
+		"Ember": false,
+		"App": false,
+		"DS": false,
+		"moment": false
 	}
 }
