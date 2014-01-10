@@ -17,7 +17,7 @@ public class Note implements Serializable {
 	private String text;
 	private String doctor;
 
-	// Handlers
+	// Helpers
 
 	public NoteDetails toNoteDetails() {
 		return toNoteDetails(null);

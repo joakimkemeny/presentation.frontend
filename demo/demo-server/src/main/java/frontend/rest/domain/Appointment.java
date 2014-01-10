@@ -16,7 +16,7 @@ public class Appointment implements Serializable {
 	private Long patient;
 	private String notes;
 
-	// Handlers
+	// Helpers
 
 	public AppointmentDetails toAppointmentDetails() {
 		return toAppointmentDetails(null);

@@ -21,7 +21,7 @@ public class Patient implements Serializable {
 	private String mobile;
 	private List<Long> notes;
 
-	// Handlers
+	// Helpers
 
 	public PatientDetails toPatientDetails() {
 		return toPatientDetails(null);
