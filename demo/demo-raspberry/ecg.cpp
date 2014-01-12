@@ -5,8 +5,8 @@
 #include <string>
 #include <sys/time.h>
 
-#include "lib/easywsclient.hpp"
-#include "lib/eHealth.h"
+#include "easywsclient.hpp"
+#include "eHealth.h"
 
 using easywsclient::WebSocket;
 static WebSocket::pointer ws = NULL;
@@ -36,16 +36,21 @@ void handle_connect(const std::string & message) {
 
 	std::cout << "<<<" << message << "\n";
 
-	std::stringstream commandStr;
-	commandStr << "SEND\n";
-	commandStr << "destination:/app/ecg\n\n{";
-	commandStr << "\"x\":" << get_current_time();
-	commandStr << ",\"y\":" << 2;
-	commandStr << "}\n";
+	while (1) {
 
-	send_message(commandStr.str());
+		std::stringstream commandStr;
+		commandStr << "SEND\n";
+		commandStr << "destination:/ecg\n\n{";
+		commandStr << "\"x\":" << get_current_time();
+		commandStr << ",\"y\":" << eHealth.getECG();
+		commandStr << "}\n";
 
-	ws->poll();
+		send_message(commandStr.str());
+
+		ws->poll();
+
+		delay(10);
+	}
 	ws->close();
 }
 
