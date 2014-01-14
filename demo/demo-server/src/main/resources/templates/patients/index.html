@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<meta charset="utf-8"/>
+	<title>Callista Care</title>
+
+	<link rel="stylesheet" href="/css/style.css"/>
+
+</head>
+<body>
+
+	<div th:include="layout :: head"></div>
+
+	<header class="l-mainHeader">
+		<h2>Patienter</h2>
+		<ul class="pull-right g-segmented-control">
+			<li>
+				<a href="/patients/create">
+					<i class="fa fa-plus"></i> Ny
+				</a>
+			</li>
+		</ul>
+	</header>
+
+	<div class="l-workspace">
+		<section class="l-mainContent">
+			<a href="/patients/1/edit">Edit</a>
+		</section>
+	</div>
+
+</body>
+</html>

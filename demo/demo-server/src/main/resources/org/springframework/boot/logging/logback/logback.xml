@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+	<!-- Customize logging levels -->
+	<!--<logger name="org.springframework.web.servlet.mvc" level="TRACE"/>-->
+
+</configuration>
