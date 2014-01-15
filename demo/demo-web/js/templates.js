@@ -186,18 +186,27 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   hashContexts = {'value': depth0,'class': depth0,'placeholder': depth0};
   hashTypes = {'value': "ID",'class': "STRING",'placeholder': "STRING"};
   options = {hash:{
-    'value': ("startTime"),
+    'value': ("date"),
     'class': ("form-control"),
-    'placeholder': ("Start")
+    'placeholder': ("Datum")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.input || (depth0 && depth0.input)),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+  data.buffer.push("\n		</div>\n	</div>\n	<div class=\"l-horizontal\">\n		<div class=\"form-group f-floating-label-form-group\">\n			");
+  hashContexts = {'value': depth0,'class': depth0,'placeholder': depth0};
+  hashTypes = {'value': "ID",'class': "STRING",'placeholder': "STRING"};
+  options = {hash:{
+    'value': ("start"),
+    'class': ("form-control"),
+    'placeholder': ("Starttid")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || (depth0 && depth0.input)),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
   data.buffer.push("\n		</div>\n		<div class=\"form-group f-floating-label-form-group\">\n			");
   hashContexts = {'value': depth0,'class': depth0,'placeholder': depth0};
   hashTypes = {'value': "ID",'class': "STRING",'placeholder': "STRING"};
   options = {hash:{
-    'value': ("endTime"),
+    'value': ("end"),
     'class': ("form-control"),
-    'placeholder': ("Slut")
+    'placeholder': ("Sluttid")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || (depth0 && depth0.input)),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
   data.buffer.push("\n		</div>\n	</div>\n	<div class=\"l-horizontal\">\n		<div class=\"form-group f-floating-label-form-group\">\n			");
@@ -239,18 +248,27 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   hashContexts = {'value': depth0,'class': depth0,'placeholder': depth0};
   hashTypes = {'value': "ID",'class': "STRING",'placeholder': "STRING"};
   options = {hash:{
-    'value': ("startTime"),
+    'value': ("date"),
     'class': ("form-control"),
-    'placeholder': ("Start")
+    'placeholder': ("Datum")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.input || (depth0 && depth0.input)),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+  data.buffer.push("\n		</div>\n	</div>\n	<div class=\"l-horizontal\">\n		<div class=\"form-group f-floating-label-form-group\">\n			");
+  hashContexts = {'value': depth0,'class': depth0,'placeholder': depth0};
+  hashTypes = {'value': "ID",'class': "STRING",'placeholder': "STRING"};
+  options = {hash:{
+    'value': ("start"),
+    'class': ("form-control"),
+    'placeholder': ("Starttid")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || (depth0 && depth0.input)),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
   data.buffer.push("\n		</div>\n		<div class=\"form-group f-floating-label-form-group\">\n			");
   hashContexts = {'value': depth0,'class': depth0,'placeholder': depth0};
   hashTypes = {'value': "ID",'class': "STRING",'placeholder': "STRING"};
   options = {hash:{
-    'value': ("endTime"),
+    'value': ("end"),
     'class': ("form-control"),
-    'placeholder': ("Slut")
+    'placeholder': ("Sluttid")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || (depth0 && depth0.input)),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
   data.buffer.push("\n		</div>\n	</div>\n	<div class=\"l-horizontal\">\n		<div class=\"form-group f-floating-label-form-group\">\n			");

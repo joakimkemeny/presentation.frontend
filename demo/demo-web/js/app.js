@@ -136,7 +136,7 @@ App.IsodatetimeTransform = DS.Transform.extend({
 		return moment(serialized).toDate();
 	},
 	serialize: function (deserialized) {
-		return moment(deserialized).toISOString();
+		return moment(deserialized).format('YYYY-MM-DD[T]HH:mm:ss');
 	}
 });
 
@@ -455,7 +455,68 @@ App.Appointment = DS.Model.extend({
 
 	startTime: DS.attr('isodatetime'),
 	endTime: DS.attr('isodatetime'),
-	notes: DS.attr()
+	notes: DS.attr(),
+
+	date: function (key, value) {
+
+		// setter
+		if (arguments.length > 1 && value.length === 10) {
+
+			var date = moment(value, 'YYYY-MM-DD');
+
+			var start = moment(this.get('startTime'));
+			start.year(date.year());
+			start.month(date.month());
+			start.day(date.day());
+			this.set('startTime', start.toDate());
+
+			var end = moment(this.get('endTime'));
+			end.year(date.year());
+			end.month(date.month());
+			end.day(date.day());
+			this.set('endTime', end.toDate());
+		}
+
+		// getter
+		return moment(this.get('startTime')).format('YYYY-MM-DD');
+
+	}.property('startTime'),
+
+	start: function (key, value) {
+
+		// setter
+		if (arguments.length > 1 && value.length === 5) {
+
+			var time = moment(value, 'HH:mm');
+
+			var start = moment(this.get('startTime'));
+			start.hour(time.hour());
+			start.minute(time.minute());
+			this.set('startTime', start.toDate());
+		}
+
+		// getter
+		return moment(this.get('startTime')).format('HH:mm');
+
+	}.property('startTime'),
+
+	end: function (key, value) {
+
+		// setter
+		if (arguments.length > 1 && value.length === 5) {
+
+			var time = moment(value, 'HH:mm');
+
+			var end = moment(this.get('endTime'));
+			end.hour(time.hour());
+			end.minute(time.minute());
+			this.set('endTime', end.toDate());
+		}
+
+		// getter
+		return moment(this.get('endTime')).format('HH:mm');
+
+	}.property('endTime')
 });
 
 App.Note = DS.Model.extend({
@@ -687,9 +748,21 @@ App.CalendarView = Ember.View.extend({
 
 	didInsertElement: function () {
 
+		var view = this;
 		var controller = this.get('controller');
 
+		this._updateData = _.throttle(function () {
+
+			var events = view.get('events')
+					.filter(function (record) { return record.get('id') !== null; })
+					.map(function (record) { return record.serialize({ includeId: true }); });
+
+			this.$().calendar('updateData', events);
+
+		}, 100, { leading: false, trailing: true });
+
 		this.$().calendar({
+
 			height: this.height,
 			width: this.width,
 			startDate: this.startDate,
@@ -699,7 +772,6 @@ App.CalendarView = Ember.View.extend({
 
 			click: function (e, id) {
 				controller.send('editAppointmentFromId', id);
-				return false;
 			}
 		});
 
@@ -713,10 +785,8 @@ App.CalendarView = Ember.View.extend({
 	},
 
 	updateData: function () {
-		this.$().calendar('updateData', this.get('events').map(function (record) {
-			return record.serialize({ includeId: true });
-		}));
-	}.observes('events.@each')
+		this._updateData();
+	}.observes('events.@each', 'events.@each.startTime', 'events.@each.endTime', 'events.@each.notes')
 });
 
 Ember.Handlebars.helper('calendar', App.CalendarView);

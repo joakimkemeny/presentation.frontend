@@ -8,6 +8,6 @@ App.IsodatetimeTransform = DS.Transform.extend({
 		return moment(serialized).toDate();
 	},
 	serialize: function (deserialized) {
-		return moment(deserialized).toISOString();
+		return moment(deserialized).format('YYYY-MM-DD[T]HH:mm:ss');
 	}
 });

@@ -13,9 +13,21 @@ App.CalendarView = Ember.View.extend({
 
 	didInsertElement: function () {
 
+		var view = this;
 		var controller = this.get('controller');
 
+		this._updateData = _.throttle(function () {
+
+			var events = view.get('events')
+					.filter(function (record) { return record.get('id') !== null; })
+					.map(function (record) { return record.serialize({ includeId: true }); });
+
+			this.$().calendar('updateData', events);
+
+		}, 100, { leading: false, trailing: true });
+
 		this.$().calendar({
+
 			height: this.height,
 			width: this.width,
 			startDate: this.startDate,
@@ -25,7 +37,6 @@ App.CalendarView = Ember.View.extend({
 
 			click: function (e, id) {
 				controller.send('editAppointmentFromId', id);
-				return false;
 			}
 		});
 
@@ -39,10 +50,8 @@ App.CalendarView = Ember.View.extend({
 	},
 
 	updateData: function () {
-		this.$().calendar('updateData', this.get('events').map(function (record) {
-			return record.serialize({ includeId: true });
-		}));
-	}.observes('events.@each')
+		this._updateData();
+	}.observes('events.@each', 'events.@each.startTime', 'events.@each.endTime', 'events.@each.notes')
 });
 
 Ember.Handlebars.helper('calendar', App.CalendarView);
