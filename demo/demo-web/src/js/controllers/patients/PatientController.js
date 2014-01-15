@@ -5,7 +5,7 @@ App.PatientController = Ember.ArrayController.extend({
 	sortProperties: ['createdTime'],
 
 	// These is populated from the route.
-	notes: [],
+	patient: null,
 	showCreateNote: false,
 	showEditNote: false,
 	showEditPatient: false,
@@ -36,13 +36,17 @@ App.PatientController = Ember.ArrayController.extend({
 		var excludeDoctor = !this.get('doctorFilter');
 		var excludeText = !this.get('textFilter');
 
-		return this.get('notes').filter(function (note) {
-			return (excludeStartDate || !startDate.isAfter(note.get('createdTime'))) &&
-					(excludeEndDate || endDate.isAfter(note.get('createdTime'))) &&
-					(excludeDoctor || doctor.test(note.get('doctor'))) &&
-					(excludeText || text.test(note.get('text')));
-		});
-	}.property('startDateFilter', 'endDateFilter', 'doctorFilter', 'textFilter', 'notes.@each'),
+		if (this.get('patient') === null) {
+			return [];
+		} else {
+			return this.get('patient').get('notes').filter(function (note) {
+				return (excludeStartDate || !startDate.isAfter(note.get('createdTime'))) &&
+						(excludeEndDate || endDate.isAfter(note.get('createdTime'))) &&
+						(excludeDoctor || doctor.test(note.get('doctor'))) &&
+						(excludeText || text.test(note.get('text')));
+			});
+		}
+	}.property('startDateFilter', 'endDateFilter', 'doctorFilter', 'textFilter', 'patient', 'patient.notes.@each'),
 
 	showSearch: function () {
 		return !this.get('showCreateNote') && !this.get('showEditPatient') && !this.get('showEditNote');

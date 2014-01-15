@@ -24,8 +24,6 @@ App.PatientRoute = Ember.Route.extend({
 	},
 
 	setupController: function (controller, model) {
-
 		controller.set('patient', model);
-		controller.set('notes', model.get('notes'));
 	}
 });

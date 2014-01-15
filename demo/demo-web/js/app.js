@@ -78,14 +78,16 @@ Ember.Application.initializer({
 			stompClient.subscribe('/topic/appointment.deleted.*', function (message) {
 				var obj = JSON.parse(message.body, dateTimeReviver);
 				if (store.hasRecordForId('appointment', obj.id)) {
-					store.deleteRecord(store.recordForId('appointment', obj.id));
+					store.deleteRecord(store.find('appointment', obj.id));
 				}
 			});
 
 			// Keep the note data updated.
 			stompClient.subscribe('/topic/note.created.*', function (message) {
 				executeOnPromise(App.Note.createPromise, function () {
-					store.push('note', JSON.parse(message.body, dateTimeReviver));
+					var note = JSON.parse(message.body, dateTimeReviver);
+					store.push('note', note);
+					note.patient.reload();
 				});
 			});
 			stompClient.subscribe('/topic/note.updated.*', function (message) {
@@ -94,7 +96,9 @@ Ember.Application.initializer({
 			stompClient.subscribe('/topic/note.deleted.*', function (message) {
 				var obj = JSON.parse(message.body, dateTimeReviver);
 				if (store.hasRecordForId('note', obj.id)) {
-					store.deleteRecord(store.recordForId('note', obj.id));
+					var note = store.find('note', obj.id);
+					store.patient.reload();
+					store.deleteRecord(note);
 				}
 			});
 
@@ -110,7 +114,7 @@ Ember.Application.initializer({
 			stompClient.subscribe('/topic/patient.deleted.*', function (message) {
 				var obj = JSON.parse(message.body, dateTimeReviver);
 				if (store.hasRecordForId('patient', obj.id)) {
-					store.deleteRecord(store.recordForId('patient', obj.id));
+					store.deleteRecord(store.find('patient', obj.id));
 				}
 			});
 
@@ -138,6 +142,13 @@ App.AppointmentsController = Ember.ArrayController.extend({
 	startDateFilter: null,
 	endDateFilter: null,
 	textFilter: null,
+
+	actions: {
+
+		editAppointmentFromId: function (id) {
+			this.transitionToRoute('appointments.edit', this.store.find('appointment',id));
+		}
+	},
 
 	content: function () {
 
@@ -276,7 +287,7 @@ App.PatientController = Ember.ArrayController.extend({
 	sortProperties: ['createdTime'],
 
 	// These is populated from the route.
-	notes: [],
+	patient: null,
 	showCreateNote: false,
 	showEditNote: false,
 	showEditPatient: false,
@@ -307,13 +318,17 @@ App.PatientController = Ember.ArrayController.extend({
 		var excludeDoctor = !this.get('doctorFilter');
 		var excludeText = !this.get('textFilter');
 
-		return this.get('notes').filter(function (note) {
-			return (excludeStartDate || !startDate.isAfter(note.get('createdTime'))) &&
-					(excludeEndDate || endDate.isAfter(note.get('createdTime'))) &&
-					(excludeDoctor || doctor.test(note.get('doctor'))) &&
-					(excludeText || text.test(note.get('text')));
-		});
-	}.property('startDateFilter', 'endDateFilter', 'doctorFilter', 'textFilter', 'notes.@each'),
+		if (this.get('patient') === null) {
+			return [];
+		} else {
+			return this.get('patient').get('notes').filter(function (note) {
+				return (excludeStartDate || !startDate.isAfter(note.get('createdTime'))) &&
+						(excludeEndDate || endDate.isAfter(note.get('createdTime'))) &&
+						(excludeDoctor || doctor.test(note.get('doctor'))) &&
+						(excludeText || text.test(note.get('text')));
+			});
+		}
+	}.property('startDateFilter', 'endDateFilter', 'doctorFilter', 'textFilter', 'patient', 'patient.notes.@each'),
 
 	showSearch: function () {
 		return !this.get('showCreateNote') && !this.get('showEditPatient') && !this.get('showEditNote');
@@ -591,9 +606,7 @@ App.PatientRoute = Ember.Route.extend({
 	},
 
 	setupController: function (controller, model) {
-
 		controller.set('patient', model);
-		controller.set('notes', model.get('notes'));
 	}
 });
 
@@ -640,8 +653,8 @@ App.CalendarView = Ember.View.extend({
 	height: 600,
 	width: 800,
 
-	startDate: '2014-01-01',
-	endDate: '2014-01-01',
+	startDate: '2014-01-13',
+	endDate: '2014-01-17',
 	startTime: '07:00',
 	endTime: '18:00',
 
@@ -649,13 +662,20 @@ App.CalendarView = Ember.View.extend({
 
 	didInsertElement: function () {
 
+		var controller = this.get('controller');
+
 		this.$().calendar({
 			height: this.height,
 			width: this.width,
 			startDate: this.startDate,
 			endDate: this.endDate,
 			startTime: this.startTime,
-			endTime: this.endTime
+			endTime: this.endTime,
+
+			click: function (e, id) {
+				controller.send('editAppointmentFromId', id);
+				return false;
+			}
 		});
 
 		this.$().calendar('updateData', this.get('events').map(function (record) {

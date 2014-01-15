@@ -41,14 +41,16 @@ Ember.Application.initializer({
 			stompClient.subscribe('/topic/appointment.deleted.*', function (message) {
 				var obj = JSON.parse(message.body, dateTimeReviver);
 				if (store.hasRecordForId('appointment', obj.id)) {
-					store.deleteRecord(store.recordForId('appointment', obj.id));
+					store.deleteRecord(store.find('appointment', obj.id));
 				}
 			});
 
 			// Keep the note data updated.
 			stompClient.subscribe('/topic/note.created.*', function (message) {
 				executeOnPromise(App.Note.createPromise, function () {
-					store.push('note', JSON.parse(message.body, dateTimeReviver));
+					var note = JSON.parse(message.body, dateTimeReviver);
+					store.push('note', note);
+					note.patient.reload();
 				});
 			});
 			stompClient.subscribe('/topic/note.updated.*', function (message) {
@@ -57,7 +59,9 @@ Ember.Application.initializer({
 			stompClient.subscribe('/topic/note.deleted.*', function (message) {
 				var obj = JSON.parse(message.body, dateTimeReviver);
 				if (store.hasRecordForId('note', obj.id)) {
-					store.deleteRecord(store.recordForId('note', obj.id));
+					var note = store.find('note', obj.id);
+					store.patient.reload();
+					store.deleteRecord(note);
 				}
 			});
 
@@ -73,7 +77,7 @@ Ember.Application.initializer({
 			stompClient.subscribe('/topic/patient.deleted.*', function (message) {
 				var obj = JSON.parse(message.body, dateTimeReviver);
 				if (store.hasRecordForId('patient', obj.id)) {
-					store.deleteRecord(store.recordForId('patient', obj.id));
+					store.deleteRecord(store.find('patient', obj.id));
 				}
 			});
 

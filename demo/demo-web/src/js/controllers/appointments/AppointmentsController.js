@@ -10,6 +10,13 @@ App.AppointmentsController = Ember.ArrayController.extend({
 	endDateFilter: null,
 	textFilter: null,
 
+	actions: {
+
+		editAppointmentFromId: function (id) {
+			this.transitionToRoute('appointments.edit', this.store.find('appointment',id));
+		}
+	},
+
 	content: function () {
 
 		var startDate = moment(this.get('startDateFilter'));
