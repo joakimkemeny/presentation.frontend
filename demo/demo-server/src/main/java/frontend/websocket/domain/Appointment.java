@@ -11,7 +11,6 @@ public class Appointment implements Serializable {
 	private Long id;
 	private Date startTime;
 	private Date endTime;
-	private Long patient;
 	private String notes;
 
 	// Handlers
@@ -25,7 +24,6 @@ public class Appointment implements Serializable {
 		AppointmentDetails details = new AppointmentDetails();
 		BeanUtils.copyProperties(this, details);
 		details.setId(id);
-		details.setPatientId(patient);
 		return details;
 	}
 
@@ -33,7 +31,6 @@ public class Appointment implements Serializable {
 
 		Appointment appointment = new Appointment();
 		BeanUtils.copyProperties(details, appointment);
-		appointment.setPatient(details.getPatientId());
 		return appointment;
 	}
 
@@ -61,14 +58,6 @@ public class Appointment implements Serializable {
 
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
-	}
-
-	public Long getPatient() {
-		return patient;
-	}
-
-	public void setPatient(Long patient) {
-		this.patient = patient;
 	}
 
 	public String getNotes() {

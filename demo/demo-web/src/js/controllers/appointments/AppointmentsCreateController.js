@@ -14,8 +14,8 @@ App.AppointmentsCreateController = Ember.ObjectController.extend({
 
 			// Store a reference to the save promise to make it possible to wait for it elsewhere.
 			// TODO: Solve this in a better (and safer) way.
-			App.Appointment.createPromise = appointment.save().then(function (result) {
-				this.transitionToRoute('patient', result);
+			App.Appointment.createPromise = appointment.save().then(function () {
+				this.transitionToRoute('appointments');
 			}.bind(this));
 		}
 	}

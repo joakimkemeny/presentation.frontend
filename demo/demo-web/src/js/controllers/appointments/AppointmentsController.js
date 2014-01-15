@@ -13,7 +13,7 @@ App.AppointmentsController = Ember.ArrayController.extend({
 	actions: {
 
 		editAppointmentFromId: function (id) {
-			this.transitionToRoute('appointments.edit', this.store.find('appointment',id));
+			this.transitionToRoute('appointments.edit', this.store.find('appointment', id));
 		}
 	},
 
@@ -30,9 +30,7 @@ App.AppointmentsController = Ember.ArrayController.extend({
 		return this.get('appointments').filter(function (appointment) {
 			return (excludeStartDate || !startDate.isAfter(appointment.get('startTime'))) &&
 					(excludeEndDate || endDate.add('days', 1).isAfter(appointment.get('endTime'))) &&
-					(excludeText || text.test(appointment.get('notes')) ||
-							text.test(appointment.get('patient').get('firstName')) ||
-							text.test(appointment.get('patient').get('lastName')));
+					(excludeText || text.test(appointment.get('notes')));
 		});
 	}.property('startDateFilter', 'endDateFilter', 'textFilter', 'appointments.@each')
 });

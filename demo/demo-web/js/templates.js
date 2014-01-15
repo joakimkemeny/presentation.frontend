@@ -204,15 +204,6 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   hashContexts = {'value': depth0,'class': depth0,'placeholder': depth0};
   hashTypes = {'value': "ID",'class': "STRING",'placeholder': "STRING"};
   options = {hash:{
-    'value': ("patient"),
-    'class': ("form-control"),
-    'placeholder': ("Patient")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.input || (depth0 && depth0.input)),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n		</div>\n	</div>\n	<div class=\"l-horizontal\">\n		<div class=\"form-group f-floating-label-form-group\">\n			");
-  hashContexts = {'value': depth0,'class': depth0,'placeholder': depth0};
-  hashTypes = {'value': "ID",'class': "STRING",'placeholder': "STRING"};
-  options = {hash:{
     'value': ("notes"),
     'class': ("form-control"),
     'placeholder': ("Anteckningar")
@@ -260,15 +251,6 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
     'value': ("endTime"),
     'class': ("form-control"),
     'placeholder': ("Slut")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.input || (depth0 && depth0.input)),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n		</div>\n	</div>\n	<div class=\"l-horizontal\">\n		<div class=\"form-group f-floating-label-form-group\">\n			");
-  hashContexts = {'value': depth0,'class': depth0,'placeholder': depth0};
-  hashTypes = {'value': "ID",'class': "STRING",'placeholder': "STRING"};
-  options = {hash:{
-    'value': ("patient"),
-    'class': ("form-control"),
-    'placeholder': ("Patient")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input || (depth0 && depth0.input)),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
   data.buffer.push("\n		</div>\n	</div>\n	<div class=\"l-horizontal\">\n		<div class=\"form-group f-floating-label-form-group\">\n			");

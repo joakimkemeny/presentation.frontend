@@ -22,10 +22,6 @@ public class Appointment {
 	@Column(name = "END_TIME")
 	private Date endTime;
 
-	@ManyToOne
-	@JoinColumn(name = "FK_PATIENT")
-	private Patient patient;
-
 	@Column(name = "NOTES")
 	private String notes;
 
@@ -35,16 +31,14 @@ public class Appointment {
 
 		AppointmentDetails details = new AppointmentDetails();
 		BeanUtils.copyProperties(this, details);
-		details.setPatientId(patient.getId());
 
 		return details;
 	}
 
-	public static Appointment fromAppointmentDetails(AppointmentDetails details, Patient patient) {
+	public static Appointment fromAppointmentDetails(AppointmentDetails details) {
 
 		Appointment appointment = new Appointment();
 		BeanUtils.copyProperties(details, appointment);
-		appointment.patient = patient;
 
 		return appointment;
 	}
@@ -73,14 +67,6 @@ public class Appointment {
 
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
-	}
-
-	public Patient getPatient() {
-		return patient;
-	}
-
-	public void setPatient(Patient patient) {
-		this.patient = patient;
 	}
 
 	public String getNotes() {

@@ -7,7 +7,6 @@ public class AppointmentDetails {
 	private Long id;
 	private Date startTime;
 	private Date endTime;
-	private Long patientId;
 	private String notes;
 
 	// Getters / Setters
@@ -34,14 +33,6 @@ public class AppointmentDetails {
 
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
-	}
-
-	public Long getPatientId() {
-		return patientId;
-	}
-
-	public void setPatientId(Long patientId) {
-		this.patientId = patientId;
 	}
 
 	public String getNotes() {

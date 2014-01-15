@@ -2,9 +2,7 @@ package frontend.persistence.service;
 
 import frontend.events.appointment.*;
 import frontend.persistence.domain.Appointment;
-import frontend.persistence.domain.Patient;
 import frontend.persistence.repository.AppointmentRepository;
-import frontend.persistence.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,14 +13,10 @@ import java.util.List;
 public class AppointmentPersistenceEventHandler implements AppointmentPersistenceService {
 
 	private final AppointmentRepository appointmentRepository;
-	private final PatientRepository patientRepository;
 
 	@Autowired
-	public AppointmentPersistenceEventHandler(AppointmentRepository appointmentRepository,
-			PatientRepository patientRepository) {
-
+	public AppointmentPersistenceEventHandler(AppointmentRepository appointmentRepository) {
 		this.appointmentRepository = appointmentRepository;
-		this.patientRepository = patientRepository;
 	}
 
 	@Override
@@ -51,11 +45,8 @@ public class AppointmentPersistenceEventHandler implements AppointmentPersistenc
 	@Override
 	public AppointmentCreatedEvent createAppointment(CreateAppointmentEvent createEvent) {
 
-		Patient patient = patientRepository.findOne(createEvent.getAppointmentDetails().getPatientId());
-		// TODO: Return error if patient isn't found.
-
-		Appointment appointment = appointmentRepository
-				.save(Appointment.fromAppointmentDetails(createEvent.getAppointmentDetails(), patient));
+		Appointment appointment =
+				appointmentRepository.save(Appointment.fromAppointmentDetails(createEvent.getAppointmentDetails()));
 		return new AppointmentCreatedEvent(appointment.getId(), appointment.toAppointmentDetails());
 	}
 
@@ -76,15 +67,12 @@ public class AppointmentPersistenceEventHandler implements AppointmentPersistenc
 	@Override
 	public AppointmentUpdatedEvent updateAppointment(UpdateAppointmentEvent updateEvent) {
 
-		Patient patient = patientRepository.findOne(updateEvent.getAppointmentDetails().getPatientId());
-		// TODO: Return error if patient isn't found.
-
 		if (!appointmentRepository.exists(updateEvent.getAppointmentId())) {
 			return AppointmentUpdatedEvent.notFound(updateEvent.getAppointmentId());
 		}
 
-		Appointment appointment = appointmentRepository
-				.save(Appointment.fromAppointmentDetails(updateEvent.getAppointmentDetails(), patient));
+		Appointment appointment =
+				appointmentRepository.save(Appointment.fromAppointmentDetails(updateEvent.getAppointmentDetails()));
 		return new AppointmentUpdatedEvent(appointment.getId(), appointment.toAppointmentDetails());
 	}
 }
