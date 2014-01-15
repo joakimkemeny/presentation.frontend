@@ -44,7 +44,7 @@
 			{{#each note in controller}}
 				{{#link-to 'note.edit' note tagName='tr'}}
 					<td>{{formatDate note.createdTime}}</td>
-					<td>{{note.type}}</td>
+					<td>{{note.typeText}}</td>
 					<td>{{note.text}}</td>
 					<td>{{note.doctor}}</td>
 				{{/link-to}}

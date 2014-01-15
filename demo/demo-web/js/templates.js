@@ -475,7 +475,7 @@ function program3(depth0,data) {
   data.buffer.push("</td>\n					<td>");
   hashTypes = {};
   hashContexts = {};
-  stack2 = helpers._triageMustache.call(depth0, "note.type", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  stack2 = helpers._triageMustache.call(depth0, "note.typeText", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
   data.buffer.push("</td>\n					<td>");
   hashTypes = {};
