@@ -1,6 +1,6 @@
 App.Note = DS.Model.extend({
 
-	createdTime: DS.attr('date'),
+	createdTime: DS.attr('isodatetime'),
 	type: DS.attr(),
 	text: DS.attr(),
 	doctor: DS.attr(),

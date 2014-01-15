@@ -1,6 +1,6 @@
 App.Appointment = DS.Model.extend({
 
-	startTime: DS.attr('date'),
-	endTime: DS.attr('date'),
+	startTime: DS.attr('isodatetime'),
+	endTime: DS.attr('isodatetime'),
 	notes: DS.attr()
 });

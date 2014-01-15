@@ -131,6 +131,15 @@ App.ApplicationAdapter = DS.RESTAdapter.extend({
 	namespace: 'api'
 });
 
+App.IsodatetimeTransform = DS.Transform.extend({
+	deserialize: function (serialized) {
+		return moment(serialized).toDate();
+	},
+	serialize: function (deserialized) {
+		return moment(deserialized).toISOString();
+	}
+});
+
 App.AppointmentsController = Ember.ArrayController.extend({
 
 	// These are populated from the route.
@@ -444,14 +453,14 @@ Ember.Handlebars.helper('formatDateTime', function (date) {
 
 App.Appointment = DS.Model.extend({
 
-	startTime: DS.attr('date'),
-	endTime: DS.attr('date'),
+	startTime: DS.attr('isodatetime'),
+	endTime: DS.attr('isodatetime'),
 	notes: DS.attr()
 });
 
 App.Note = DS.Model.extend({
 
-	createdTime: DS.attr('date'),
+	createdTime: DS.attr('isodatetime'),
 	type: DS.attr(),
 	text: DS.attr(),
 	doctor: DS.attr(),
