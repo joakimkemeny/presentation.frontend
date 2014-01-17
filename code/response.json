@@ -1,0 +1,6 @@
+{ patients: [{
+    id: 1,
+    civicRegNr: '121212-1212',
+    firstName: 'Kalle',
+    lastName: 'Kula',
+}]}

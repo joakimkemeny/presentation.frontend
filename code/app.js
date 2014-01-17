@@ -1,5 +1,5 @@
-/* global Rainbow, impress, console */
-(function ($, Rainbow, impress, console) {
+/* global Rainbow, impress */
+(function ($, Rainbow, impress) {
 	'use strict';
 
 	var Frontend = {
@@ -26,36 +26,8 @@
 			}
 
 			var browser = step.find('.browser');
-			var addressBar = browser.find('.address div');
-			browser.append('<iframe src="' + addressBar.text() + '" frameborder="0"></iframe>');
-
-			var backButton = browser.find('button.back');
-			var forwardButton = browser.find('button.forward');
-			var refreshButton = browser.find('button.refresh');
-
-			var iframe = browser.find('iframe');
-
-			iframe.load(function () {
-				addressBar.text(this.src);
-				var w = this.contentWindow;
-
-				backButton.on('click', function (e) {
-					w.history.back();
-				});
-
-				forwardButton.on('click', function (e) {
-					w.history.forward();
-				});
-
-				refreshButton.on('click', function (e) {
-					w.location.reload();
-				});
-
-				$(w).on('hashchange', function (e) {
-					addressBar.text(e.originalEvent.newURL);
-					console.log(w.location);
-				});
-			});
+			var src = browser.data('src');
+			browser.append('<iframe src="' + src + '" frameborder="0"></iframe>');
 
 			step.data('demo-loaded', true);
 		},
@@ -92,13 +64,11 @@
 
 		$('.step').on('impress:stepenter', function () {
 			Frontend.loadSrc($(this));
-			Frontend.loadDemo($(this));
 		});
 
 		Frontend.enterFullScreen();
 
 		impress().init();
-		impressConsole().init('css/console.css');
 	});
 
-}($, Rainbow, impress, console));
+}($, Rainbow, impress));

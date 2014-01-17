@@ -1,10 +1,12 @@
 {
-	"name": "presentation.frontend",
-	"version": "0.1.0",
-	"private": true,
-
-	"dependencies": {
-		"font-awesome": "~4.0.3",
-		"jquery": "~2.0.3"
-	}
+  "name": "presentation.frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "font-awesome": "~4.0.3",
+    "jquery": "~2.0.3",
+    "impress.js": "~0.5.3",
+    "rainbow": "~1.1.9",
+    "normalize-scss": "~2.1.3"
+  }
 }

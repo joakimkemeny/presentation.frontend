@@ -1,0 +1,59 @@
+Server:
+	Här ligger de punkter som behöver åtgärdas som rör demo-server.
+
+	- Ta bort patientreferensen på en bokning. @done
+	- Se till att importskriptet körs korrekt.
+	- Lägg till en massa testdata i importskriptet.
+	- Uppdatera README.md så den beskriver hur man ska köra den.
+	- Lås alla beroenden.
+ServerWeb:
+	Här ligger de punkter som behöver åtgärdas som rör demo-server / web.
+	
+	- Implementera sökning efter patienter.
+	- Se till att sökningen efter patienter ligger kvar även om lägger till ny.
+
+	Dessa får låg prio och kan läggas in som Known issues.
+
+	- Implementationen av att visa journalanteckningar är korkad.
+Web:
+	Här ligger de punkter som behöver åtgärdas som rör demo-web.
+	
+	- Visa rätt namn för de olika typerna i listan med journalanteckningar. @done
+	- Se till att journalanteckningarna uppdaterar sig när man ändrar en anteckning över WS. @done
+	- Ta bort patientreferensen på en bokning. @done
+	- Lägg in datepickers i bokningsformuläret. @done
+	- Se till att det går att skapa och redigera bokningar. @done
+	- Gör det möjligt att byta vy för kalendern mellan dag, vecka, månad och år. @done
+	- Se till att kalendern skalar om sig till fönstret. @done
+	- Gör det möjligt att byta dag eller vecka för kalendern. @done
+	- Lägg in stöd för att söka efter bokningar. @done
+	- Hantera att lägga till en ny bokning på varje route.
+	- Lägg till animeringar mellar de olika vyerna.
+	- Uppdatera README.md så den beskriver hur man ska köra den.
+	- Se till att hantera EKG på ett bra sätt beroende på om Raspberry PI:n hoppar igång.
+
+	Dessa får låg prio och kan läggas in som Known issues.
+	
+	- Se till att vi inte tappar journalanteckningarna när vi redigerar en patient.
+iOS:
+	Här ligger de punkter som behöver åtgärdas som rör demo-ios.
+	
+	- Uppdatera README.md så den beskriver hur man ska köra den.
+	- Se till att det går att navigera mellan alla vyer.
+	- Designa alla formulär.
+	- Designa listorna.
+	- Implementera så att patienter hämtas via REST.
+	- Implementera så att bokningarna hämtas via REST.
+	- Implementera så att journalanteckningarnar hämtas via REST.
+	- Implementera stöd för att spara en patient.
+	- Skapa en vettig ikon.
+	- Fixa så att statusbaren blir vit.
+Raspberry:
+	Här ligger de punkter som behöver åtgärdas som rör demo-raspberry.
+
+	- Uppdatera README.md så den beskriver hur man ska köra den.
+	- Gör en ren installation av Raspberryn för att se om det hjälper.
+Presentation:
+	Här ligger de punkter som behöver åtgärdas som rör själva presentationen.
+
+	- 

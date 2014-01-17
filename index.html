@@ -13,9 +13,279 @@
 </head>
 <body>
 
-	<p>Rethink your frontend architecture</p>
+	<div id="impress">
+		<div id="intro" class="step" data-x="0" data-y="0">
+			<h2>Rethink your</h2>
+			<h1>Frontend Architecture</h1>
+			<h3>Joakim Kemeny</h3>
+			<h4>@joakimkemeny</h4>
+			<img src="images/callista.png" class="logotype">
+			<img src="images/display-site-grey.png" class="site-display">
+			<img src="images/ipad-site-grey.png" class="site-ipad">
+			<img src="images/iphone-site1-grey.png" class="site-iphone">
 
-	<iframe src="demo/demo-web/index.html"></iframe>
+			<div class="notes">
+				<p>
+					Välkomna hit och kul att det är så många här. Idag tänkte jag prata med er om hur ni bygger
+					frontend i era applikationer och kanske få er att tänka till lite kring hur ni ska bygga era
+					applikationer för att de ska vara bättre anpassade för dagens och morgondagens utmaningar. Ni
+					kanske redan har den perfekta arkitekturen, vi får väl se, men jag vill i alla fall dela med mig
+					av mina erfarenheter kring det här så får vi se var vi landar.
+				</p>
+				<p>
+					Jag heter Joakim Kemeny och jobbar helst med frontend på olika sätt. Oftast handlar det så klart
+					om HTML, CSS och JavaScript eller kanske Objective-C men ibland får jag även skriva en och annan
+					rad Java, Scala eller Groovy också. Om man vill skapa en riktigt bra frontend så behöver man ibland
+					även fokusera på backend och lite av det kommer vi att få se här idag.
+				</p>
+				<p>
+					Jag tänkte att vi skulle köra igång den här presentationen med en demo.
+				</p>
+			</div>
+		</div>
+
+		<div id="demo-old" class="step" data-x="1500" data-y="0">
+
+			<div class="browser">
+				<div class="toolbar">
+					<div class="buttons">
+						<button class="back"><i class="fa fa-arrow-left"></i></button>
+						<button class="forward"><i class="fa fa-arrow-right"></i></button>
+						<button class="refresh"><i class="fa fa-refresh"></i></button>
+					</div>
+					<div class="address">
+						<div>demo/demo-web</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="notes">
+				<p>
+					Det här är ett väldigt enkelt journalsystem som jag har tänkt att vi ska förbättra idag. Det har
+					en tidbok med ett par olika vyer som man kan lägga till bokningar i. Man kan söka på patienter
+					och givetvis även skapa nya. När man har hittat den patient som man är intresserad av kan man
+					lägga in en journalanteckning och som ni ser man kan söka även på dessa.
+				</p>
+				<p>
+					Det finns ett par vyer till men de är tomma än så länge.
+				</p>
+				<p>
+					Varför ett journalsystem? Till att börja med kanske jag ska vara tydlig och säga att det inte
+					finns några planer för Callista att börja tillverka journalsystem, även om vi i är tunga inom
+					vårdsektorn, men faktum är att journalsystem var det första som jag byggde när jag började jobba
+					och där finns många spännande utmaningar att lösa samtidigt som många kan relatera till det så
+					jag hoppas att det ska vara en bra demo. När jag senast byggde journalsystem så bygdes det på
+					Java Servlets med XML och XSLT för att skapa användargränssnittet. Det här systemet är lite mer
+					modernt. Det är byggt som en Spring MVC applikation och jag har använt den senaste versionen av
+					Spring och byggt enligt deras best practices så förhoppningsvis är det bättre än XSLT.
+				</p>
+				<p>
+					Det här är vår utgångspunkt idag, exakt hur den är byggd är inte jätteviktigt men det är en
+					klassisk Java webbapplikation och jag kommer inte ens visa er någon kod från den idag.
+				</p>
+				<p>
+					Låt oss se vad som händer när man söker efter en patient i vår applikation.
+				</p>
+			</div>
+		</div>
+
+		<div id="architecture-old-1" class="step" data-x="3000" data-y="-400">
+			<svg width="800" height="">
+				<defs>
+					<marker id="markerArrow" markerWidth="5" markerHeight="5" refx="0" refy="2" orient="auto">
+						<path d="M0,0 L0,4 L4,2 L0,0"/>
+					</marker>
+				</defs>
+
+				<path d="M40,440, L40,120, L150,120" class="arrow"></path>
+				<line x1="360" x2="460" y1="120" y2="120" class="arrow"></line>
+				<line x1="470" x2="370" y1="150" y2="150" class="arrow-dashed"></line>
+				<line x1="360" x2="540" y1="350" y2="350" class="arrow"></line>
+				<path d="M750,600, L750,700, L510,700" class="arrow"></path>
+
+			</svg>
+			<div class="box box-fixed" style="left: 160px;top: 40px; width: 200px; height: 350px;">
+				Spring MVC<br>
+				Struts<br>
+				JSF<br>
+				...
+			</div>
+			<div class="box box-fixed" style="left: 470px;top: 40px; width: 100px; height: 150px;">
+				DB
+			</div>
+			<pre class="box-fixed" style="left: 550px;top: 300px; width: 410px; height: 350px;overflow: hidden;"><code
+					data-language="html" data-src="code/html.html"></code></pre>
+		</div>
+
+		<div id="architecture-old-2" class="step invisible" data-x="1780" data-y="-567" data-scale="0.6">
+			<div class="box box-fixed" style="left: 300px;top: 100px; width: 333px; height: 583px;">
+
+				<div class="chart">
+					<div class="bar" style="width: 50%;bottom: 20px;"></div>
+				</div>
+			</div>
+		</div>
+
+		<div id="reality-1" class="step invisible" data-x="2000" data-y="-1400">
+			<div class="center">
+				<h1>2014</h1>
+			</div>
+
+			<div class="notes">
+				<p>
+					The glue that we use is called Knockback. I just thought I let you know since
+					it complicates the code quite a bit but as usual when it gets complicated I
+					leave it as an exercise to you.
+				</p>
+			</div>
+		</div>
+		<div id="reality-2" class="step invisible" data-x="2000" data-y="-1400">
+			<div class="center">
+				<h1>2014</h1>
+				<div class="box ballon ballon-down ballon1">Mobility</div>
+				<div class="box ballon ballon-up ballon2">Usability</div>
+			</div>
+
+			<div class="notes">
+				<p>
+					The glue that we use is called Knockback. I just thought I let you know since
+					it complicates the code quite a bit but as usual when it gets complicated I
+					leave it as an exercise to you.
+				</p>
+			</div>
+		</div>
+		<div id="reality-3" class="step invisible" data-x="2000" data-y="-1400">
+			<div class="center">
+				<h1>2014</h1>
+				<div class="box ballon ballon-down ballon1">New technologies</div>
+				<div class="box ballon ballon-up ballon2">
+					Better performance
+				</div>
+			</div>
+
+			<div class="notes">
+				<p>
+					The glue that we use is called Knockback. I just thought I let you know since
+					it complicates the code quite a bit but as usual when it gets complicated I
+					leave it as an exercise to you.
+				</p>
+			</div>
+		</div>
+		<div id="reality-4" class="step invisible" data-x="2000" data-y="-1400">
+			<div class="center">
+				<h1>2014</h1>
+				<div class="box ballon ballon-down ballon1">New technologies</div>
+				<div class="box ballon ballon-up ballon2">
+					Better performance
+					<div style="position: absolute; bottom: -95px;left: 50px;">
+						<img src="images/chrome.png">
+						<img src="images/firefox.png">
+						<img src="images/safari.png">
+						<img src="images/ie.png">
+						<img src="images/opera.png">
+					</div>
+				</div>
+			</div>
+
+			<div class="notes">
+				<p>
+					The glue that we use is called Knockback. I just thought I let you know since
+					it complicates the code quite a bit but as usual when it gets complicated I
+					leave it as an exercise to you.
+				</p>
+			</div>
+		</div>
+
+
+		<div id="javascript-1" class="step" data-x="5000" data-y="-1400">
+			<div class="center">
+				<h1>JavaScript</h1>
+			</div>
+
+			<div class="notes">
+				<p>
+					The glue that we use is called Knockback. I just thought I let you know since
+					it complicates the code quite a bit but as usual when it gets complicated I
+					leave it as an exercise to you.
+				</p>
+			</div>
+		</div>
+		<div id="javascript-2" class="step invisible" data-x="5000" data-y="-1400">
+			<div class="center">
+				<h1>JavaScript</h1>
+				<div class="box ballon ballon-down ballon2">Backbone.js</div>
+				<div class="box ballon ballon-up ballon3">Knockout.js</div>
+			</div>
+
+			<div class="notes">
+				<p>
+					The glue that we use is called Knockback. I just thought I let you know since
+					it complicates the code quite a bit but as usual when it gets complicated I
+					leave it as an exercise to you.
+				</p>
+			</div>
+		</div>
+		<div id="javascript-2" class="step invisible" data-x="5000" data-y="-1400">
+			<div class="center">
+				<h1>JavaScript</h1>
+				<div class="box ballon ballon-down ballon1">AngularJS</div>
+				<div class="box ballon ballon-down ballon2">Backbone.js</div>
+				<div class="box ballon ballon-up ballon3">Knockout.js</div>
+				<div class="box ballon ballon-up ballon4">Ember.js</div>
+			</div>
+
+			<div class="notes">
+				<p>
+					The glue that we use is called Knockback. I just thought I let you know since
+					it complicates the code quite a bit but as usual when it gets complicated I
+					leave it as an exercise to you.
+				</p>
+			</div>
+		</div>
+
+		<div id="demo-new" class="step" data-x="5000" data-y="-2400">
+
+			<div class="browser">
+				<div class="toolbar">
+					<div class="buttons">
+						<button class="back"><i class="fa fa-arrow-left"></i></button>
+						<button class="forward"><i class="fa fa-arrow-right"></i></button>
+						<button class="refresh"><i class="fa fa-refresh"></i></button>
+					</div>
+					<div class="address">
+						<div>demo/demo-web</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="notes">
+			</div>
+		</div>
+
+		<div id="architecture-new-1" class="step" data-x="5500" data-y="-2800">
+			<svg width="800" height="">
+				<defs>
+					<marker id="markerArrow" markerWidth="5" markerHeight="5" refx="0" refy="2" orient="auto">
+						<path d="M0,0 L0,4 L4,2 L0,0"/>
+					</marker>
+				</defs>
+
+				<path d="M40,440, L40,120, L150,120" class="arrow"></path>
+				<line x1="360" x2="460" y1="120" y2="120" class="arrow"></line>
+				<line x1="470" x2="370" y1="150" y2="150" class="arrow-dashed"></line>
+				<line x1="360" x2="540" y1="350" y2="350" class="arrow"></line>
+				<path d="M750,600, L750,700, L510,700" class="arrow"></path>
+
+			</svg>
+			<div class="box box-fixed" style="left: 160px;top: 40px; width: 200px; height: 350px;">
+			</div>
+			<div class="box box-fixed" style="left: 470px;top: 40px; width: 100px; height: 150px;">
+				DB
+			</div>
+			<pre class="box-fixed" style="left: 550px;top: 300px; width: 450px; height: 350px;overflow: hidden;"><code
+					data-language="javascript" data-src="code/response.json"></code></pre>
+		</div>
+	</div>
 
 	<script src="js/libs.js"></script>
 	<script src="js/app.js"></script>

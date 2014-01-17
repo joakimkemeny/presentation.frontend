@@ -1,1 +1,101 @@
 @import "constants";
+@import "../../bower_components/normalize-scss/normalize";
+@import "../../bower_components/font-awesome/scss/font-awesome";
+@import "impress";
+@import "theme";
+
+$displayWidth: 950px;
+$iPadRatio: 185.7/650;
+$iPhoneRatio: 58.6/650;
+
+#intro {
+	h1 {
+		color: $alternateColor;
+		margin-right: 100px;
+		margin-top: 10px;
+		text-align: right;
+	}
+	h2 {
+		color: black;
+		margin-left: 550px;
+		margin-top: 30px;
+	}
+	h3 {
+		margin-left: 500px;
+		margin-top: 100px;
+	}
+	h4 {
+		margin-left: 500px;
+		margin-top: 10px;
+	}
+	.logotype {
+		bottom: 100px;
+		left: 540px;
+		position: absolute;
+		width: 300px;
+	}
+	.site-display {
+		position: absolute;
+		right: 700px;
+		top: 400px;
+		width: $displayWidth;
+	}
+	.site-ipad {
+		@include transform-rotate(-5deg);
+
+		position: absolute;
+		right: 650px;
+		top: 300px;
+		width: ($displayWidth * $iPadRatio);
+	}
+	.site-iphone {
+		@include transform-rotate(5deg);
+
+		position: absolute;
+		right: 610px;
+		top: 500px;
+		width: ($displayWidth * $iPhoneRatio);
+	}
+}
+
+#reality-2 {
+	.ballon1 {
+		left: 320px;
+		bottom: 450px;
+	}
+	.ballon2 {
+		right: 350px;
+		top: 450px;
+	}
+}
+#reality-3,
+#reality-4 {
+	.ballon1 {
+		left: 320px;
+		bottom: 450px;
+	}
+	.ballon2 {
+		right: 320px;
+		top: 450px;
+	}
+}
+
+#javascript-2,
+#javascript-3 {
+	.ballon1 {
+		left: 230px;
+		bottom: 450px;
+	}
+	.ballon2 {
+		right: 190px;
+		bottom: 450px;
+	}
+	.ballon3 {
+		left: 200px;
+		top: 450px;
+	}
+	.ballon4 {
+		right: 250px;
+		top: 450px;
+	}
+}
