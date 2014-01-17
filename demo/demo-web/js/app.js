@@ -146,16 +146,51 @@ App.AppointmentsController = Ember.ArrayController.extend({
 	appointments: [],
 	showCreateAppointment: false,
 	showEditAppointment: false,
+	currentView: 'day',
 
 	// Search parameters.
-	startDateFilter: null,
-	endDateFilter: null,
+	startDateFilter: moment({ hour: 0, minute: 0, seconds: 0, milliseconds: 0 }).toDate(),
+	endDateFilter: moment({ hour: 0, minute: 0, seconds: 0, milliseconds: 0 }).toDate(),
 	textFilter: null,
 
 	actions: {
 
 		editAppointmentFromId: function (id) {
 			this.transitionToRoute('appointments.edit', this.store.find('appointment', id));
+		},
+
+		next: function () {
+
+			var start = moment(this.get('startDateFilter'));
+			var end = moment(this.get('endDateFilter'));
+
+			if (this.get('currentView') === 'day') {
+				start.add('days', 1);
+				end.add('days', 1);
+			} else if (this.get('currentView') === 'week') {
+				start.add('weeks', 1);
+				end.add('weeks', 1);
+			}
+
+			this.set('startDateFilter', start.format('YYYY-MM-DD'));
+			this.set('endDateFilter', end.format('YYYY-MM-DD'));
+		},
+
+		previous: function () {
+
+			var start = moment(this.get('startDateFilter'));
+			var end = moment(this.get('endDateFilter'));
+
+			if (this.get('currentView') === 'day') {
+				start.subtract('days', 1);
+				end.subtract('days', 1);
+			} else if (this.get('currentView') === 'week') {
+				start.subtract('weeks', 1);
+				end.subtract('weeks', 1);
+			}
+
+			this.set('startDateFilter', start.format('YYYY-MM-DD'));
+			this.set('endDateFilter', end.format('YYYY-MM-DD'));
 		}
 	},
 
@@ -165,8 +200,8 @@ App.AppointmentsController = Ember.ArrayController.extend({
 		var endDate = moment(this.get('endDateFilter'));
 		var text = new RegExp(this.get('textFilter'));
 
-		var excludeStartDate = !this.get('startDateFilter') || !startDate.isValid();
-		var excludeEndDate = !this.get('endDateFilter') || !endDate.isValid();
+		var excludeStartDate = true; //!this.get('startDateFilter') || !startDate.isValid();
+		var excludeEndDate = true; // !this.get('endDateFilter') || !endDate.isValid();
 		var excludeText = !this.get('textFilter');
 
 		return this.get('appointments').filter(function (appointment) {
@@ -174,7 +209,11 @@ App.AppointmentsController = Ember.ArrayController.extend({
 					(excludeEndDate || endDate.add('days', 1).isAfter(appointment.get('endTime'))) &&
 					(excludeText || text.test(appointment.get('notes')));
 		});
-	}.property('startDateFilter', 'endDateFilter', 'textFilter', 'appointments.@each')
+	}.property('startDateFilter', 'endDateFilter', 'textFilter', 'appointments.@each'),
+
+	showCalendar: function () {
+		return this.get('currentView') === 'day' || this.get('currentView') === 'week';
+	}.property('currentView')
 });
 
 App.AppointmentsCreateController = Ember.ObjectController.extend({
@@ -578,6 +617,17 @@ App.AppointmentsCreateRoute = Ember.Route.extend({
 	}
 });
 
+App.AppointmentsDayRoute = Ember.Route.extend({
+
+	activate: function () {
+
+		var controller = this.controllerFor('appointments');
+
+		controller.set('endDateFilter', controller.get('startDateFilter'));
+		controller.set('currentView', 'day');
+	}
+});
+
 App.AppointmentsEditRoute = Ember.Route.extend({
 
 	activate: function () {
@@ -593,6 +643,20 @@ App.AppointmentsEditRoute = Ember.Route.extend({
 	}
 });
 
+App.AppointmentsIndexRoute = Ember.Route.extend({
+
+	redirect: function () {
+		this.transitionTo('appointments.day');
+	}
+});
+
+App.AppointmentsMonthRoute = Ember.Route.extend({
+
+	activate: function () {
+		this.controllerFor('appointments').set('currentView', 'month');
+	}
+});
+
 App.AppointmentsRoute = Ember.Route.extend({
 
 	model: function () {
@@ -601,6 +665,30 @@ App.AppointmentsRoute = Ember.Route.extend({
 
 	setupController: function (controller, model) {
 		controller.set('appointments', model);
+	}
+});
+
+App.AppointmentsWeekRoute = Ember.Route.extend({
+
+	activate: function () {
+
+		var controller = this.controllerFor('appointments');
+
+		var start = controller.get('startDateFilter');
+		var end = controller.get('endDateFilter');
+		if (start === end) {
+			controller.set('startDateFilter', moment(start).isoWeekday(1).format('YYYY-MM-DD'));
+			controller.set('endDateFilter', moment(end).isoWeekday(5).format('YYYY-MM-DD'));
+		}
+
+		controller.set('currentView', 'week');
+	}
+});
+
+App.AppointmentsYearRoute = Ember.Route.extend({
+
+	activate: function () {
+		this.controllerFor('appointments').set('currentView', 'year');
 	}
 });
 
@@ -638,12 +726,10 @@ App.PatientEcgRoute = Ember.Route.extend({
 
 	activate: function () {
 		this.controllerFor('patient').set('showEcg', true);
-		$.ajax('http://localhost:8080/api/patients/startecg');
 	},
 
 	deactivate: function () {
 		this.controllerFor('patient').set('showEcg', false);
-		$.ajax('http://localhost:8080/api/patients/stopecg');
 	},
 
 	model: function () {
@@ -761,12 +847,14 @@ App.CalendarView = Ember.View.extend({
 
 		}, 100, { leading: false, trailing: true });
 
+		var width = this.$().innerWidth();
+
 		this.$().calendar({
 
 			height: this.height,
-			width: this.width,
-			startDate: this.startDate,
-			endDate: this.endDate,
+			width: width,
+			startDate: this.get('controller.startDateFilter'),
+			endDate: this.get('controller.endDateFilter'),
 			startTime: this.startTime,
 			endTime: this.endTime,
 
@@ -778,11 +866,22 @@ App.CalendarView = Ember.View.extend({
 		this.$().calendar('updateData', this.get('events').map(function (record) {
 			return record.serialize({ includeId: true });
 		}));
+
+		this.$().resize(function () {
+			var width = view.$().innerWidth();
+			view.$().calendar('setDimensions', width, view.height);
+		});
 	},
 
 	willDestroyElement: function () {
 		this.$().calendar('destroy');
 	},
+
+	filterData: function () {
+		this.$().calendar('setDateInterval',
+				this.get('controller.startDateFilter'),
+				this.get('controller.endDateFilter'));
+	}.observes('controller.startDateFilter', 'controller.endDateFilter'),
 
 	updateData: function () {
 		this._updateData();
@@ -836,7 +935,7 @@ Ember.TextField.reopen({
 
 	didInsertElement: function () {
 
-		if (this.$().is('[placeholder]')) {
+		if (this.$().is('[placeholder]:not(.no-float)')) {
 			this.$().floatingLabel();
 			if (this.get('value')) {
 				this.$().addClass('floatingLabel-active');

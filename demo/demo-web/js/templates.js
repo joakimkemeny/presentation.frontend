@@ -16,7 +16,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   
-  data.buffer.push("\n			Callista Care\n		");
+  data.buffer.push("\n			Callista Care 2.0\n		");
   }
 
 function program3(depth0,data) {
@@ -88,7 +88,7 @@ function program9(depth0,data) {
 Ember.TEMPLATES["appointments"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, stack2, hashTypes, hashContexts, options, self=this, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  var buffer = '', stack1, stack2, hashTypes, hashContexts, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
 
 function program1(depth0,data) {
   
@@ -120,13 +120,46 @@ function program9(depth0,data) {
   data.buffer.push("\n				År\n			");
   }
 
-  data.buffer.push("<header class=\"l-mainHeader\">\n	<h2>Tidbok</h2>\n	<ul class=\"pull-right g-segmented-control\" style=\"margin-left:10px;\">\n		<li>\n			");
+function program11(depth0,data) {
+  
+  var buffer = '', stack1, hashContexts, hashTypes, options;
+  data.buffer.push("\n		<section class=\"l-mainContent\">\n			");
+  hashContexts = {'width': depth0,'height': depth0,'events': depth0};
+  hashTypes = {'width': "INTEGER",'height': "INTEGER",'events': "ID"};
+  options = {hash:{
+    'width': (940),
+    'height': (455),
+    'events': ("controller.content")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.calendar || (depth0 && depth0.calendar)),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "calendar", options))));
+  data.buffer.push("\n		</section>\n	");
+  return buffer;
+  }
+
+  data.buffer.push("<header class=\"l-mainHeader\">\n\n	<h2>Tidbok</h2>\n\n	<div class=\"btn-group\" style=\"margin: -3px 0 0 10px;\">\n		<button class=\"btn\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "previous", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("><i class=\"fa fa-chevron-left\"></i></button>\n		<button class=\"btn\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "next", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("><i class=\"fa fa-chevron-right\"></i></button>\n		");
+  hashContexts = {'value': depth0,'class': depth0,'placeholder': depth0};
+  hashTypes = {'value': "ID",'class': "STRING",'placeholder': "STRING"};
+  options = {hash:{
+    'value': ("textFilter"),
+    'class': ("form-control f-search no-float"),
+    'placeholder': ("Sök")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.input || (depth0 && depth0.input)),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+  data.buffer.push("\n	</div>\n\n	<ul class=\"pull-right g-segmented-control\" style=\"margin-left:10px;\">\n		<li>\n			");
   hashTypes = {};
   hashContexts = {};
   options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   stack2 = ((stack1 = helpers['link-to'] || (depth0 && depth0['link-to'])),stack1 ? stack1.call(depth0, "appointments.create", options) : helperMissing.call(depth0, "link-to", "appointments.create", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
-  data.buffer.push("\n		</li>\n	</ul>\n	<ul class=\"pull-right g-segmented-control\">\n		<li>\n			");
+  data.buffer.push("\n		</li>\n	</ul>\n	<ul class=\"pull-right g-segmented-control\" style=\"margin-left:10px;\">\n		<li>\n			");
   hashTypes = {};
   hashContexts = {};
   options = {hash:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
@@ -150,16 +183,12 @@ function program9(depth0,data) {
   options = {hash:{},inverse:self.noop,fn:self.program(9, program9, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   stack2 = ((stack1 = helpers['link-to'] || (depth0 && depth0['link-to'])),stack1 ? stack1.call(depth0, "appointments.year", options) : helperMissing.call(depth0, "link-to", "appointments.year", options));
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
-  data.buffer.push("\n		</li>\n	</ul>\n</header>\n\n<div class=\"l-workspace\">\n	<section class=\"l-mainContent\">\n		");
-  hashContexts = {'width': depth0,'height': depth0,'events': depth0};
-  hashTypes = {'width': "INTEGER",'height': "INTEGER",'events': "ID"};
-  options = {hash:{
-    'width': (740),
-    'height': (500),
-    'events': ("controller.content")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.calendar || (depth0 && depth0.calendar)),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "calendar", options))));
-  data.buffer.push("\n	</section>\n\n	");
+  data.buffer.push("\n		</li>\n	</ul>\n\n</header>\n\n<div class=\"l-workspace\">\n	");
+  hashTypes = {};
+  hashContexts = {};
+  stack2 = helpers['if'].call(depth0, "showCalendar", {hash:{},inverse:self.noop,fn:self.program(11, program11, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
+  data.buffer.push("\n\n	");
   hashTypes = {};
   hashContexts = {};
   stack2 = helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
@@ -290,6 +319,26 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "cancel", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push(">Avbryt</button>\n	</div>\n</nav>\n");
   return buffer;
+  
+});
+
+Ember.TEMPLATES["appointments/month"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  
+
+
+  data.buffer.push("<section class=\"l-mainContent\">\n	<p>Kommer snart...</p>\n</section>\n");
+  
+});
+
+Ember.TEMPLATES["appointments/year"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
+  
+
+
+  data.buffer.push("<section class=\"l-mainContent\">\n	<p>Kommer snart...</p>\n</section>\n");
   
 });
 
@@ -539,8 +588,8 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   hashContexts = {'width': depth0,'height': depth0};
   hashTypes = {'width': "INTEGER",'height': "INTEGER"};
   options = {hash:{
-    'width': (740),
-    'height': (400)
+    'width': (940),
+    'height': (395)
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers['ecg-chart'] || (depth0 && depth0['ecg-chart'])),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "ecg-chart", options))));
   data.buffer.push("\n\n	<div class=\"f-actions\">\n		<button class=\"btn\" ");
@@ -866,7 +915,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, hashContexts, hashTypes, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
 
 
-  data.buffer.push("<nav ");
+  data.buffer.push("<div ");
   hashContexts = {'class': depth0};
   hashTypes = {'class': "STRING"};
   options = {hash:{
@@ -953,7 +1002,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "cancel", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(">Avbryt</button>\n	</div>\n</nav>\n");
+  data.buffer.push(">Avbryt</button>\n	</div>\n</div>\n");
   return buffer;
   
 });

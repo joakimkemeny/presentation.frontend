@@ -26,12 +26,14 @@ App.CalendarView = Ember.View.extend({
 
 		}, 100, { leading: false, trailing: true });
 
+		var width = this.$().innerWidth();
+
 		this.$().calendar({
 
 			height: this.height,
-			width: this.width,
-			startDate: this.startDate,
-			endDate: this.endDate,
+			width: width,
+			startDate: this.get('controller.startDateFilter'),
+			endDate: this.get('controller.endDateFilter'),
 			startTime: this.startTime,
 			endTime: this.endTime,
 
@@ -43,11 +45,22 @@ App.CalendarView = Ember.View.extend({
 		this.$().calendar('updateData', this.get('events').map(function (record) {
 			return record.serialize({ includeId: true });
 		}));
+
+		this.$().resize(function () {
+			var width = view.$().innerWidth();
+			view.$().calendar('setDimensions', width, view.height);
+		});
 	},
 
 	willDestroyElement: function () {
 		this.$().calendar('destroy');
 	},
+
+	filterData: function () {
+		this.$().calendar('setDateInterval',
+				this.get('controller.startDateFilter'),
+				this.get('controller.endDateFilter'));
+	}.observes('controller.startDateFilter', 'controller.endDateFilter'),
 
 	updateData: function () {
 		this._updateData();

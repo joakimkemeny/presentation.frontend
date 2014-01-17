@@ -35,7 +35,8 @@ module.exports = function (grunt) {
 					'bower_components/jke-d3-calendar/src/js/jke-d3-calendar.js',
 					'bower_components/jke-d3-ecg/src/js/jke-d3-ecg.js',
 					'bower_components/stomp-websocket/lib/stomp.min.js',
-					'bower_components/floating-label/dist/floating-label.min.js'
+					'bower_components/floating-label/dist/floating-label.min.js',
+					'bower_components/jquery-resize/jquery.ba-resize.min.js'
 				],
 				dest: 'js/libs.js'
 			}
@@ -62,6 +63,16 @@ module.exports = function (grunt) {
 					'!bower_components/font-awesome/fonts/*.otf'
 				],
 				dest: 'fonts/'
+			},
+
+			// Copy our generated files to the demo-server project.
+			'server-css': {
+				src: 'css/style.css',
+				dest: '../demo-server/src/main/resources/static/css/style.css'
+			},
+			'server-js': {
+				src: 'js/libs.js',
+				dest: '../demo-server/src/main/resources/static/js/libs.js'
 			}
 		},
 

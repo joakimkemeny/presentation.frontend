@@ -48333,7 +48333,7 @@ return i?u+i*(n[r]-u):u},Bo.median=function(t,e){return arguments.length>1&&(t=t
 					.attr('clip-path', 'url(#calendarClip)');
 
 			if (widget.options.data) {
-				widget._redraw();
+				widget._redraw(false);
 			}
 		},
 
@@ -48341,8 +48341,11 @@ return i?u+i*(n[r]-u):u},Bo.median=function(t,e){return arguments.length>1&&(t=t
 			this.element.remove('svg');
 		},
 
-		_redraw: function () {
+		_redraw: function (animate) {
 			var widget = this;
+
+			var delay1 = animate ? 800 : 0;
+			var delay2 = animate ? 300 : 0;
 
 			var getEventHeight = function (d) {
 				return widget.yScale(d._end) - widget.yScale(d._start);
@@ -48384,20 +48387,20 @@ return i?u+i*(n[r]-u):u},Bo.median=function(t,e){return arguments.length>1&&(t=t
 
 			// Update the axis and grids.
 			widget.yAxis
-					.transition().duration(800)
+					.transition().duration(delay1)
 					.call(widget.yAxisGenerator);
 			widget.ySubGrid
-					.transition().duration(800)
+					.transition().duration(delay1)
 					.call(widget.ySubGridGenerator);
 			widget.yGrid
-					.transition().duration(800)
+					.transition().duration(delay1)
 					.call(widget.yGridGenerator);
 			widget.xAxis
-					.transition().duration(800)
+					.transition().duration(delay1)
 					.call(widget.xAxisGenerator)
 					.call(widget.centerLabel);
 			widget.xGrid
-					.transition().duration(800)
+					.transition().duration(delay1)
 					.call(widget.xGridGenerator);
 
 
@@ -48407,7 +48410,7 @@ return i?u+i*(n[r]-u):u},Bo.median=function(t,e){return arguments.length>1&&(t=t
 
 			// Update the dimension and position for updated events.
 			eventBoxes
-					.transition().duration(800)
+					.transition().duration(delay1)
 					.attr('width', getEventWidth)
 					.attr('transform', getEventPosition)
 					.attr('height', getEventHeight);
@@ -48421,14 +48424,14 @@ return i?u+i*(n[r]-u):u},Bo.median=function(t,e){return arguments.length>1&&(t=t
 					.attr('width', getEventWidth)
 					.attr('transform', getEventPosition)
 					.on('click', sendClickEvent)
-					.transition().duration(800)
+					.transition().duration(delay1)
 					.attr('height', getEventHeight)
 					.attr('opacity', 1);
 
 			// Remove all removed events from their placeholders.
 			eventBoxes.exit()
-					.transition().duration(300)
-					.attr('height', 0)
+					.transition().duration(delay2)
+					.attr('width', 0)
 					.remove();
 
 
@@ -48438,7 +48441,7 @@ return i?u+i*(n[r]-u):u},Bo.median=function(t,e){return arguments.length>1&&(t=t
 
 			// Update the dimensions and position for updated events.
 			eventBorders
-					.transition().duration(800)
+					.transition().duration(delay1)
 					.attr('transform', getEventPosition)
 					.attr('y2', getEventHeight);
 
@@ -48448,13 +48451,13 @@ return i?u+i*(n[r]-u):u},Bo.median=function(t,e){return arguments.length>1&&(t=t
 					.attr('x1', 0).attr('x2', 0)
 					.attr('y1', 0).attr('y2', 0)
 					.attr('transform', getEventPosition)
-					.transition().duration(800)
+					.transition().duration(delay1)
 					.attr('y2', getEventHeight);
 
 			// Remove all removed events from their placeholders.
 			eventBorders.exit()
-					.transition().duration(300)
-					.attr('y2', 0)
+					.transition().duration(delay2)
+					.attr('opacity', 0)
 					.remove();
 
 			// Create a selection for all event time texts.
@@ -48465,7 +48468,7 @@ return i?u+i*(n[r]-u):u},Bo.median=function(t,e){return arguments.length>1&&(t=t
 			// Update the text and position for updated events.
 			eventTimes
 					.text(getEventTimeText)
-					.transition().duration(800)
+					.transition().duration(delay1)
 					.attr('transform', getEventPosition);
 
 			// Append a new text to each of the placeholders for new events.
@@ -48476,12 +48479,12 @@ return i?u+i*(n[r]-u):u},Bo.median=function(t,e){return arguments.length>1&&(t=t
 					.attr('x', 8).attr('y', 18)
 					.attr('transform', getEventPosition)
 					.attr('opacity', 0)
-					.transition().duration(800)
+					.transition().duration(delay1)
 					.attr('opacity', 1);
 
 			// Remove all removed events from their placeholders.
 			eventTimes.exit()
-					.transition().duration(200)
+					.transition().duration(delay2)
 					.attr('opacity', 0)
 					.remove();
 
@@ -48493,7 +48496,7 @@ return i?u+i*(n[r]-u):u},Bo.median=function(t,e){return arguments.length>1&&(t=t
 			// Update the text and position for updated events.
 			eventNotes
 					.text(getEventNotesText)
-					.transition().duration(800)
+					.transition().duration(delay1)
 					.attr('transform', getEventPosition);
 
 			// Append a new text to each of the placeholders for new events.
@@ -48504,13 +48507,13 @@ return i?u+i*(n[r]-u):u},Bo.median=function(t,e){return arguments.length>1&&(t=t
 					.attr('x', 8).attr('y', 33)
 					.attr('transform', getEventPosition)
 					.attr('opacity', 0)
-					.transition().delay(500)
-					.duration(200)
+					.transition().delay(delay1 - delay2)
+					.duration(delay2)
 					.attr('opacity', 1);
 
 			// Remove all removed events from their placeholders.
 			eventNotes.exit()
-					.transition().duration(200)
+					.transition().duration(delay2)
 					.attr('opacity', 0)
 					.remove();
 		},
@@ -48522,14 +48525,14 @@ return i?u+i*(n[r]-u):u},Bo.median=function(t,e){return arguments.length>1&&(t=t
 
 			this.options.startDate = toDay(startDate);
 			this.options.endDate = toDay(endDate);
-			this._redraw();
+			this._redraw(true);
 		},
 
 		setTimeInterval: function (startTime, endTime) {
 
 			this.options.startTime = toTimeToday(startTime);
 			this.options.endTime = toTimeToday(endTime);
-			this._redraw();
+			this._redraw(true);
 		},
 
 		setDimensions: function (width, height) {
@@ -48537,7 +48540,6 @@ return i?u+i*(n[r]-u):u},Bo.median=function(t,e){return arguments.length>1&&(t=t
 
 			// Update dimensions of the svg (using the untouched height and width)
 			widget.svg
-					.transition().duration(800)
 					.attr('height', height)
 					.attr('width', width);
 
@@ -48547,13 +48549,11 @@ return i?u+i*(n[r]-u):u},Bo.median=function(t,e){return arguments.length>1&&(t=t
 
 			// Update the dimensions of the background.
 			widget.background
-					.transition().duration(800)
 					.attr('height', widget.options.height)
 					.attr('width', widget.options.width);
 
 			// Update the dimensions of the clipping mask.
 			widget.clipMask
-					.transition().duration(800)
 					.attr('height', widget.options.height)
 					.attr('width', widget.options.width);
 
@@ -48561,7 +48561,7 @@ return i?u+i*(n[r]-u):u},Bo.median=function(t,e){return arguments.length>1&&(t=t
 			widget.yScale.range([0, widget.options.height]);
 			widget.xScale.range([0, widget.options.width]);
 
-			this._redraw();
+			this._redraw(false);
 		},
 
 		updateData: function (data) {
@@ -48579,7 +48579,7 @@ return i?u+i*(n[r]-u):u},Bo.median=function(t,e){return arguments.length>1&&(t=t
 			}
 
 			this.data = data;
-			this._redraw();
+			this._redraw(true);
 		}
 	});
 
@@ -48781,3 +48781,12 @@ return i?u+i*(n[r]-u):u},Bo.median=function(t,e){return arguments.length>1&&(t=t
  * MIT License
 */
 !function(a){function b(b,d,e){return this.el=a(b),"string"==typeof d?this[d].apply(this,e):(this.options=a.extend(c,d),this.el.data("floatingLabel-options",this.options),this.active=!1,this.generateLabel(),this.bindInputEvents(),this.el.trigger("keyup"),void 0)}var c={inputEvents:"propertychange keyup input paste change",labelStyles:{display:"block",position:"relative"},animateDuration:100,animateEasing:function(a,b,c,d,e){return-d*((b=b/e-1)*b*b*b-1)+c}};b.prototype.bindInputEvents=function(){this.el.on(this.options.inputEvents,a.proxy(this.onInput,this)),this.el.on("blur",a.proxy(this.onBlur,this)),this.el.on("focus",a.proxy(this.onFocus,this))},b.prototype.onInput=function(){var a=this.el.val();this.oldVal!==a&&(this.oldVal=a,""===a||null===a?this.active||(this.active=!0,this.el.addClass("floatingLabel-inactive").removeClass("floatingLabel-active"),this.label.stop(!0,!0).animate({opacity:0,bottom:-this.label.outerHeight()},this.animateDuration,this.animateEasing)):this.active&&(this.active=!1,this.el.addClass("floatingLabel-active").removeClass("floatingLabel-inactive"),this.label.stop(!0,!0).animate({opacity:1,bottom:0},this.animateDuration,this.animateEasing)))},b.prototype.onBlur=function(){this.label.removeClass("floatingLabel-focus")},b.prototype.onFocus=function(){this.label.addClass("floatingLabel-focus")},b.prototype.generateLabel=function(){var b="",c="";this.label=a("<label/>"),""!==this.el.attr("id")&&(b=a('label[for="'+this.el.attr("id")+'"]'),b.length?this.label=b:this.label.attr("for",this.el.attr("id"))),c=this.el.is("select")&&!c?this.el.find("option").first().text():this.el.attr("placeholder"),this.label.text(c),this.label.css(this.options.labelStyles),this.label.insertBefore(this.el),this.label.css({opacity:0,bottom:-this.label.outerHeight()})},b.prototype.setPlaceholder=function(b){this.el.attr("placeholder",b),a('label[for="'+this.el.attr("id")+'"]').text(b)},a.fn.floatingLabel=function(a){var c=Array.prototype.slice.call(arguments).slice(1);return this.each(function(){new b(this,a,c)})}}(jQuery);
+/*
+ * jQuery resize event - v1.1 - 3/14/2010
+ * http://benalman.com/projects/jquery-resize-plugin/
+ * 
+ * Copyright (c) 2010 "Cowboy" Ben Alman
+ * Dual licensed under the MIT and GPL licenses.
+ * http://benalman.com/about/license/
+ */
+(function($,h,c){var a=$([]),e=$.resize=$.extend($.resize,{}),i,k="setTimeout",j="resize",d=j+"-special-event",b="delay",f="throttleWindow";e[b]=250;e[f]=true;$.event.special[j]={setup:function(){if(!e[f]&&this[k]){return false}var l=$(this);a=a.add(l);$.data(this,d,{w:l.width(),h:l.height()});if(a.length===1){g()}},teardown:function(){if(!e[f]&&this[k]){return false}var l=$(this);a=a.not(l);l.removeData(d);if(!a.length){clearTimeout(i)}},add:function(l){if(!e[f]&&this[k]){return false}var n;function m(s,o,p){var q=$(this),r=$.data(this,d);r.w=o!==c?o:q.width();r.h=p!==c?p:q.height();n.apply(this,arguments)}if($.isFunction(l)){n=l;return m}else{n=l.handler;l.handler=m}}};function g(){i=h[k](function(){a.each(function(){var n=$(this),m=n.width(),l=n.height(),o=$.data(this,d);if(m!==o.w||l!==o.h){n.trigger(j,[o.w=m,o.h=l])}});g()},e[b])}})(jQuery,this);

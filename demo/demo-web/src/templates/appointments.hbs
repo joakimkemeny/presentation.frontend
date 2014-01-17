@@ -1,5 +1,13 @@
 <header class="l-mainHeader">
+
 	<h2>Tidbok</h2>
+
+	<div class="btn-group" style="margin: -3px 0 0 10px;">
+		<button class="btn" {{action "previous"}}><i class="fa fa-chevron-left"></i></button>
+		<button class="btn" {{action "next"}}><i class="fa fa-chevron-right"></i></button>
+		{{input value=textFilter class="form-control f-search no-float" placeholder="Sök"}}
+	</div>
+
 	<ul class="pull-right g-segmented-control" style="margin-left:10px;">
 		<li>
 			{{#link-to 'appointments.create'}}
@@ -7,7 +15,7 @@
 			{{/link-to}}
 		</li>
 	</ul>
-	<ul class="pull-right g-segmented-control">
+	<ul class="pull-right g-segmented-control" style="margin-left:10px;">
 		<li>
 			{{#link-to 'appointments.day'}}
 				Dag
@@ -29,12 +37,15 @@
 			{{/link-to}}
 		</li>
 	</ul>
+
 </header>
 
 <div class="l-workspace">
-	<section class="l-mainContent">
-		{{calendar width=740 height=500 events=controller.content}}
-	</section>
+	{{#if showCalendar}}
+		<section class="l-mainContent">
+			{{calendar width=940 height=455 events=controller.content }}
+		</section>
+	{{/if}}
 
 	{{outlet}}
 

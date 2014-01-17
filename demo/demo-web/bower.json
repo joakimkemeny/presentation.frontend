@@ -14,6 +14,7 @@
 		"jke-d3-ecg": "git@github.com:joakimkemeny/jke.d3.ecg.git",
 		"lodash": "~2.4.1",
 		"moment": "~2.5.0",
-		"stomp-websocket": "~2.3.0"
+		"stomp-websocket": "~2.3.0",
+		"jquery-resize": "*"
 	}
 }

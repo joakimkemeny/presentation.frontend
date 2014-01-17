@@ -1,4 +1,4 @@
-<nav {{bindAttr class=":l-sideForm controllers.patients.showCreatePatient:l-visible:l-hidden"}}>
+<div {{bindAttr class=":l-sideForm controllers.patients.showCreatePatient:l-visible:l-hidden"}}>
 	<h3>Ny patient</h3>
 
 	<div class="l-horizontal">
@@ -40,4 +40,4 @@
 		<button class="btn btn-success" {{action "save"}}><i class="fa fa-check"></i> Spara</button>
 		<button class="btn" {{action "cancel"}}>Avbryt</button>
 	</div>
-</nav>
+</div>
