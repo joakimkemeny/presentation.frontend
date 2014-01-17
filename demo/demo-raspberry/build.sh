@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/bin/sh
 
-g++ ecg.cpp lib/easywsclient.cpp -o bin/ecg
+g++ -lpthread -lrt -Ilib ecg.cpp lib/easywsclient.cpp lib/eHealth.cpp lib/arduPi.cpp -o bin/ecg
