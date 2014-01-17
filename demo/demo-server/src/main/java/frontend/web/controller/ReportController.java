@@ -9,6 +9,7 @@ public class ReportController {
 
 	@RequestMapping("/reports")
 	public String index(Model model) {
+		model.addAttribute("section", "reports");
 		return "reports/index";
 	}
 }

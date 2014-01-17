@@ -5,29 +5,29 @@
 	<div th:fragment="head">
 		<nav class="navbar navbar-default">
 			<div class="navbar-header">
-				<a href="/" class="navbar-brand">
-					Callista Care
+				<a th:href="@{/}" class="navbar-brand">
+					Callista Care 1.0
 				</a>
 			</div>
 
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-					<a href="/appointments/">
+					<a th:href="@{/appointments}" th:class="${section == 'appointments'} ? 'active'">
 						Tidbok
 					</a>
 				</li>
 				<li>
-					<a href="/patients/">
+					<a th:href="@{/patients}" th:class="${section == 'patients'} ? 'active'">
 						Patienter
 					</a>
 				</li>
 				<li>
-					<a href="/reports/">
+					<a th:href="@{/reports}" th:class="${section == 'reports'} ? 'active'">
 						Rapporter
 					</a>
 				</li>
 				<li>
-					<a href="/administration/">
+					<a th:href="@{/administration}" th:class="${section == 'administration'} ? 'active'">
 						Administration
 					</a>
 				</li>

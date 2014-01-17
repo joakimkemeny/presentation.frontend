@@ -9,6 +9,7 @@ public class AdministrationController {
 
 	@RequestMapping("/administration")
 	public String index(Model model) {
+		model.addAttribute("section", "administration");
 		return "administration/index";
 	}
 }

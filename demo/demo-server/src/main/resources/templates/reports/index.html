@@ -3,24 +3,29 @@
 <head>
 
 	<meta charset="utf-8"/>
-	<title>Callista Care</title>
+	<title>Callista Care 1.0</title>
 
-	<link rel="stylesheet" href="/css/style.css"/>
+	<link rel="stylesheet" th:href="@{/css/style.css}"/>
 
 </head>
 <body>
+	<div class="l-main">
 
-	<div th:include="layout :: head"></div>
+		<div th:include="layout :: head"></div>
 
-	<header class="l-mainHeader">
-		<h2>Rapporter</h2>
-	</header>
+		<header class="l-mainHeader">
+			<h2>Rapporter</h2>
+		</header>
 
-	<div class="l-workspace">
-		<section class="l-mainContent">
-			<p>Kommer snart...</p>
-		</section>
+		<div class="l-workspace">
+			<section class="l-mainContent">
+				<p>Kommer snart...</p>
+			</section>
+		</div>
 	</div>
+
+	<script th:src="@{/js/libs.js}"></script>
+	<script th:src="@{/js/app.js}"></script>
 
 </body>
 </html>
