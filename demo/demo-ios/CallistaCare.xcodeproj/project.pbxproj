@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		554639EE1889FBAE0022F53F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554639ED1889FBAE0022F53F /* CoreData.framework */; };
 		555BA02418848EAD009EB3C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555BA02318848EAD009EB3C3 /* Foundation.framework */; };
 		555BA02618848EAD009EB3C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555BA02518848EAD009EB3C3 /* CoreGraphics.framework */; };
 		555BA02818848EAD009EB3C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 555BA02718848EAD009EB3C3 /* UIKit.framework */; };
@@ -21,15 +22,15 @@
 		555BA05018848EAD009EB3C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 555BA04E18848EAD009EB3C3 /* InfoPlist.strings */; };
 		555BA05218848EAD009EB3C3 /* CallistaCareTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 555BA05118848EAD009EB3C3 /* CallistaCareTests.m */; };
 		55C8BD491884A34100CCAFC1 /* JKEPatientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C8BD481884A34100CCAFC1 /* JKEPatientsViewController.m */; };
-		55C8BD4C1884A38200CCAFC1 /* JKEPatientCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C8BD4B1884A38200CCAFC1 /* JKEPatientCell.m */; };
 		55C8BD4F1884A3BD00CCAFC1 /* JKEAddPatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C8BD4E1884A3BD00CCAFC1 /* JKEAddPatientViewController.m */; };
 		55C8BD521884A45D00CCAFC1 /* JKENotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C8BD511884A45D00CCAFC1 /* JKENotesViewController.m */; };
-		55C8BD551884A47800CCAFC1 /* JKENoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C8BD541884A47800CCAFC1 /* JKENoteCell.m */; };
 		55C8BD581884A48E00CCAFC1 /* JKEAddNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C8BD571884A48E00CCAFC1 /* JKEAddNoteViewController.m */; };
 		55C8BD5B1884A77300CCAFC1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 55C8BD591884A77300CCAFC1 /* Model.xcdatamodeld */; };
 		55C8BD5F1884A9DD00CCAFC1 /* JKEAppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C8BD5E1884A9DD00CCAFC1 /* JKEAppointmentsViewController.m */; };
-		55C8BD621884A9F300CCAFC1 /* JKEAppointmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C8BD611884A9F300CCAFC1 /* JKEAppointmentCell.m */; };
 		55C8BD651884AA0200CCAFC1 /* JKEAddAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C8BD641884AA0200CCAFC1 /* JKEAddAppointmentViewController.m */; };
+		55E3159A188B299200E3B758 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E31599188B299200E3B758 /* Note.m */; };
+		55E3159D188B299300E3B758 /* Appointment.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E3159C188B299300E3B758 /* Appointment.m */; };
+		55E315A0188B299300E3B758 /* Patient.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E3159F188B299300E3B758 /* Patient.m */; };
 		7FE4C558B226440E93B409F3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40240D0F990E42F29B99F99B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		40240D0F990E42F29B99F99B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		554639ED1889FBAE0022F53F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		555BA02018848EAD009EB3C3 /* CallistaCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CallistaCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		555BA02318848EAD009EB3C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		555BA02518848EAD009EB3C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -64,23 +66,23 @@
 		555BA05118848EAD009EB3C3 /* CallistaCareTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CallistaCareTests.m; sourceTree = "<group>"; };
 		55C8BD471884A34100CCAFC1 /* JKEPatientsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKEPatientsViewController.h; sourceTree = "<group>"; };
 		55C8BD481884A34100CCAFC1 /* JKEPatientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKEPatientsViewController.m; sourceTree = "<group>"; };
-		55C8BD4A1884A38200CCAFC1 /* JKEPatientCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKEPatientCell.h; sourceTree = "<group>"; };
-		55C8BD4B1884A38200CCAFC1 /* JKEPatientCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKEPatientCell.m; sourceTree = "<group>"; };
 		55C8BD4D1884A3BD00CCAFC1 /* JKEAddPatientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKEAddPatientViewController.h; sourceTree = "<group>"; };
 		55C8BD4E1884A3BD00CCAFC1 /* JKEAddPatientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKEAddPatientViewController.m; sourceTree = "<group>"; };
 		55C8BD501884A45D00CCAFC1 /* JKENotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKENotesViewController.h; sourceTree = "<group>"; };
 		55C8BD511884A45D00CCAFC1 /* JKENotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKENotesViewController.m; sourceTree = "<group>"; };
-		55C8BD531884A47800CCAFC1 /* JKENoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKENoteCell.h; sourceTree = "<group>"; };
-		55C8BD541884A47800CCAFC1 /* JKENoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKENoteCell.m; sourceTree = "<group>"; };
 		55C8BD561884A48E00CCAFC1 /* JKEAddNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKEAddNoteViewController.h; sourceTree = "<group>"; };
 		55C8BD571884A48E00CCAFC1 /* JKEAddNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKEAddNoteViewController.m; sourceTree = "<group>"; };
 		55C8BD5A1884A77300CCAFC1 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		55C8BD5D1884A9DD00CCAFC1 /* JKEAppointmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKEAppointmentsViewController.h; sourceTree = "<group>"; };
 		55C8BD5E1884A9DD00CCAFC1 /* JKEAppointmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKEAppointmentsViewController.m; sourceTree = "<group>"; };
-		55C8BD601884A9F300CCAFC1 /* JKEAppointmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKEAppointmentCell.h; sourceTree = "<group>"; };
-		55C8BD611884A9F300CCAFC1 /* JKEAppointmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKEAppointmentCell.m; sourceTree = "<group>"; };
 		55C8BD631884AA0200CCAFC1 /* JKEAddAppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKEAddAppointmentViewController.h; sourceTree = "<group>"; };
 		55C8BD641884AA0200CCAFC1 /* JKEAddAppointmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKEAddAppointmentViewController.m; sourceTree = "<group>"; };
+		55E31598188B299200E3B758 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		55E31599188B299200E3B758 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		55E3159B188B299300E3B758 /* Appointment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appointment.h; sourceTree = "<group>"; };
+		55E3159C188B299300E3B758 /* Appointment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appointment.m; sourceTree = "<group>"; };
+		55E3159E188B299300E3B758 /* Patient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Patient.h; sourceTree = "<group>"; };
+		55E3159F188B299300E3B758 /* Patient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patient.m; sourceTree = "<group>"; };
 		8CA80FE322B54DB294BC3565 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				554639EE1889FBAE0022F53F /* CoreData.framework in Frameworks */,
 				555BA02618848EAD009EB3C3 /* CoreGraphics.framework in Frameworks */,
 				555BA02818848EAD009EB3C3 /* UIKit.framework in Frameworks */,
 				555BA02418848EAD009EB3C3 /* Foundation.framework in Frameworks */,
@@ -114,8 +117,6 @@
 			children = (
 				55C8BD4D1884A3BD00CCAFC1 /* JKEAddPatientViewController.h */,
 				55C8BD4E1884A3BD00CCAFC1 /* JKEAddPatientViewController.m */,
-				55C8BD4A1884A38200CCAFC1 /* JKEPatientCell.h */,
-				55C8BD4B1884A38200CCAFC1 /* JKEPatientCell.m */,
 				55C8BD471884A34100CCAFC1 /* JKEPatientsViewController.h */,
 				55C8BD481884A34100CCAFC1 /* JKEPatientsViewController.m */,
 			);
@@ -127,8 +128,6 @@
 			children = (
 				55C8BD561884A48E00CCAFC1 /* JKEAddNoteViewController.h */,
 				55C8BD571884A48E00CCAFC1 /* JKEAddNoteViewController.m */,
-				55C8BD531884A47800CCAFC1 /* JKENoteCell.h */,
-				55C8BD541884A47800CCAFC1 /* JKENoteCell.m */,
 				55C8BD501884A45D00CCAFC1 /* JKENotesViewController.h */,
 				55C8BD511884A45D00CCAFC1 /* JKENotesViewController.m */,
 			);
@@ -158,6 +157,7 @@
 		555BA02218848EAD009EB3C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				554639ED1889FBAE0022F53F /* CoreData.framework */,
 				555BA02318848EAD009EB3C3 /* Foundation.framework */,
 				555BA02518848EAD009EB3C3 /* CoreGraphics.framework */,
 				555BA02718848EAD009EB3C3 /* UIKit.framework */,
@@ -177,6 +177,7 @@
 				555BA03318848EAD009EB3C3 /* JKEAppDelegate.m */,
 				555BA03518848EAD009EB3C3 /* Main.storyboard */,
 				55C8BD591884A77300CCAFC1 /* Model.xcdatamodeld */,
+				55E31597188B295C00E3B758 /* Model */,
 				555BA03E18848EAD009EB3C3 /* Images.xcassets */,
 				555BA02A18848EAD009EB3C3 /* Supporting Files */,
 			);
@@ -215,14 +216,25 @@
 		55C8BD5C1884A9C000CCAFC1 /* Appointment */ = {
 			isa = PBXGroup;
 			children = (
-				55C8BD5D1884A9DD00CCAFC1 /* JKEAppointmentsViewController.h */,
-				55C8BD5E1884A9DD00CCAFC1 /* JKEAppointmentsViewController.m */,
-				55C8BD601884A9F300CCAFC1 /* JKEAppointmentCell.h */,
-				55C8BD611884A9F300CCAFC1 /* JKEAppointmentCell.m */,
 				55C8BD631884AA0200CCAFC1 /* JKEAddAppointmentViewController.h */,
 				55C8BD641884AA0200CCAFC1 /* JKEAddAppointmentViewController.m */,
+				55C8BD5D1884A9DD00CCAFC1 /* JKEAppointmentsViewController.h */,
+				55C8BD5E1884A9DD00CCAFC1 /* JKEAppointmentsViewController.m */,
 			);
 			path = Appointment;
+			sourceTree = "<group>";
+		};
+		55E31597188B295C00E3B758 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				55E3159B188B299300E3B758 /* Appointment.h */,
+				55E3159C188B299300E3B758 /* Appointment.m */,
+				55E31598188B299200E3B758 /* Note.h */,
+				55E31599188B299200E3B758 /* Note.m */,
+				55E3159E188B299300E3B758 /* Patient.h */,
+				55E3159F188B299300E3B758 /* Patient.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +287,14 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Joakim Kemeny";
 				TargetAttributes = {
+					555BA01F18848EAD009EB3C3 = {
+						DevelopmentTeam = 428GNG22Z2;
+						SystemCapabilities = {
+							com.apple.InterAppAudio = {
+								enabled = 0;
+							};
+						};
+					};
 					555BA04318848EAD009EB3C3 = {
 						TestTargetID = 555BA01F18848EAD009EB3C3;
 					};
@@ -358,16 +378,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E3159A188B299200E3B758 /* Note.m in Sources */,
+				55E3159D188B299300E3B758 /* Appointment.m in Sources */,
 				55C8BD5F1884A9DD00CCAFC1 /* JKEAppointmentsViewController.m in Sources */,
 				55C8BD521884A45D00CCAFC1 /* JKENotesViewController.m in Sources */,
 				55C8BD581884A48E00CCAFC1 /* JKEAddNoteViewController.m in Sources */,
-				55C8BD4C1884A38200CCAFC1 /* JKEPatientCell.m in Sources */,
-				55C8BD621884A9F300CCAFC1 /* JKEAppointmentCell.m in Sources */,
 				555BA03018848EAD009EB3C3 /* main.m in Sources */,
 				55C8BD651884AA0200CCAFC1 /* JKEAddAppointmentViewController.m in Sources */,
-				55C8BD551884A47800CCAFC1 /* JKENoteCell.m in Sources */,
 				555BA03418848EAD009EB3C3 /* JKEAppDelegate.m in Sources */,
 				55C8BD491884A34100CCAFC1 /* JKEPatientsViewController.m in Sources */,
+				55E315A0188B299300E3B758 /* Patient.m in Sources */,
 				55C8BD4F1884A3BD00CCAFC1 /* JKEAddPatientViewController.m in Sources */,
 				55C8BD5B1884A77300CCAFC1 /* Model.xcdatamodeld in Sources */,
 			);
@@ -497,10 +517,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CallistaCare/CallistaCare-Prefix.pch";
 				INFOPLIST_FILE = "CallistaCare/CallistaCare-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -511,10 +534,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CallistaCare/CallistaCare-Prefix.pch";
 				INFOPLIST_FILE = "CallistaCare/CallistaCare-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

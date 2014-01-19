@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JKEAppointmentsViewController : UITableViewController
+@interface JKEAppointmentsViewController : UITableViewController<NSFetchedResultsControllerDelegate>
+
+    @property(strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+    @property(strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

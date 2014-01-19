@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JKEPatientsViewController : UITableViewController
+@interface JKEPatientsViewController : UITableViewController<NSFetchedResultsControllerDelegate>
+
+    @property(strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+    @property(strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

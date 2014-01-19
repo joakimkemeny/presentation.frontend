@@ -7,7 +7,6 @@
 //
 
 #import "JKENotesViewController.h"
-#import "JKENoteCell.h"
 
 @interface JKENotesViewController()
 
@@ -52,7 +51,7 @@
 
     -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	    static NSString *CellIdentifier = @"JKENoteCell";
-	    JKENoteCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+	    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
 	    // Configure the cell...
 
