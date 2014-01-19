@@ -10,9 +10,9 @@
 
 @interface JKEAddNoteViewController()
 
-    @property IBOutlet UITextField *type;
-    @property IBOutlet UITextField *doctor;
-    @property IBOutlet UITextField *text;
+    @property(weak, nonatomic) IBOutlet UITextField *type;
+    @property(weak, nonatomic) IBOutlet UITextField *doctor;
+    @property(weak, nonatomic) IBOutlet UITextField *text;
 
 @end
 

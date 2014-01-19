@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Patient.h"
+#import "JKEPatientSaveDelegate.h"
 
-@interface JKEAddPatientViewController : UITableViewController
+@interface JKEAddPatientViewController : UITableViewController<UITextFieldDelegate>
+
+    @property(weak, nonatomic) id<JKEPatientSaveDelegate> delegate;
+
+    -(IBAction)save:(id)sender;
 
 @end

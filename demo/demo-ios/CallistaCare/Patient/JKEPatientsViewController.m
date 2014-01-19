@@ -8,6 +8,7 @@
 
 #import "JKEPatientsViewController.h"
 #import "Patient.h"
+#import "JKEAddPatientViewController.h"
 
 @implementation JKEPatientsViewController
 
@@ -151,6 +152,39 @@
 
 	    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", patient.firstName, patient.lastName];
 	    cell.detailTextLabel.text = patient.civicRegNr;
+    }
+
+    -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+	    if ([@"AddPatientSegue" isEqualToString:segue.identifier]) {
+		    UINavigationController *controller = segue.destinationViewController;
+		    JKEAddPatientViewController
+				    *addPatientViewController = (JKEAddPatientViewController *) controller.topViewController;
+		    addPatientViewController.delegate = self;
+	    }
+    }
+
+    -(void)save:(NSDictionary *)patient {
+
+	    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+	    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+	    Patient *newPatient =
+			    [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+
+	    newPatient.firstName = patient[@"firstName"];
+	    newPatient.lastName = patient[@"lastName"];
+	    newPatient.streetAddress = patient[@"streetAddress"];
+	    newPatient.zipCode = patient[@"zipCode"];
+	    newPatient.city = patient[@"civicRegNr"];
+	    newPatient.phone = patient[@"phone"];
+	    newPatient.mobile = patient[@"mobile"];
+
+	    // Save the context.
+	    NSError *error = nil;
+	    if (![context save:&error]) {
+		    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		    abort();
+	    }
     }
 
     -(IBAction)unwindToThisViewController:(UIStoryboardSegue *)unwindSegue {

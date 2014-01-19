@@ -83,6 +83,7 @@
 		55E3159C188B299300E3B758 /* Appointment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appointment.m; sourceTree = "<group>"; };
 		55E3159E188B299300E3B758 /* Patient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Patient.h; sourceTree = "<group>"; };
 		55E3159F188B299300E3B758 /* Patient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patient.m; sourceTree = "<group>"; };
+		8490891993DF6530984E2A72 /* JKEPatientSaveDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKEPatientSaveDelegate.h; sourceTree = "<group>"; };
 		8CA80FE322B54DB294BC3565 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +120,7 @@
 				55C8BD4E1884A3BD00CCAFC1 /* JKEAddPatientViewController.m */,
 				55C8BD471884A34100CCAFC1 /* JKEPatientsViewController.h */,
 				55C8BD481884A34100CCAFC1 /* JKEPatientsViewController.m */,
+				8490891993DF6530984E2A72 /* JKEPatientSaveDelegate.h */,
 			);
 			path = Patient;
 			sourceTree = "<group>";

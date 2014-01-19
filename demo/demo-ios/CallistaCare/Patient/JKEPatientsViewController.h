@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Patient.h"
+#import "JKEPatientSaveDelegate.h"
 
-@interface JKEPatientsViewController : UITableViewController<NSFetchedResultsControllerDelegate>
+@interface JKEPatientsViewController : UITableViewController<NSFetchedResultsControllerDelegate, JKEPatientSaveDelegate>
 
     @property(strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
     @property(strong, nonatomic) NSManagedObjectContext *managedObjectContext;

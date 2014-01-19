@@ -10,10 +10,10 @@
 
 @interface JKEAddAppointmentViewController()
 
-    @property IBOutlet UITextField *date;
-    @property IBOutlet UITextField *startTime;
-    @property IBOutlet UITextField *endTime;
-    @property IBOutlet UITextField *notes;
+    @property(weak, nonatomic) IBOutlet UITextField *date;
+    @property(weak, nonatomic) IBOutlet UITextField *startTime;
+    @property(weak, nonatomic) IBOutlet UITextField *endTime;
+    @property(weak, nonatomic) IBOutlet UITextField *notes;
 
 @end
 

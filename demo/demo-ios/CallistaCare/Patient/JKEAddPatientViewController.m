@@ -10,17 +10,31 @@
 
 @interface JKEAddPatientViewController()
 
-    @property IBOutlet UITextField *civicRegNr;
-    @property IBOutlet UITextField *firstName;
-    @property IBOutlet UITextField *lastName;
-    @property IBOutlet UITextField *streetAddress;
-    @property IBOutlet UITextField *zipCode;
-    @property IBOutlet UITextField *city;
-    @property IBOutlet UITextField *phone;
-    @property IBOutlet UITextField *mobile;
+    @property(weak, nonatomic) IBOutlet UITextField *civicRegNr;
+    @property(weak, nonatomic) IBOutlet UITextField *firstName;
+    @property(weak, nonatomic) IBOutlet UITextField *lastName;
+    @property(weak, nonatomic) IBOutlet UITextField *streetAddress;
+    @property(weak, nonatomic) IBOutlet UITextField *zipCode;
+    @property(weak, nonatomic) IBOutlet UITextField *city;
+    @property(weak, nonatomic) IBOutlet UITextField *phone;
+    @property(weak, nonatomic) IBOutlet UITextField *mobile;
 
 @end
 
 @implementation JKEAddPatientViewController
+
+    -(IBAction)save:(id)sender {
+
+	    NSDictionary *patient = @{
+			    @"civicRegNr@" : self.civicRegNr.text, @"firstName" : self.firstName.text,
+			    @"lastName" : self.lastName.text, @"streetAddress" : self.streetAddress.text,
+			    @"zipCode" : self.zipCode.text, @"city" : self.city.text, @"phone" : self.phone.text,
+			    @"mobile" : self.mobile.text
+	    };
+
+	    [self.delegate save:patient];
+
+	    [self dismissViewControllerAnimated:true completion:nil];
+    }
 
 @end
