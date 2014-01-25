@@ -8,7 +8,6 @@
 
 #import "Appointment.h"
 
-
 @implementation Appointment
 
     @dynamic id;

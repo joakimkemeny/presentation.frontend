@@ -7,7 +7,6 @@
 //
 
 #import "JKEPatientsViewController.h"
-#import "Patient.h"
 #import "JKEAddPatientViewController.h"
 
 @implementation JKEPatientsViewController

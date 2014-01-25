@@ -173,15 +173,15 @@
 			isa = PBXGroup;
 			children = (
 				55C8BD5C1884A9C000CCAFC1 /* Appointment */,
+				55E31597188B295C00E3B758 /* Model */,
 				553BD6A61884A1760094DD4D /* Note */,
 				553BD6A51884A1700094DD4D /* Patient */,
+				555BA02A18848EAD009EB3C3 /* Supporting Files */,
+				555BA03E18848EAD009EB3C3 /* Images.xcassets */,
 				555BA03218848EAD009EB3C3 /* JKEAppDelegate.h */,
 				555BA03318848EAD009EB3C3 /* JKEAppDelegate.m */,
 				555BA03518848EAD009EB3C3 /* Main.storyboard */,
 				55C8BD591884A77300CCAFC1 /* Model.xcdatamodeld */,
-				55E31597188B295C00E3B758 /* Model */,
-				555BA03E18848EAD009EB3C3 /* Images.xcassets */,
-				555BA02A18848EAD009EB3C3 /* Supporting Files */,
 			);
 			path = CallistaCare;
 			sourceTree = "<group>";

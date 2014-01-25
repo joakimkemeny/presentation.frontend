@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Joakim Kemeny. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 #import "JKEAppDelegate.h"
 
 int main(int argc, char *argv[]) {

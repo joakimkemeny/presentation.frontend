@@ -36,7 +36,7 @@
 
 	    // Configure the object manager.
 	    RKObjectManager *objectManager =
-			    [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://192.168.100.12:8080"]];
+			    [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://192.168.100.100:8080"]];
 	    objectManager.managedObjectStore = managedObjectStore;
 	    [objectManager.HTTPClient setDefaultHeader:@"Content-Type" value:@"application/json"];
 	    [RKObjectManager setSharedManager:objectManager];
