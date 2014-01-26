@@ -165,25 +165,25 @@
 
     -(void)save:(NSDictionary *)patient {
 
-	    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-	    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-	    Patient *newPatient =
-			    [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+	    RKManagedObjectStore *objectStore = [[RKObjectManager sharedManager] managedObjectStore];
+	    Patient *newPatient = [NSEntityDescription insertNewObjectForEntityForName:@"Patient"
+			    inManagedObjectContext:objectStore.mainQueueManagedObjectContext];
 
+	    newPatient.civicRegNr = patient[@"civicRegNr"];
 	    newPatient.firstName = patient[@"firstName"];
 	    newPatient.lastName = patient[@"lastName"];
 	    newPatient.streetAddress = patient[@"streetAddress"];
 	    newPatient.zipCode = patient[@"zipCode"];
-	    newPatient.city = patient[@"civicRegNr"];
+	    newPatient.city = patient[@"city"];
 	    newPatient.phone = patient[@"phone"];
 	    newPatient.mobile = patient[@"mobile"];
 
-	    // Save the context.
-	    NSError *error = nil;
-	    if (![context save:&error]) {
-		    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-		    abort();
-	    }
+	    [[RKObjectManager sharedManager] postObject:newPatient path:@"/api/patients" parameters:nil
+			    success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+				    NSLog(@"Success saving patient");
+			    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+		    NSLog(@"Failure saving patient: %@", error.localizedDescription);
+	    }];
     }
 
     -(IBAction)unwindToThisViewController:(UIStoryboardSegue *)unwindSegue {

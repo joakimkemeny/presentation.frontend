@@ -4,6 +4,6 @@
 	<include resource="org/springframework/boot/logging/logback/base.xml"/>
 
 	<!-- Customize logging levels -->
-	<!--<logger name="org.springframework.web.servlet.mvc" level="TRACE"/>-->
+	<logger name="org.springframework.web.servlet.mvc" level="TRACE"/>
 
 </configuration>

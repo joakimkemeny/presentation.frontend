@@ -7,6 +7,7 @@
 //
 
 #import "JKEAppDelegate.h"
+#import "Patient.h"
 
 @implementation JKEAppDelegate
 
@@ -37,21 +38,32 @@
 	    // Configure the object manager.
 	    RKObjectManager *objectManager =
 			    [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://192.168.100.100:8080"]];
+	    objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
 	    objectManager.managedObjectStore = managedObjectStore;
 	    [objectManager.HTTPClient setDefaultHeader:@"Content-Type" value:@"application/json"];
 	    [RKObjectManager setSharedManager:objectManager];
 
 	    // Add mapping for patients.
-	    RKEntityMapping *patientMapping =
-			    [RKEntityMapping mappingForEntityForName:@"Patient" inManagedObjectStore:managedObjectStore];
-	    [patientMapping addAttributeMappingsFromDictionary:@{
+	    NSMutableDictionary *patientDict = @{
 			    @"id" : @"id", @"civicRegNr" : @"civicRegNr", @"firstName" : @"firstName", @"lastName" : @"lastName",
 			    @"streetAddress" : @"streetAddress", @"zipCode" : @"zipCode", @"city" : @"city", @"phone" : @"phone",
 			    @"mobile" : @"mobile"
-	    }];
-	    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:patientMapping
+	    };
+
+	    RKEntityMapping *patientResponseMapping =
+			    [RKEntityMapping mappingForEntityForName:@"Patient" inManagedObjectStore:managedObjectStore];
+	    [patientResponseMapping addAttributeMappingsFromDictionary:patientDict];
+	    patientResponseMapping.identificationAttributes = @[@"id"];
+	    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:patientResponseMapping
 			    method:RKRequestMethodAny pathPattern:@"/api/patients" keyPath:@"patients"
 			    statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+
+	    [patientResponseMapping inverseMapping];
+
+	    RKObjectMapping *patientRequestMapping = [RKObjectMapping requestMapping];
+	    [patientRequestMapping addAttributeMappingsFromDictionary:patientDict];
+	    [objectManager addRequestDescriptor:[RKRequestDescriptor requestDescriptorWithMapping:patientRequestMapping
+			    objectClass:[Patient class] rootKeyPath:@"patient" method:RKRequestMethodAny]];
 
 	    // Add mapping for appointments.
 	    RKEntityMapping *appointmentMapping =
@@ -59,6 +71,7 @@
 	    [appointmentMapping addAttributeMappingsFromDictionary:@{
 			    @"id" : @"id", @"startTime" : @"startTime", @"endTime" : @"endTime", @"notes" : @"notes"
 	    }];
+	    appointmentMapping.identificationAttributes = @[@"id"];
 	    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:appointmentMapping
 			    method:RKRequestMethodAny pathPattern:@"/api/appointments" keyPath:@"appointments"
 			    statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
