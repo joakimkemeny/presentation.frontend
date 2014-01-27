@@ -26,7 +26,7 @@
     -(IBAction)save:(id)sender {
 
 	    NSDictionary *patient = @{
-			    @"civicRegNr@" : self.civicRegNr.text, @"firstName" : self.firstName.text,
+			    @"civicRegNr" : self.civicRegNr.text, @"firstName" : self.firstName.text,
 			    @"lastName" : self.lastName.text, @"streetAddress" : self.streetAddress.text,
 			    @"zipCode" : self.zipCode.text, @"city" : self.city.text, @"phone" : self.phone.text,
 			    @"mobile" : self.mobile.text
