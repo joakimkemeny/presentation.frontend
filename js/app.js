@@ -1,8 +1,8 @@
-/* global Rainbow, impress, console */
-(function ($, Rainbow, impress, console) {
+/* global impress, impressConsole */
+(function ($, impress, impressConsole) {
 	'use strict';
 
-	var Frontend = {
+	var Presentation = {
 
 		/**
 		 * Attaches key handlers to enter full screen.
@@ -39,66 +39,37 @@
 				addressBar.text(this.src);
 				var w = this.contentWindow;
 
-				backButton.on('click', function (e) {
+				backButton.on('click', function () {
 					w.history.back();
 				});
 
-				forwardButton.on('click', function (e) {
+				forwardButton.on('click', function () {
 					w.history.forward();
 				});
 
-				refreshButton.on('click', function (e) {
+				refreshButton.on('click', function () {
 					w.location.reload();
 				});
 
 				$(w).on('hashchange', function (e) {
 					addressBar.text(e.originalEvent.newURL);
-					console.log(w.location);
 				});
 			});
 
 			step.data('demo-loaded', true);
-		},
-
-		/**
-		 * Loads the source code for the current step.
-		 */
-		loadSrc: function (step) {
-
-			if (step.data('src-loaded')) {
-				return;
-			}
-
-			$('code[data-src]', step).each(function (index, element) {
-				var $element = $(element);
-				var srcUrl = $element.data('src');
-				var srcLang = $element.data('language');
-				$.get(srcUrl, function (data) {
-					if (srcLang === 'text' || srcLang === '') {
-						$element.append(data);
-					} else {
-						Rainbow.color(data, srcLang, function (highlighted) {
-							$element.append(highlighted);
-						});
-					}
-				}, 'text');
-			});
-
-			step.data('src-loaded', true);
 		}
 	};
 
 	$(function () {
 
 		$('.step').on('impress:stepenter', function () {
-			Frontend.loadSrc($(this));
-			Frontend.loadDemo($(this));
+			Presentation.loadDemo($(this));
 		});
 
-		Frontend.enterFullScreen();
+		Presentation.enterFullScreen();
 
 		impress().init();
 		impressConsole().init('css/console.css');
 	});
 
-}($, Rainbow, impress, console));
+}($, impress, impressConsole));

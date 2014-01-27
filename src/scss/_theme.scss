@@ -1,5 +1,3 @@
-@import "mixins";
-
 /*** Variables ************************************************************************************/
 
 $alternateColor: #0b58a3;
@@ -11,163 +9,425 @@ $textColor: #000;
 /*** General styles *******************************************************************************/
 
 * {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-    background-color: rgb(215, 215, 215);
-    background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(240, 240, 240)), to(rgb(190, 190, 190)));
-    background-image: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-    background-image: -moz-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-    background-image: -o-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-    background-image: radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
-    color: $textColor;
-    font-family: 'PT Sans', sans-serif;
-    font-size: 30px;
-    -webkit-font-smoothing: antialiased;
+	background-color: rgb(215, 215, 215);
+	background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(240, 240, 240)), to(rgb(190, 190, 190)));
+	background-image: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+	background-image: -moz-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+	background-image: -o-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+	background-image: radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+	color: $textColor;
+	font-family: 'PT Sans', sans-serif;
+	font-size: 30px;
+	-webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    line-height: 1em;
-    margin: 0;
+	line-height: 1em;
+	margin: 0;
 }
 
 h1 {
-    font-size: 85px;
+	font-size: 85px;
 
-    &.small {
-        font-size: 50px;
-        margin-bottom: 20px;
-    }
+	&.small {
+		font-size: 50px;
+		margin-bottom: 20px;
+	}
 
 	&.medium {
-        font-size: 100px;
-    }
+		font-size: 100px;
+	}
 
 	&.large {
-        font-size: 150px;
-    }
+		font-size: 150px;
+	}
 
 	&.huge {
-        font-size: 200px;
-    }
+		font-size: 200px;
+	}
 }
 
 h2 {
-    color: $alternateColor;
-    font-size: 50px;
+	color: $alternateColor;
+	font-size: 50px;
 
-    &.small {
-        font-size: 30px;
-    }
+	&.small {
+		font-size: 30px;
+	}
 }
 
 h3 {
-    font-size: 40px;
+	font-size: 40px;
 }
 
 h4, h5, h6 {
-    font-size: 30px;
-    font-weight: normal;
+	font-size: 30px;
+	font-weight: normal;
 }
 
 .center {
-    display: table;
-    height: 100%;
-    width: 100%;
+	display: table;
+	height: 100%;
+	width: 100%;
 
-    & > * {
-        display: table-cell;
-        text-align: center;
-        vertical-align: middle;
-    }
+	& > * {
+		display: table-cell;
+		text-align: center;
+		vertical-align: middle;
+	}
 }
 
 /*** Components ***********************************************************************************/
 
 .ballon {
-    position: absolute;
-    line-height: 1;
-    white-space: nowrap;
-    width: auto;
+	position: absolute;
+	line-height: 1;
+	white-space: nowrap;
+	width: auto;
 
-    &.ballon-up:after,
-    &.ballon-up:before {
-        bottom: 100%;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        pointer-events: none;
-        position: absolute;
-        width: 0;
-    }
+	&.ballon-up:after,
+	&.ballon-up:before {
+		bottom: 100%;
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		pointer-events: none;
+		position: absolute;
+		width: 0;
+	}
 
-    &.ballon-up:after {
-        border-bottom-color: $boxColor;
-        border-width: 20px;
-        left: 50%;
-        margin-left: -20px;
-    }
+	&.ballon-up:after {
+		border-bottom-color: $boxColor;
+		border-width: 20px;
+		left: 50%;
+		margin-left: -20px;
+	}
 
-    &.ballon-up:before {
-        border-bottom-color: $boxBorderColor;
-        border-width: 26px;
-        left: 50%;
-        margin-left: -26px;
-    }
+	&.ballon-up:before {
+		border-bottom-color: $boxBorderColor;
+		border-width: 26px;
+		left: 50%;
+		margin-left: -26px;
+	}
 
-    &.ballon-down:after,
-    &.ballon-down:before {
-        top: 100%;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        pointer-events: none;
-        position: absolute;
-        width: 0;
-    }
+	&.ballon-down:after,
+	&.ballon-down:before {
+		top: 100%;
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		pointer-events: none;
+		position: absolute;
+		width: 0;
+	}
 
-    &.ballon-down:after {
-        border-top-color: $boxColor;
-        border-width: 20px;
-        left: 50%;
-        margin-left: -20px;
-    }
+	&.ballon-down:after {
+		border-top-color: $boxColor;
+		border-width: 20px;
+		left: 50%;
+		margin-left: -20px;
+	}
 
-    &.ballon-down:before {
-        border-top-color: $boxBorderColor;
-        border-width: 26px;
-        left: 50%;
-        margin-left: -26px;
-    }
+	&.ballon-down:before {
+		border-top-color: $boxBorderColor;
+		border-width: 26px;
+		left: 50%;
+		margin-left: -26px;
+	}
+
+
+	&.ballon-left:after,
+	&.ballon-left:before {
+		right: 100%;
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		pointer-events: none;
+		position: absolute;
+		width: 0;
+	}
+
+	&.ballon-left:after {
+		border-right-color: $boxColor;
+		border-width: 20px;
+		top: 40px;
+		margin-top: -20px;
+	}
+
+	&.ballon-left:before {
+		border-right-color: $boxBorderColor;
+		border-width: 26px;
+		top: 40px;
+		margin-top: -26px;
+	}
 }
 
-.box {
-    background-color: $boxColor;
-    border: 5px solid $boxBorderColor;
-	border-radius: 5px;
-    color: $alternateColor;
-    font-size: 50px;
-    padding: 20px;
 
-    span {
-        color: $noteColor;
-        font-size: 30px;
-        display: block;
-    }
+.box {
+	background-color: $boxColor;
+	border: 5px solid $boxBorderColor;
+	border-radius: 10px;
+	color: $alternateColor;
+	font-size: 50px;
+	padding: 20px;
+
+
+	span {
+		color: $noteColor;
+		font-size: 30px;
+		display: block;
+	}
+
+	.inner-box {
+		border-radius: 20px;
+		background-color: lighten($boxBorderColor, 10%);
+		color: $noteColor;
+		padding: 0 20px;
+		margin-right: 10px;
+		margin-bottom: 10px;
+		font-size: 30px;
+		float: left;
+		&.lighter {
+			background-color: lighten($boxBorderColor, 18%);
+		}
+	}
+
+	.file-box {
+		position: relative;
+
+		&.level1 {
+			padding-left: 50px;
+
+			i {
+				left: 20px;
+			}
+		}
+		&.level2 {
+			padding-left: 100px;
+
+			i {
+				left: 70px;
+			}
+		}
+		&.level3 {
+			padding-left: 150px;
+
+			i {
+				left: 120px;
+			}
+		}
+		&.level4 {
+			padding-left: 200px;
+
+			i {
+				left: 170px;
+			}
+		}
+
+		i {
+			display: inline-block;
+			width: 50px;
+			height: 61px;
+			border-radius: 6px;
+			position: absolute;
+			border: 3px solid $alternateColor;
+			border-right: 0;
+			top: -30px;
+			z-index: 1;
+
+		}
+		span {
+			border-radius: 20px;
+			background-color: lighten($boxBorderColor, 10%);
+			color: $noteColor;
+			float: none;
+			display: inline-block;
+			padding: 0 20px;
+			margin-right: 10px;
+			margin-bottom: 10px;
+			font-size: 30px;
+			position: relative;
+			z-index: 2;
+			&.lighter {
+				background-color: lighten($boxBorderColor, 18%);
+			}
+		}
+	}
+}
+.uml-box {
+	font-size: 40px;
+	height: 80px;
+	padding-top: 10px;
+	text-align: left;
+	width: 725px;
+	margin-left:100px;
+	span {
+		float:right;
+		padding-top:5px;
+	}
+}
+
+
+.uml-connections {
+	float: left;
+	min-height: 10px;
+	padding-top: 40px;
+	position: relative;
+	width: 100px;
+}
+
+.uml-vertical-connections {
+	height: 30px;
+	min-width: 10px;
+	padding-left: 650px;
+	position: relative;
+}
+
+.uml-line {
+	border-bottom: 3px solid $alternateColor;
+	color: $textColor;
+	font-size: 30px;
+	margin-bottom: 15px;
+	position: relative;
+
+	&.uml-line-dotted {
+		border-bottom: 3px dotted $alternateColor;
+		margin-bottom: 30px;
+	}
+
+	&.uml-line-fat {
+		border-bottom: 20px solid $alternateColor;
+	}
+}
+
+.uml-vertical-line {
+	border-left: 3px solid $alternateColor;
+	color: $textColor;
+	float: left;
+	font-size: 30px;
+	height: 100%;
+	margin-right: 30px;
+	position: relative;
+}
+
+.uml-arrow-left {
+	padding-right: 10px;
+	text-align: right;
+}
+
+.uml-arrow-left:before {
+	border: solid transparent;
+	border-right-color: $alternateColor;
+	border-width: 7px;
+	border-right-width: 14px;
+	bottom: -8px;
+	content: " ";
+	height: 0;
+	left: -10px;
+	position: absolute;
+	width: 0;
+}
+
+.uml-arrow-right {
+	padding-left: 10px;
+	text-align: left;
+}
+
+.uml-arrow-right:after {
+	border: solid transparent;
+	border-left-color: $alternateColor;
+	border-width: 7px;
+	border-left-width: 14px;
+	bottom: -8px;
+	content: " ";
+	height: 0;
+	position: absolute;
+	right: -10px;
+	width: 0;
+
+
+}
+.uml-arrow-right.uml-line-fat:after {
+	border: solid transparent;
+	border-left-color: $alternateColor;
+	border-width: 30px;
+	border-left-width: 40px;
+	bottom: -40px;
+	content: " ";
+	height: 0;
+	position: absolute;
+	right: -50px;
+	width: 0;
+	z-index: 2;
+
+
+}
+
+
+.uml-arrow-up:after {
+	border: solid transparent;
+	border-bottom-color: $alternateColor;
+	border-width: 7px;
+	border-bottom-width: 14px;
+	left: -8px;
+	content: " ";
+	height: 0;
+	position: absolute;
+	top: -10px;
+	width: 0;
+}
+
+.uml-arrow-down:after {
+	border: solid transparent;
+	border-top-color: $alternateColor;
+	border-width: 7px;
+	border-top-width: 14px;
+	left: -8px;
+	content: " ";
+	height: 0;
+	position: absolute;
+	bottom: -10px;
+	width: 0;
+}
+
+
+
+.white-box {
+	background-color: $boxColor;
+	border-radius: 10px;
+	color: $alternateColor;
+	font-size: 50px;
+	padding: 20px;
+
+	span {
+		color: $noteColor;
+		font-size: 30px;
+		display: block;
+	}
 }
 
 .box-fixed {
-	position: absolute;
-	left: 0;
-	top: 0;
-	font-size: 30px;
 	bottom: auto;
-	right: auto;
-	width: 100px;
+	font-size: 30px;
 	height: 100px;
+	left: 0;
+	position: absolute;
+	right: auto;
+	top: 0;
+	width: 100px;
+}
+
+.free-text {
+	font-size: 30px;
+	left: 0;
+	position: absolute;
+	top: 0;
 }
 
 .browser {
@@ -175,6 +435,7 @@ h4, h5, h6 {
 	border-radius: 10px;
 	position: absolute;
 	right: 0;
+	height: 657px;
 	width: 990px;
 
 	.toolbar {
@@ -226,7 +487,7 @@ h4, h5, h6 {
 		.address {
 			left: 126px;
 			position: absolute;
-			right: 52px;
+			right: 5px;
 			top: 5px;
 
 			div {
@@ -243,12 +504,6 @@ h4, h5, h6 {
 				width: 100%;
 			}
 		}
-
-		.resize {
-			position: absolute;
-			right: -5px;
-			top: 5px;
-		}
 	}
 
 	iframe {
@@ -263,247 +518,232 @@ h4, h5, h6 {
 	}
 }
 
-.option-list {
-    border-left: 10px solid $alternateColor;
-    font-size: 50px;
-    margin: 0 0 0 100px;
-    padding: 57px 0 40px 40px;
-
-    li {
-        list-style: none;
-        margin-left: 40px;
-        margin-bottom: 40px;
-        position: relative;
-
-        span:first-child {
-            background-color: $boxColor;
-            border: 10px solid $alternateColor;
-	        border-radius: 60px;
-            height: 100px;
-            left: -135px;
-            line-height: 80px;
-            position: absolute;
-            text-align: center;
-            top: -17px;
-            width: 100px;
-        }
-
-        span:not(:first-child) {
-            color: grey;
-            display: block;
-            font-size: 80%;
-            font-style: italic;
-        }
-    }
-}
-
 .links {
-    color: $noteColor;
-    font-size: 25px;
-    font-weight: normal;
-    position: absolute;
-    left: 40px;
-    bottom: 20px;
+	color: $noteColor;
+	font-size: 25px;
+	font-weight: normal;
+	position: absolute;
+	left: 40px;
+	bottom: 20px;
 
-    a {
-        color: $noteColor;
-        font-weight: bold;
-        text-decoration: none;
+	a {
+		color: $noteColor;
+		font-weight: bold;
+		text-decoration: none;
 
-        &:hover {
-            text-decoration: underline;
-        }
-    }
+		&:hover {
+			text-decoration: underline;
+		}
+	}
 }
 
-.slide {
-    background: $boxColor;
-    border: 5px solid $boxBorderColor;
-	border-radius: 10px;
-    padding: 40px 40px 0 40px;;
+svg {
+	pointer-events: none;
+	height: 744px;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 1000px;
 
-    b {
-        color: $alternateColor;
-    }
+	.line {
+		fill: none;
+		stroke-width: 3px;
+		stroke: $alternateColor;
+	}
+
+	.arrow {
+		fill: none;
+		marker-end: url(#markerArrow);
+		stroke: $alternateColor;
+		stroke-width: 3px;
+	}
+
+	.arrow-dashed {
+		fill: none;
+		marker-end: url(#markerArrow);
+		stroke: $alternateColor;
+		stroke-dasharray: 4, 4;
+		stroke-width: 3px;
+	}
+
+	path {
+		fill: none;
+		stroke-width: 3px;
+		stroke: $alternateColor;
+
+	}
+
+	marker {
+		path {
+			fill: $alternateColor;
+			stroke: none;
+		}
+	}
 }
 
-.uml-box {
-    font-size: 40px;
-    float: left;
-    height: 500px;
-    text-align: center;
-    width: 175px;
-}
+.chart {
+	position: absolute;
+	left: 20px;
+	right: 20px;
+	bottom: 0;
+	top: 20px;
 
-.uml-connections {
-    float: left;
-    min-height: 10px;
-    padding-top: 20px;
-    position: relative;
-    width: 200px;
-}
+	.bar {
+		border: 2px solid #f4771b;
+		border-bottom: 0;
+		position: absolute;
+		bottom: 0;
+		background-color: transparentize(#f4771b, 0.6);
 
-.uml-vertical-connections {
-    clear: left;
-    float: left;
-    height: 80px;
-    min-width: 10px;
-    padding-left: 20px;
-    position: relative;
-}
-
-.uml-line {
-    border-bottom: 3px solid $alternateColor;
-    color: $textColor;
-    font-size: 30px;
-    margin-bottom: 15px;
-    position: relative;
-
-    &.uml-line-dotted {
-        border-bottom: 3px dotted $alternateColor;
-        margin-bottom: 30px;
-    }
-}
-
-.uml-vertical-line {
-    border-left: 3px solid $alternateColor;
-    color: $textColor;
-    float: left;
-    font-size: 30px;
-    height: 100%;
-    margin-right: 30px;
-    position: relative;
-}
-
-.uml-arrow-left {
-    padding-right: 10px;
-    text-align: right;
-}
-
-.uml-arrow-left:before {
-    border: solid transparent;
-    border-right-color: $alternateColor;
-    border-width: 7px;
-    border-right-width: 14px;
-    bottom: -8px;
-    content: " ";
-    height: 0;
-    left: -10px;
-    position: absolute;
-    width: 0;
-}
-
-.uml-arrow-right {
-    padding-left: 10px;
-    text-align: left;
-}
-
-.uml-arrow-right:after {
-    border: solid transparent;
-    border-left-color: $alternateColor;
-    border-width: 7px;
-    border-left-width: 14px;
-    bottom: -8px;
-    content: " ";
-    height: 0;
-    position: absolute;
-    right: -10px;
-    width: 0;
-}
-
-.uml-arrow-up:after {
-    border: solid transparent;
-    border-bottom-color: $alternateColor;
-    border-width: 7px;
-    border-bottom-width: 14px;
-    left: -8px;
-    content: " ";
-    height: 0;
-    position: absolute;
-    top: -10px;
-    width: 0;
-}
-
-.uml-arrow-down:after {
-    border: solid transparent;
-    border-top-color: $alternateColor;
-    border-width: 7px;
-    border-top-width: 14px;
-    left: -8px;
-    content: " ";
-    height: 0;
-    position: absolute;
-    bottom: -10px;
-    width: 0;
+		span {
+			margin-top: -50px;
+			color: black;
+			display: block;
+		}
+	}
 }
 
 /*** Source code **********************************************************************************/
 
 code {
-    color: $textColor;
-    font-family: 'Bitstream Vera Sans Mono', Courier, monospace;
-    font-size: 22px;
-    line-height: 1.2em;
+	color: $textColor;
+	font-family: 'Bitstream Vera Sans Mono', Courier, monospace;
+	font-size: 22px;
+	line-height: 1.2em;
 }
 
-pre {
-    background: $boxColor;
-    border: 5px solid $boxBorderColor;
+pre[class*="language-"] {
+	background-color: $boxColor !important;
+	border: 5px solid $boxBorderColor;
 	border-radius: 10px;
-    margin: 0 0 40px 0;
-    padding: 20px;
-    word-wrap: break-word;
+	margin: 0 0 40px 0 !important;
+	padding: 20px;
+	white-space: nowrap;
+	overflow: hidden;
+}
 
-    .comment {
-        color: #998;
-    }
-    .support {
-        color: #0086B3;
-    }
-    .tag,
-    .tag-name {
-        color: navy;
-    }
-    .keyword,
-    .css-property,
-    .vendor-prefix,
-    .sass,
-    .class,
-    .id,
-    .css-value,
-    .entity.function,
-    .storage.function {
-        font-weight: bold;
-    }
-    .css-property,
-    .css-value,
-    .vendor-prefix,
-    .support.namespace {
-        color: $textColor;
-    }
-    .constant.numeric,
-    .keyword.unit,
-    .hex-color {
-        color: #099;
-        font-weight: normal;
-    }
-    .entity.class {
-        color: #458;
-    }
-    .entity.id,
-    .entity.function {
-        color: #900;
-    }
-    .attribute,
-    .variable {
-        color: teal;
-    }
-    .string,
-    .support.value {
-        font-weight: normal;
-        color: #d14;
-    }
-    .regexp {
-        color: #009926;
-    }
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	text-shadow: 0 1px white;
+	//font-family: Consolas, Monaco, 'Andale Mono', monospace;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.builtin {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #a67f59;
+	background: hsla(0,0%,100%,.5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+
+.token.regex,
+.token.important {
+	color: #e90;
+}
+
+.token.important {
+	font-weight: bold;
+}
+
+.token.entity {
+	cursor: help;
 }

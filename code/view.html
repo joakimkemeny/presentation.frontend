@@ -1,0 +1,13 @@
+<script type="text/x-handlebars" data-template-name="patients">
+  <h2>Patients</h2>
+  <table>
+    {{#each patient in controller}}
+    {{#linkTo "patient" patient }}
+    <tr>
+      <td>{{ patient.civicRegNr }}</td>
+      <td>{{ patient.firstName }}</td>
+    </tr>
+    {{/linkTo}}
+    {{/each}}
+  </table>
+</script>

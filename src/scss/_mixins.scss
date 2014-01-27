@@ -1,4 +1,4 @@
-@mixin transform-rotate($angle){
+@mixin transform-rotate($angle) {
 	-moz-transform-origin: 0 0;
 	-ms-transform-origin: 0 0;
 	-o-transform-origin: 0 0;
@@ -9,7 +9,7 @@
 	-webkit-transform: rotate($angle);
 }
 
-@mixin transform-scale($scale){
+@mixin transform-scale($scale) {
 	-webkit-transform: scale($scale);
 	-moz-transform: scale($scale);
 	-o-transform: scale($scale);

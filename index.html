@@ -3,7 +3,7 @@
 <head>
 
 	<meta charset="utf-8">
-	<title>Rethink your frontend architecture | Presentation</title>
+	<title>Rethink your Frontend Architecture | Presentation</title>
 
 	<meta name="author" content="Joakim Kemeny">
 	<meta name="viewport" content="width=1024">
@@ -14,15 +14,18 @@
 <body>
 
 	<div id="impress">
+
+		<!-- Intro -->
+
 		<div id="intro" class="step" data-x="0" data-y="0">
 			<h2>Rethink your</h2>
 			<h1>Frontend Architecture</h1>
 			<h3>Joakim Kemeny</h3>
 			<h4>@joakimkemeny</h4>
 			<img src="images/callista.png" class="logotype">
-			<img src="images/display-site-grey.png" class="site-display">
-			<img src="images/ipad-site-grey.png" class="site-ipad">
-			<img src="images/iphone-site1-grey.png" class="site-iphone">
+			<img src="images/app-display.png" class="app-display">
+			<img src="images/app-ipad.png" class="app-ipad">
+			<img src="images/app-iphone.png" class="app-iphone">
 
 			<div class="notes">
 				<p>
@@ -39,13 +42,14 @@
 					även fokusera på backend och lite av det kommer vi att få se här idag.
 				</p>
 				<p>
-					Jag tänkte att vi skulle köra igång den här presentationen med en demo.
+					Jag tänker köra igång den här presentationen med en demo.
 				</p>
 			</div>
 		</div>
 
-		<div id="demo-old" class="step" data-x="1500" data-y="0">
+		<!-- Old -->
 
+		<div id="demo-old" class="step" data-x="1500" data-y="0" style="z-index: 2;">
 			<div class="browser">
 				<div class="toolbar">
 					<div class="buttons">
@@ -54,7 +58,7 @@
 						<button class="refresh"><i class="fa fa-refresh"></i></button>
 					</div>
 					<div class="address">
-						<div>demo/demo-web</div>
+						<div>http://127.0.0.1:8080</div>
 					</div>
 				</div>
 			</div>
@@ -84,61 +88,118 @@
 					klassisk Java webbapplikation och jag kommer inte ens visa er någon kod från den idag.
 				</p>
 				<p>
-					Låt oss se vad som händer när man söker efter en patient i vår applikation.
+					Låt oss se vad som händer när man söker efter en patient i vår applikation. Så vi fyller i några
+					sökvillkor och sedan trycker vi på sök.
 				</p>
 			</div>
 		</div>
 
-		<div id="architecture-old-1" class="step" data-x="3000" data-y="-400">
-			<svg width="800" height="">
+		<div id="architecture-old-1" class="step" data-x="2000" data-y="-400">
+			<svg width="800" height="600">
 				<defs>
 					<marker id="markerArrow" markerWidth="5" markerHeight="5" refx="0" refy="2" orient="auto">
 						<path d="M0,0 L0,4 L4,2 L0,0"/>
 					</marker>
 				</defs>
-
 				<path d="M40,440, L40,120, L150,120" class="arrow"></path>
+			</svg>
+			<div class="box box-fixed" style="left: 160px;top: 40px; width: 200px; height: 280px;text-align: center">
+				Server
+			</div>
+			<div class="free-text" style="left: 80px; top: 345px">
+				/patients?firstName=Joakim
+			</div>
+
+			<div class="notes">
+				<p>
+					Här skickas det anropet iväg till en server som tar hand om det. I Javavärlden så tas anropet
+					förmodligen hand om av en Servlet och förmodligen någon typ av ramverk i form av Spring MVC,
+					Struts, Wicket, JSF eller liknande. Därefter tuggar servern lite.
+				</p>
+			</div>
+		</div>
+
+		<div id="architecture-old-2" class="step" data-x="2000" data-y="-400">
+			<svg width="800" height="600">
+				<defs>
+					<marker id="markerArrow" markerWidth="5" markerHeight="5" refx="0" refy="2" orient="auto">
+						<path d="M0,0 L0,4 L4,2 L0,0"/>
+					</marker>
+				</defs>
 				<line x1="360" x2="460" y1="120" y2="120" class="arrow"></line>
 				<line x1="470" x2="370" y1="150" y2="150" class="arrow-dashed"></line>
-				<line x1="360" x2="540" y1="350" y2="350" class="arrow"></line>
-				<path d="M750,600, L750,700, L510,700" class="arrow"></path>
-
 			</svg>
-			<div class="box box-fixed" style="left: 160px;top: 40px; width: 200px; height: 350px;">
-				Spring MVC<br>
-				Struts<br>
-				JSF<br>
-				...
-			</div>
-			<div class="box box-fixed" style="left: 470px;top: 40px; width: 100px; height: 150px;">
+			<div class="box box-fixed" style="left: 470px;top: 40px; width: 100px; height: 150px;text-align: center">
 				DB
 			</div>
-			<pre class="box-fixed" style="left: 550px;top: 300px; width: 410px; height: 350px;overflow: hidden;"><code
-					data-language="html" data-src="code/html.html"></code></pre>
-		</div>
 
-		<div id="architecture-old-2" class="step invisible" data-x="1780" data-y="-567" data-scale="0.6">
-			<div class="box box-fixed" style="left: 300px;top: 100px; width: 333px; height: 583px;">
-
-				<div class="chart">
-					<div class="bar" style="width: 50%;bottom: 20px;"></div>
-				</div>
+			<div class="notes">
+				<p>
+					Kanske kommunicerar vi med någon databas eller med några andra system och därefter anropas en vy
+					som renderar HTML som skickas tillbaka till användaren.
+				</p>
 			</div>
 		</div>
 
-		<div id="reality-1" class="step invisible" data-x="2000" data-y="-1400">
+		<div id="architecture-old-3" class="step" data-x="2000" data-y="-400">
+			<svg width="800" height="600">
+				<defs>
+					<marker id="markerArrow" markerWidth="5" markerHeight="5" refx="0" refy="2" orient="auto">
+						<path d="M0,0 L0,4 L4,2 L0,0"/>
+					</marker>
+				</defs>
+				<line x1="360" x2="540" y1="280" y2="280" class="arrow"></line>
+				<path d="M750,550, L750,650, L510,650" class="arrow"></path>
+			</svg>
+			<pre class="box-fixed" style="left: 550px;top: 240px; width: 410px; height: 350px;overflow: hidden;"
+					data-src="code/html.html"></pre>
+
+			<div class="notes">
+				<p>
+					Den här modellen har vi jobbat efter i åtminstone 15 år. Ramverken har förbättrats men modellen
+					är den samma. Ingenting speciellt spännande här.
+				</p>
+				<p>
+					Låt oss se hur servern beter sig om jag lägger lite last på den här sökningen.
+				</p>
+			</div>
+		</div>
+
+		<div id="architecture-old-4" class="step invisible" data-x="1780" data-y="-567" data-scale="0.6">
+			<div class="box-fixed" style="left: 308px;top: 107px; width: 317px; height: 448px;">
+				<div class="chart">
+					<div class="bar" style="height: 24%;left: 20px;right: 20px;">
+						<span>390 /s</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="notes">
+				<p>
+					Jag körde det här på min maskin (all kod kommer för övrigt finnas tillgänglig så ni kan köra själ
+					va om ni är intresserade), jag körde det på min maskin och då lyckades jag pressa igenom 390 anrop i
+					sekunden. Inte så dåligt, vi har ett system som fungerar och som presterar hyffsat bra tycker jag.
+				</p>
+				<p>
+					Vi återkommer hit men låt det vara vår startpunkt.
+				</p>
+			</div>
+		</div>
+
+		<!-- Reality -->
+
+		<div id="reality-1" class="step invisible" data-x="1998" data-y="-1400">
 			<div class="center">
 				<h1>2014</h1>
 			</div>
 
 			<div class="notes">
 				<p>
-					The glue that we use is called Knockback. I just thought I let you know since
-					it complicates the code quite a bit but as usual when it gets complicated I
-					leave it as an exercise to you.
+					Ok, en arkitektur som är 15 år gammal, låt oss titta lite på hur verkligheten ser ut idag, 2014.
 				</p>
 			</div>
 		</div>
+
 		<div id="reality-2" class="step invisible" data-x="2000" data-y="-1400">
 			<div class="center">
 				<h1>2014</h1>
@@ -148,29 +209,41 @@
 
 			<div class="notes">
 				<p>
-					The glue that we use is called Knockback. I just thought I let you know since
-					it complicates the code quite a bit but as usual when it gets complicated I
-					leave it as an exercise to you.
+					Först och främst har ju mobila enheter blivit en naturlig del när vi utvecklar applikationer. Ni
+					hörde Peter prata om det här tidigare så om det inte är det så borde det vara det. Jag menar
+					givetvis smartphones men lika viktigt är alla olika typer av tablets. Dessa enheter har blivit
+					nästan lika kraftfulla som datorerna var för några år sedan och är en naturlig del av vardagen.
+				</p>
+				<p>
+					Någonting annat som smartphones, tablets men även en allt mer mogen markad har fört med sig är
+					att det kommer fler och fler enheter och applikationer som riktar sig till oss konsumenter
+					istället för till IT-avdelningarna och det har fört med sig att användarna har börjat förvänta sig
+					bättre och enklare applikationer. Peter pratade om consumerization. Det duger inte längre med att
+					det fungerar, användarna förväntar sig mer.
+				</p>
+				<p>
+					Låt oss för skoj skull se hur min demo fungerar i min telefon. Ok, vi har telefoner som är lika
+					kraftfulla som datorerna var för några år sedan men det räcker inte riktigt. Det här är inte
+					direkt ett verktyg som jag skulle vilja använda om jag var läkare.
 				</p>
 			</div>
 		</div>
+
 		<div id="reality-3" class="step invisible" data-x="2000" data-y="-1400">
 			<div class="center">
 				<h1>2014</h1>
 				<div class="box ballon ballon-down ballon1">New technologies</div>
-				<div class="box ballon ballon-up ballon2">
-					Better performance
-				</div>
+				<div class="box ballon ballon-up ballon2">Better performance</div>
 			</div>
 
 			<div class="notes">
 				<p>
-					The glue that we use is called Knockback. I just thought I let you know since
-					it complicates the code quite a bit but as usual when it gets complicated I
-					leave it as an exercise to you.
+					Som tur är bjuder 2014 även på en uppsjö av nya tekniker som dessutom börjar få ett så starkt
+					fäste att de faktiskt går att använda i verkligheten.
 				</p>
 			</div>
 		</div>
+
 		<div id="reality-4" class="step invisible" data-x="2000" data-y="-1400">
 			<div class="center">
 				<h1>2014</h1>
@@ -189,62 +262,306 @@
 
 			<div class="notes">
 				<p>
-					The glue that we use is called Knockback. I just thought I let you know since
-					it complicates the code quite a bit but as usual when it gets complicated I
-					leave it as an exercise to you.
+					Detta gäller inte minst webbläsartillverkarna som i alla fall temporärt har slutat att konkurera
+					med egna lösningar och API:er och istället har fokuserat på prestanda och standarder. Så om man
+					bara släpper sargen kring IE 8 och 9 så är även webben en plattform där vi faktiskt kan göra
+					någonting riktigt riktigt bra.
+				</p>
+				<p>
+					Så var börjar vi?
 				</p>
 			</div>
 		</div>
 
+		<!-- Structure -->
 
-		<div id="javascript-1" class="step" data-x="5000" data-y="-1400">
+		<div id="structure-1" class="step invisible" data-x="3500" data-y="-1400">
+			<div class="box uml-box">
+				<span>WAR / EAR</span>
+				<div class="file-box level0"><span>src</span></div>
+				<div class="file-box level1"><i></i><span>main</span></div>
+				<div class="file-box level2"><i></i><span>java</span></div>
+				<div class="file-box level2"><i></i><span>resources</span></div>
+				<div class="file-box level2"><i></i><span>webapp</span></div>
+				<div class="file-box level3"><i></i><span>css</span></div>
+				<div class="file-box level3"><i></i><span>images</span></div>
+				<div class="file-box level3"><i></i><span>js</span></div>
+				<div class="file-box level3"><i></i><span>WEB-INF</span></div>
+				<div class="file-box level4"><i></i><span class="lighter">web.xml</span></div>
+			</div>
+
+			<div class="notes">
+				<p>
+					Låt oss titta på hur en helt vanligt applikation som är skriven i Java brukar vara uppbyggdd
+					idag. Vi har förmodligen en struktur som ser ut ungefär så här.
+				</p>
+				<p>
+					Vi har våra Javaklasser och resurser och vi har vår webbapplikation i en undermapp. Detta är en
+					standard Maven layout.
+				</p>
+			</div>
+		</div>
+
+		<div id="structure-2" class="step invisible" data-x="3750" data-y="-1400">
+			<div class="box uml-box">
+				<span>WAR / EAR</span>
+				<div class="file-box level0"><span>src</span></div>
+				<div class="file-box level1"><i></i><span>main</span></div>
+				<div class="file-box level2"><i></i><span>java</span></div>
+				<div class="file-box level2"><i></i><span>resources</span></div>
+				<div class="file-box level2"><i></i><span>webapp</span></div>
+				<div class="file-box level3"><i></i><span>css</span></div>
+				<div class="file-box level3"><i></i><span>images</span></div>
+				<div class="file-box level3"><i></i><span>js</span></div>
+				<div class="file-box level3"><i></i><span>WEB-INF</span></div>
+				<div class="file-box level4"><i></i><span class="lighter">web.xml</span></div>
+			</div>
+			<div class="uml-connections">
+				<div class="uml-line uml-arrow-right uml-line-fat"></div>
+			</div>
+			<div class="box uml-box box2">
+				Application<br>Server
+			</div>
+
+			<div class="notes">
+				<p>
+					Den paketerar vi som en WAR eller EAR fil och deployar den till någon typ av applikationsserver.
+				</p>
+				<p>
+					I det här fallet är det servern som är det centrala och det är här som allting körs och det är så
+					vår första demo är byggd. Vad skulle hända om vi istället flyttade ut delar av funktionalliteten
+					till klienten?
+				</p>
+			</div>
+		</div>
+
+		<div id="structure-3" class="step invisible" data-x="3750" data-y="-1400">
+			<div>
+				<div class="box uml-box">
+					<span>WAR / EAR</span>
+					<div class="file-box level0"><span>src</span></div>
+					<div class="file-box level1"><i></i><span>main</span></div>
+					<div class="file-box level2"><i></i><span>java</span></div>
+					<div class="file-box level2"><i></i><span>resources</span></div>
+					<div class="file-box level2"><i></i><span>webapp</span></div>
+					<div class="file-box level3"><i></i><span>WEB-INF</span></div>
+					<div class="file-box level4"><i></i><span class="lighter">web.xml</span></div>
+				</div>
+				<div class="uml-connections">
+					<div class="uml-line uml-arrow-right uml-line-fat"></div>
+				</div>
+
+				<div class="box uml-box box2">
+					Application<br>Server
+				</div>
+			</div>
+			<div class="uml-vertical-connections">
+				<div class="uml-vertical-line uml-arrow-down"></div>
+				<div class="uml-vertical-line uml-arrow-up"></div>
+			</div>
+			<div>
+				<div class="box uml-box box3" style="padding-top:25px;">
+					<div class="inner-box">css</div>
+					<div class="inner-box">images</div>
+					<div class="inner-box">js</div>
+				</div>
+			</div>
+
+			<div class="notes">
+				<p>
+					Låt oss bryta ut alla våra CSS-filer, bilder och JavaScript till ett eget paket.
+				</p>
+			</div>
+		</div>
+
+		<div id="structure-4" class="step invisible" data-x="3750" data-y="-1400">
+			<div>
+				<div class="box uml-box">
+					<span>WAR / EAR</span>
+					<div class="file-box level0"><span>src</span></div>
+					<div class="file-box level1"><i></i><span>main</span></div>
+					<div class="file-box level2"><i></i><span>java</span></div>
+					<div class="file-box level2"><i></i><span>resources</span></div>
+					<div class="file-box level2"><i></i><span>webapp</span></div>
+					<div class="file-box level3"><i></i><span>WEB-INF</span></div>
+					<div class="file-box level4"><i></i><span class="lighter">web.xml</span></div>
+				</div>
+				<div class="uml-connections">
+					<div class="uml-line uml-arrow-right uml-line-fat"></div>
+				</div>
+
+				<div class="box uml-box box2">
+					Application<br>Server
+				</div>
+			</div>
+			<div class="uml-vertical-connections">
+				<div class="uml-vertical-line uml-arrow-down"></div>
+				<div class="uml-vertical-line uml-arrow-up"></div>
+				<div style="line-height:1.7">JSON</div>
+			</div>
+			<div>
+				<div class="box uml-box box3" style="padding-top:25px;">
+					<div class="inner-box">css</div>
+					<div class="inner-box">images</div>
+					<div class="inner-box">js</div>
+				</div>
+				<div class="uml-connections">
+					<div class="uml-line uml-arrow-right uml-line-fat"></div>
+				</div>
+
+				<div class="box uml-box box2 box3">
+					Web Server
+				</div>
+			</div>
+
+			<div class="notes">
+				<p>
+					Det här paketet kan vi sedan flytta till en helt separat webbserver och sedan implementerar vi
+					delar av logiken i JavaScript istället och kommunicerar tillbaka till servern över någon form av
+					protoll, t.ex. REST med JSON.
+				</p>
+				<p>
+					Vad vi har gjort nu är att vi har skapat en mycket bättre uppdelning av ansvarsområden.
+					JavaScript hanterar användargränssnittet och servern hanterar affärslogiken. På det här sättet
+					får servern mindre och göra eftersom vi sprider ut lasten att skapa gränssnittet till alla
+					klienter.
+				</p>
+				<p>
+					Jag misstänker att det är många här inne som tycker det jag har sagt nu är helt självklart
+					eftersom den här typen av arkitektur är fullständingt naturligt. Om det finns några tveksamma
+					personer här inne så hoppas jag att ska lyckas övertyga er här idag och för er andra så tänker jag
+					ta det ett steg till innan vi går härifån.
+				</p>
+			</div>
+		</div>
+
+		<!-- JavaScript -->
+
+		<div id="javascript-1" class="step invisible" data-x="5250" data-y="-1400">
 			<div class="center">
 				<h1>JavaScript</h1>
 			</div>
 
 			<div class="notes">
 				<p>
-					The glue that we use is called Knockback. I just thought I let you know since
-					it complicates the code quite a bit but as usual when it gets complicated I
-					leave it as an exercise to you.
+					Så innan vi går vidare så måste jag säga några ord om JavaScript. Vem kunde ana att JavaScript
+					skulle bli det hetaste programmeringsspråket 2014? För många har JavaScript de senaste åren varit
+					synonymt med jQuery och en soppa av kod som är svår att underhålla men faktum är att
+					JavaScript-världen har fullständigt exploderat de senaste åren.
+				</p>
+				<p>
+					Tidigare hade vi många mindre bibliotek som ofta löste ett problem väldigt bra. Nu har vi fått en
+					uppsjö av bibliotek och ramverk som även attackerar arkitekturen och strukturen.
 				</p>
 			</div>
 		</div>
-		<div id="javascript-2" class="step invisible" data-x="5000" data-y="-1400">
+
+		<div id="javascript-2" class="step  invisible" data-x="5250" data-y="-1400">
 			<div class="center">
 				<h1>JavaScript</h1>
-				<div class="box ballon ballon-down ballon2">Backbone.js</div>
-				<div class="box ballon ballon-up ballon3">Knockout.js</div>
+				<div class="box ballon ballon-down ballon1">Backbone.js</div>
 			</div>
 
 			<div class="notes">
 				<p>
-					The glue that we use is called Knockback. I just thought I let you know since
-					it complicates the code quite a bit but as usual when it gets complicated I
-					leave it as an exercise to you.
+					Det första stora var förmodligen Backbone. Backbone var det första MVC ramverket att få
+					bra spridning. Några kanske var på en tutorial om detta på förmiddagen och Backbone ger er lite
+					struktur men ställer inte så mycket krav på er implementation.
 				</p>
 			</div>
 		</div>
-		<div id="javascript-2" class="step invisible" data-x="5000" data-y="-1400">
+
+		<div id="javascript-3" class="step invisible" data-x="5250" data-y="-1400">
 			<div class="center">
 				<h1>JavaScript</h1>
-				<div class="box ballon ballon-down ballon1">AngularJS</div>
-				<div class="box ballon ballon-down ballon2">Backbone.js</div>
-				<div class="box ballon ballon-up ballon3">Knockout.js</div>
-				<div class="box ballon ballon-up ballon4">Ember.js</div>
+				<div class="box ballon ballon-down ballon1">Backbone.js</div>
+				<div class="box ballon ballon-down ballon2">AngularJS</div>
+				<div class="box ballon ballon-up ballon3">Ember.js</div>
+				<div class="box ballon ballon-up ballon4">Knockout.js</div>
 			</div>
 
 			<div class="notes">
 				<p>
-					The glue that we use is called Knockback. I just thought I let you know since
-					it complicates the code quite a bit but as usual when it gets complicated I
-					leave it as an exercise to you.
+					Efter Backbone har det kommit hur många ramverk som helst. Angular är väl mest hypat just nu och
+					Knockout.js kanske är det som har fått bäst spridning i Microsoftvärlden och båda dessa är
+					fantastiska så om ni inte redan har kollat på dem så tycker jag ni ska göra det.
+				</p>
+				<p>
+					Detta är bara några av de stora men det finns massor av andra som har börjat få moment för
+					JavaScriptvärlden rör på sig hela tiden.
+				</p>
+				<p>
+					För den här demon har jag däremot valt Ember som definitivt är en värdig utmanare.
 				</p>
 			</div>
 		</div>
 
-		<div id="demo-new" class="step" data-x="5000" data-y="-2400">
+		<!-- Ember -->
 
+		<div id="ember-1" class="step" data-x="6500" data-y="-1000">
+			<div class="center">
+				<h1>Ember.js</h1>
+				<div class="box ballon ballon-down ballon1">Model</div>
+				<div class="box ballon ballon-left ballon2">View</div>
+				<div class="box ballon ballon-up ballon3">Controller and Router</div>
+			</div>
+
+			<div class="notes">
+				<p>
+					Låt oss för skojs skull kolla på lite kod för hur Ember kan användas för att lista alla patienter.
+					Som ni ser så har vi en standard MVC modell.
+				</p>
+			</div>
+		</div>
+
+		<div id="ember-2" class="step" data-x="6500" data-y="-1400">
+			<pre data-src="code/model.js"></pre>
+
+			<div class="notes">
+				<p>
+					Vi har en modell som pratar med servern och ser till att den hålls i synk. Som ni ser kan man
+					uttrycka sina modeller precis som i JPA eller Hibernate och man kan även lägga till relationer
+					och ramverket ser till att den har rätt data vid rätt tillfälle.
+				</p>
+			</div>
+		</div>
+
+		<div id="ember-3" class="step" data-x="7388" data-y="-730">
+			<pre data-src="code/view.html"></pre>
+
+			<div class="notes">
+				<p>
+					Vi har en vy som visar upp resultatet. I de här ramverken så har man oftast någon typ av
+					templatingspråk och i Embers fall är det Handlebars.
+				</p>
+			</div>
+		</div>
+
+		<div id="ember-4" class="step" data-x="6300" data-y="-495">
+			<pre data-src="code/controller.js"></pre>
+
+			<div class="notes">
+				<p>
+					Slutligen har vi en controller och en router. Router kanske inte alla känner till eftersom den
+					inte passar in i det vanliga MVC mönstret men en router är någonting som flera JavaScript ramverk
+					har anamat för att mappa webbens url:er till någon form av state. I det här fallet så säger Ember
+					att för den här routen så ska den här modellen visas.
+				</p>
+				<p>
+					Den exakta koden jag har visat här är givetvis inte viktig. Det jag vill visa är att de nya
+					ramverken har ger oss en tydlig struktur för hur vi ska jobba och det gör det möjligt att skapa
+					betydligt mycket större applikationer utan att gå vilse. Vill ni gräva ner er djupare i koden så
+					finns all kod på Github så gå gärna in och titta.
+				</p>
+				<p>
+					DEMO: Låt oss se hur den här applikationen fungerar nu.
+				</p>
+			</div>
+		</div>
+
+		<!-- New -->
+
+		<div id="demo-new" class="step" data-x="9000" data-y="-500" style="z-index: 2;">
 			<div class="browser">
 				<div class="toolbar">
 					<div class="buttons">
@@ -259,31 +576,469 @@
 			</div>
 
 			<div class="notes">
+				<p>
+					Här är samma applikation som vi hade tidigare men applikationen är nu ombyggd i JavaScript. Vi har
+					samma funktioner i backend och vi använder samma tjänster men allting som rör presentationen för
+					användaren har vi nu lyft ut till användaren. Som ni ser så flyter applikationen mycket bättre.
+					Jag har lagt på lite animeringar och sådant och det är möjligt på ett helt annat sätt nu när vi
+					inte växlar sida hela tiden utan har en rik klient som vi kan jobba med. En rätt mycket bättre
+					användarupplevelse om ni frågar mig i alla fall.
+				</p>
+				<p>
+					Ok, låt oss gå tillbaka till arkitekturen igen.
+				</p>
 			</div>
 		</div>
 
-		<div id="architecture-new-1" class="step" data-x="5500" data-y="-2800">
-			<svg width="800" height="">
+		<div id="architecture-new-1" class="step" data-x="9500" data-y="-900">
+			<svg width="800" height="600">
 				<defs>
 					<marker id="markerArrow" markerWidth="5" markerHeight="5" refx="0" refy="2" orient="auto">
 						<path d="M0,0 L0,4 L4,2 L0,0"/>
 					</marker>
 				</defs>
-
 				<path d="M40,440, L40,120, L150,120" class="arrow"></path>
+			</svg>
+			<div class="box box-fixed" style="left: 160px;top: 40px; width: 200px; height: 280px;text-align: center">
+				Server
+			</div>
+			<div class="free-text" style="left: 80px; top: 345px">
+				/patients
+			</div>
+
+			<div class="notes">
+				<p>
+					Som ni har sett så har den inte ändrat sig så jättemycket egenligen. Vi har fortfarande en server
+					som vi kommunicerar med.
+				</p>
+			</div>
+		</div>
+
+		<div id="architecture-new-2" class="step" data-x="9500" data-y="-900">
+			<svg width="800" height="600">
+				<defs>
+					<marker id="markerArrow" markerWidth="5" markerHeight="5" refx="0" refy="2" orient="auto">
+						<path d="M0,0 L0,4 L4,2 L0,0"/>
+					</marker>
+				</defs>
 				<line x1="360" x2="460" y1="120" y2="120" class="arrow"></line>
 				<line x1="470" x2="370" y1="150" y2="150" class="arrow-dashed"></line>
-				<line x1="360" x2="540" y1="350" y2="350" class="arrow"></line>
-				<path d="M750,600, L750,700, L510,700" class="arrow"></path>
-
 			</svg>
-			<div class="box box-fixed" style="left: 160px;top: 40px; width: 200px; height: 350px;">
-			</div>
-			<div class="box box-fixed" style="left: 470px;top: 40px; width: 100px; height: 150px;">
+			<div class="box box-fixed" style="left: 470px;top: 40px; width: 100px; height: 150px;text-align: center">
 				DB
 			</div>
-			<pre class="box-fixed" style="left: 550px;top: 300px; width: 450px; height: 350px;overflow: hidden;"><code
-					data-language="javascript" data-src="code/response.json"></code></pre>
+
+			<div class="notes">
+				<p>
+					Och den servern måste förmodligen fortfarande prata med en databas.
+				</p>
+			</div>
+		</div>
+
+		<div id="architecture-new-3" class="step" data-x="9500" data-y="-900">
+			<svg width="800" height="600">
+				<defs>
+					<marker id="markerArrow" markerWidth="5" markerHeight="5" refx="0" refy="2" orient="auto">
+						<path d="M0,0 L0,4 L4,2 L0,0"/>
+					</marker>
+				</defs>
+				<line x1="360" x2="540" y1="280" y2="280" class="arrow"></line>
+				<path d="M750,550, L750,650, L510,650" class="arrow"></path>
+			</svg>
+			<pre class="box-fixed" style="left: 550px;top: 240px; width: 410px; height: 350px;overflow: hidden;"
+					data-src="code/response.js"></pre>
+
+			<div class="notes">
+				<p>
+					Däremot har vi slutat att låta servern generera HTML utan istället genererar den JSON. Sedan har
+					vi precis som jag beskrev tidigare satt upp ett REST-gränssnitt som vår JavaScript klient
+					använder sig av.
+				</p>
+				<p>
+					Vi kan välja hur mycket data vi skickar i det här anropet. Om vi inte har så mycket data kan vi
+					kanske läsa upp alla rader och på så sätt få ett blixtsnabbt gränssnitt men vi kan också vänta
+					tills vi t.ex. scrollar till den raden i en lista. Allt data kan cachas på klienten och det gör
+					att gränssnittet upplevs som betydligt mycket snabbare och vi får helt nya möjligheter att styra
+					hur vi går mellan sidorna.
+				</p>
+				<p>
+					Låt oss kolla på hur det här påverkar lasten.
+				</p>
+			</div>
+		</div>
+
+		<div id="architecture-new-4" class="step invisible" data-x="9280" data-y="-1067" data-scale="0.6">
+			<div class="box-fixed" style="left: 308px;top: 107px; width: 317px; height: 448px;">
+				<div class="chart">
+					<div class="bar" style="height: 24%;left: 20px;right: 150px; opacity: 0.5">
+						<span>390 /s</span>
+					</div>
+					<div class="bar" style="height: 70%;left: 150px;right: 20px;">
+						<span>1140 /s</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="notes">
+				<p>
+					Nu när servern inte behöver generera HTML längre så får vi en rätt mycket snabbare server. Vi
+					behöver inte generera och skicka lika mycket data. Den stora vinsten ligger däremot i att klienten
+					kan hålla data på klienten och jag skulle kunna slänga upp en siffra på det men det finns ingen
+					siffra som är korrekt men varje gång vi kan fråga data på klientsidan istället för att gå till
+					servern så är det en vinst.
+				</p>
+			</div>
+		</div>
+
+		<div id="architecture-new-5" class="step invisible" data-x="9280" data-y="-1067" data-scale="0.6">
+			<div class="box-fixed" style="left: 308px;top: 107px; width: 317px; height: 448px;">
+				<div class="chart">
+					<div class="bar" style="height: 24%;left: 20px;right: 150px; opacity: 0.5">
+						<span>390 /s</span>
+					</div>
+					<div class="bar" style="height: 70%;left: 150px;right: 20px;">
+						<span>1140 /s</span>
+					</div>
+					<div class="bar" style="height: 700%;left: 256px;right: -5px;">
+					</div>
+				</div>
+			</div>
+
+			<div class="notes">
+				<p>
+					I ett av de projekt som vi är involverade är nätverkstrafiken ungefär 5% av den den var i den
+					gamla arkitekturen. Det är en tjugondel! All denna data var dessutom tvungen att genereras
+					någonstanns så man kommer kunna minska ner antalet servrar den en bråkdel av vad de var
+					tidigare så det här kan vara ett nog så gott skäl som något att börjar fundera
+					på om man kan använda det här sättet att jobba.
+				</p>
+				<p>
+					Kom ihåg att vi fortfarande har en traditionell blockerande modell på server sidan här. Jonas
+					kommer prata mer om hur man kan förbättra det här ytterligare senare så det finns fortfarande
+					mycket att göra.
+				</p>
+				<p>
+					Om vi går tillbaka och tittar på användarupplevelsen då, hur har den blivit bättre.
+				</p>
+			</div>
+		</div>
+
+		<div id="architecture-new-6" class="step invisible" data-x="9700" data-y="-900">
+			<pre class="box-fixed"
+					style="left: 350px;top: 240px; width: 410px; height: 350px;overflow: hidden;"
+					data-src="code/response.js"></pre>
+			<div class="notes">
+				<p>
+					Det kanske inte är helt uppenbart men svaret ligger i den här boxen. Nu har vi plötsligt fått ett
+					API som vi kan jobba mot. Det gjorde vi ifrån Ember så därför behövds vi inte ladda om saker hela
+					tiden och nu finns det ingenting som hindrar oss från att skapa en mobilapp native istället. Låt
+					oss se hur det kan se ut.
+				</p>
+				<p>
+					Nu börjar det bli ett arbetsredskap som man kan använda sig av. Ni kanske har läst på IDG att
+					responsive design kommer vara vara lösningen på det och även om det kanske är en helt egen dragning
+					så skulle jag säga att det inte räcker för att göra det här till ett arbetsredskap. 
+				</p>
+				<p>
+					Så här långt är nog ganska många med. Vi har många projekt på Callista som jobbar så här och
+					hittills har det mest varit Backbone och Angular som har dominerat.
+				</p>
+				<p>
+					Nu har vi en mer lättviktig arkitektur där server inte lastas på samma sätt men vad har vi
+					egentligen vunnit. Det är fortfarande samma gamla request-response modell vi använder även om vi nu
+					skickar mindre data och har möjligheten att sprida lasten bättre.
+				</p>
+			</div>
+		</div>
+
+		<div id="architecture-new-7" class="step invisible" data-x="9400" data-y="-1200">
+			<svg width="800" height="600">
+				<defs>
+					<marker id="markerArrow" markerWidth="5" markerHeight="5" refx="0" refy="2" orient="auto">
+						<path d="M0,0 L0,4 L4,2 L0,0"/>
+					</marker>
+				</defs>
+				<path d="M140,0, L140,370, L250,370" class="arrow"></path>
+			</svg>
+			<div class="free-text" style="left: 180px; top: 50px;">
+				PUT /patients/1
+			</div>
+
+			<div class="notes">
+				<p>
+					Vad händer i det här läget när det kommer in ett anrop till servern från en annan klient. Tänk er
+					till exempel att man kollar på en persons journal och helt plötsligt kommer ett remissvar in. Det
+					vore rätt trevligt om man inte missar det för att man inte tryckte refresh.
+				</p>
+				<p>
+					Det har ju funnits olika typer av hack för att lösa detta tidigare (Polling, Reverse Ajax,
+					Comet t.ex. ) men ingen av dessa lösningar har varit perfekta så jag tycker det är dags att ni
+					börjar kolla på WebSockets.
+				</p>
+			</div>
+		</div>
+
+		<!-- WebSockets -->
+
+		<div id="websockets-1" class="step" data-x="10900" data-y="-1200">
+			<div class="center">
+				<h1>What is WebSockets?</h1>
+			</div>
+
+			<div class="notes">
+				<p>
+					WebSockets är ett sätt att lösa det här på eftersom WebSockets kan användas för att skicka
+					meddelanden i båda riktningarna utan att den andra sidan ber om informationen. Så servern kan
+					t.ex. skicka ett meddelande om att ett remissvar har kommit in och användaren behöver inte trycka
+					refresh.
+				</p>
+				<p>
+					Varför ska man då använda WebSockets istället för Comet och gänget?
+
+				</p>
+			</div>
+		</div>
+
+		<div id="websockets-2" class="step invisible" data-x="10900" data-y="-1200">
+			<div class="center">
+				<h1>What is WebSockets?</h1>
+				<div class="box ballon ballon-down ballon1">HTML5</div>
+				<div class="box ballon ballon-up ballon2">Firewall friendly</div>
+			</div>
+
+			<div class="notes">
+				<p>
+					Ja för det första så är WebSockets en del av alla nya coola tekniker som finns i HTML5. Det
+					betyder att de flesta moderna webbläsare har stöd för det. Hej då flash, hej då plugins...
+				</p>
+				<p>
+					Det är även väldigt brandväggsvänligt. Uppkopplingen sker med ett helt vanligt HTTP anrop som
+					sedan uppgraderas vilket gör att man slipper brandväggsöppningar som kan vara svåra att få till.
+				</p>
+			</div>
+		</div>
+
+		<div id="websockets-3" class="step invisible" data-x="10900" data-y="-1200">
+			<div class="center">
+				<h1>What is WebSockets?</h1>
+				<div class="box ballon ballon-down ballon1">Full duplex</div>
+				<div class="box ballon ballon-up ballon2">2 bytes overhead</div>
+			</div>
+
+			<div class="notes">
+				<p>
+					Dessutom är WebSockets bidirectional och arbetar med full duplex. Man kan alltså skicka meddelanden
+					i båda riktningarna samtidigt och dessutom är overheaden extremt liten vilket gör att prestandan
+					blir oerhört mycket bättre.
+				</p>
+				<p>
+					Låt oss titta på vad det här innebär i praktiken.
+				</p>
+			</div>
+		</div>
+
+		<div id="demo-websockets" class="step invisible" data-x="10900" data-y="-500" style="z-index: 2;">
+			<div class="browser">
+				<div class="toolbar">
+					<div class="buttons">
+						<button class="back"><i class="fa fa-arrow-left"></i></button>
+						<button class="forward"><i class="fa fa-arrow-right"></i></button>
+						<button class="refresh"><i class="fa fa-refresh"></i></button>
+					</div>
+					<div class="address">
+						<div>demo/demo-web</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="notes">
+				<p>
+					Om vi går tillbaks till vår demo och även öppnar upp appen så ser ni vad som händer. Så fort vi gör
+					minsta lilla ändring så uppdateras alla anslutna klienter direkt och vi behöver aldrig missa en
+					uppdatering. Ni kan se att även om jag går tillbaka till tidboken så kanske det är någon annan
+					i publiken som lägger in en bokning och då visas den direkt.
+				</p>
+				<p>
+					Det här öppnar ju dessutom upp för helt nya möjligheter.
+				</p>
+				<p>
+					Jag vet inte hur många här inne som brukar stå och prata inför nästan 200 åhörare. Jag
+					misstänker att de flesta inte brukar göra det varje dag så jag tänkte att jag skulle ge er en
+					liten känsla för hur det kan vara.
+				</p>
+				<p>
+					Om vi söker upp mig i applikationen så ser ni att det har tillkommit en liten knapp som heter
+					EKG. Än så länge händer det inte så mycket här så hur ska vi få till den här demon?
+				</p>
+				<p>
+					Peter pratade ju tidigare Internet of Things (ni som gjorde en bingobricka av Peters buzzwords
+					förut kanske fick bingo nu) och om ni själva är intresserade av att börja leka med det så kan man
+					införskaffa en sån här, är Arduino. En arduino är en liten kreditkortsdator som kostar ett par
+					hundra och som man kan programmera för att styra hårdvara på olika sätt. I det här fallet har har
+					programmerat den för att prata med ett kort som ger oss en eHealth platform. Det är alltså ett
+					litet kort som man kan koppla olika sensorer till sedan läsa av. I det här fallet ska jag använda
+					en EKG sensor så jag ska bara koppla in mig.
+				</p>
+				<p>
+					Tyvärr har jag inget wifi-kort till den här än så jag måste ha min Aduino inkopplad till en annan
+					dator men det hade jag inte behövt egenligen. Så min Aduino läser av EKG-sensorserna, dessa
+					skickas sedan via WebSockets tillbaks till vår server som distribuerar ut dem till alla klienter
+					som är intresserade av punkterna, ni kommer strax få se hur det kan se ut i kod men låt oss först
+					se om den här demon fungerar.
+				</p>
+				<p>
+					Erkänn att det är ganska roligt.
+				</p>
+				<p>
+					Ok, ny cool teknik är ju rolig men går det att använda i verkligheten?
+				</p>
+			</div>
+		</div>
+
+		<!-- Stomp -->
+
+		<div id="stomp-1" class="step" data-x="10900" data-y="1000">
+			<div class="center">
+				<h1>Spring 4</h1>
+				<div class="box ballon ballon-down ballon1">Subscribe</div>
+				<div class="box ballon ballon-left ballon2">Publish</div>
+				<div class="box ballon ballon-up ballon3">Fire and forget</div>
+			</div>
+
+			<div class="notes">
+				<p>
+					Låt oss kolla hur det här är löst i Spring 4 som kom ut för någon månad sedan. Spring har lagt in
+					ett förstklassigt stöd för WebSockets och de har gjort det genom att implementera ett protokoll
+					som heter STOMP ovanpå WebSockets.
+				</p>
+				<p>
+					Ni kan tänka på det lite som TCP och HTTP.
+				</p>
+				<p>
+					Så nu kan vi helt plötsligt börjar implementera samma mönster som integrationsgänget på Callista
+					har tjatat om i många år och även låta webben vara med på tåget.
+				</p>
+			</div>
+		</div>
+
+		<div id="stomp-2" class="step" data-x="10900" data-y="775">
+			<pre data-src="code/subscribe.js"></pre>
+
+			<div class="notes">
+				<p>
+					Om vi börjar med att kolla på hur man kan välja att prenumerera på ett topic ifrån JavaScript så
+					kan det se ut så här. Vi säger alltså att vi är intresserade av events som rör att en patient har
+					blivit tillagd. Ni ser att det t.ex.finns stöd för autentisering vilket är någonting som STOMP
+					tillför som inte finns i WebSockets.
+				</p>
+			</div>
+		</div>
+
+		<div id="stomp-3" class="step" data-x="11842" data-y="1270">
+			<pre data-src="code/publish.java"></pre>
+
+			<div class="notes">
+				<p>
+					Om vi går över till Spring så kan ni se att det är trivialt att posta ett meddelande till ett
+					topic. I det här fallet så används Spring inbyggda kö men det går utmärkt att koppla in Active MQ
+					eller liknande om man har många klienter.
+				</p>
+			</div>
+		</div>
+
+		<div id="stomp-4" class="step" data-x="10700" data-y="1505">
+			<pre data-src="code/fireandforget.js"></pre>
+
+			<div class="notes">
+				<p>
+					Man kan även skicka enstaka meddelanden direkt till en mottagare och mottagaren kan då ta emot
+					det precis som om det vore ett Ajax request eller någonting liknande.
+				</p>
+			</div>
+		</div>
+
+		<div id="stomp-5" class="step" data-x="10700" data-y="1605">
+			<pre data-src="code/fireandforget.java"></pre>
+
+			<div class="notes">
+				<p>
+					På servern tar jag emot meddelande och gör någonting med det. Det är precis det här flödet som
+					jag hade i min EKG demo tidigare. Jag skickade ett meddelande från min Arduino som servern tog
+					emot och sedan broadcastade den det vidare till alla intresserade klienter som prenumerar på
+					ekg-events.
+				</p>
+			</div>
+		</div>
+
+		<!-- Conclusions -->
+
+		<div id="conclusion-1" class="step" data-x="9200" data-y="1385">
+			<div class="center">
+				<h1>Conclusions</h1>
+			</div>
+
+			<div class="notes">
+				<p>
+					Dags att börja summera den här dragningen lite. Jag har jobbat på det här sättet i två år nu och
+					det är svårt att föreställa sig något annat sätt att jobba på. Allt annat känns omodernt och
+					tråkigt.
+				</p>
+			</div>
+		</div>
+
+		<div id="conclusion-2" class="step invisible" data-x="9200" data-y="1385">
+			<div class="center">
+				<h1>Conclusions</h1>
+				<div class="box ballon ballon-down ballon1">Time to rethink</div>
+			</div>
+
+			<div class="notes">
+				<p>
+					Jag tycker med andra ord att att det är dags att börja tänka på det i alla fall.
+				</p>
+				<p>
+					Några kanske har sett mig hålla en liknande dragning tidigare och det jag har haft som slutsats
+					då är att det är coolt men ramverken behöver komma ikapp.
+				</p>
+			</div>
+		</div>
+
+		<div id="conclusion-3" class="step invisible" data-x="9200" data-y="1385">
+			<div class="center">
+				<h1>Conclusions</h1>
+				<div class="box ballon ballon-down ballon1">Time to rethink</div>
+				<div class="box ballon ballon-up ballon2">Frameworks are ready!</div>
+			</div>
+
+			<div class="notes">
+				<p>
+					Det har de gjort nu. Springs stöd är grymt och STOMP gör det oerhört enkelt att använda. Så det
+					är bara att köra igång.
+				</p>
+			</div>
+		</div>
+
+		<!-- Thanks -->
+
+		<div id="thanks" class="step" data-x="7700" data-y="1385">
+			<h2>Rethink your</h2>
+			<h1>Frontend Architecture</h1>
+			<h3>Thanks</h3>
+			<h4>github.com/callistaenterprise</h4>
+			<img src="images/callista.png" class="logotype">
+			<img src="images/app-display.png" class="app-display">
+			<img src="images/app-ipad.png" class="app-ipad">
+			<img src="images/app-iphone.png" class="app-iphone">
+
+			<div class="notes">
+				<p>
+					Det här var allt jag hade att komma med i dag. Ni hittar givetvis både presentationen och all kod
+					på Github så det är bara att ladda ner och testa själva.
+				</p>
+				<p>
+					Jag hoppas ni tyckte det var intressant Tack för mig.
+				</p>
+			</div>
 		</div>
 	</div>
 

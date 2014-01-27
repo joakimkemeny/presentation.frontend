@@ -2,10 +2,10 @@ Server:
 	Här ligger de punkter som behöver åtgärdas som rör demo-server.
 
 	- Ta bort patientreferensen på en bokning. @done
-	- Se till att importskriptet körs korrekt.
-	- Lägg till en massa testdata i importskriptet.
-	- Uppdatera README.md så den beskriver hur man ska köra den.
-	- Lås alla beroenden.
+	- Se till att importskriptet körs korrekt. @done
+	- Lägg till en massa testdata i importskriptet. @done
+	- Uppdatera README.md så den beskriver hur man ska köra den. @done
+	- Lås alla beroenden. @done
 ServerWeb:
 	Här ligger de punkter som behöver åtgärdas som rör demo-server / web.
 	
@@ -31,6 +31,7 @@ Web:
 	- Lägg till animeringar mellar de olika vyerna.
 	- Uppdatera README.md så den beskriver hur man ska köra den.
 	- Se till att hantera EKG på ett bra sätt beroende på om Raspberry PI:n hoppar igång.
+	- Sökning på liten bokstav i tidboken.
 
 	Dessa får låg prio och kan läggas in som Known issues.
 	
@@ -38,22 +39,47 @@ Web:
 iOS:
 	Här ligger de punkter som behöver åtgärdas som rör demo-ios.
 	
-	- Uppdatera README.md så den beskriver hur man ska köra den.
-	- Se till att det går att navigera mellan alla vyer.
-	- Designa alla formulär.
-	- Designa listorna.
-	- Implementera så att patienter hämtas via REST.
-	- Implementera så att bokningarna hämtas via REST.
+	- Uppdatera README.md så den beskriver hur man ska köra den. @done
+	- Se till att det går att navigera mellan alla vyer. @done
+	- Designa alla formulär. @done
+	- Designa listorna. @done
+	- Implementera så att patienter hämtas via REST. @done
+	- Implementera så att bokningarna hämtas via REST. @done
+	- Skapa en vettig ikon. @done
+	- Fixa så att statusbaren blir vit. @done
+	- Implementera stöd för att spara en patient. @done
+
+	Dessa får låg prio och kan läggas in som Known issues.
+	
+	- Fixa problem med att det blir dubletter.
 	- Implementera så att journalanteckningarnar hämtas via REST.
-	- Implementera stöd för att spara en patient.
-	- Skapa en vettig ikon.
-	- Fixa så att statusbaren blir vit.
+	- Implementera en bättre tidbok.
+	- Implementera stöd för att spara en bokning.
+	- Implementera stöd för att spara en journalanteckning.
 Raspberry:
 	Här ligger de punkter som behöver åtgärdas som rör demo-raspberry.
 
-	- Uppdatera README.md så den beskriver hur man ska köra den.
-	- Gör en ren installation av Raspberryn för att se om det hjälper.
+	- Uppdatera README.md så den beskriver hur man ska köra den. @done
+	- Gör en ren installation av Raspberryn för att se om det hjälper. @done
+Arduino:
+	Här ligger de punkter som behöver åtgärdas som rör demo-arduino.
+
+	- Se till att det går att köra på Helenas dator.
 Presentation:
 	Här ligger de punkter som behöver åtgärdas som rör själva presentationen.
 
-	- 
+	- Uppdatera README.md.
+	- Byt ut bilderna på intro sidan. @done
+
+	Dessa får låg prio och kan läggas in som Known issues.
+
+	- URL:erna uppdateras inte korrekt i browsern.
+	- 2014 flyttar på sig av någon anledning, fixat med ett fulhack.
+
+Förberedelser:
+	- Se till att iOS-demon har rätt IP adress.
+	- Se till att Arduinodemon har rätt IP adress.
+	- Se till att Adruinodemon har rätt serieport.
+	- Se till att servern är startad.
+	- Se till att grunt är startad.
+	- Se till att presentationen är genomkörd.
