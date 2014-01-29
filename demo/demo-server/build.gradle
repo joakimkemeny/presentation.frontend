@@ -33,6 +33,7 @@ dependencies {
     compile('org.springframework.data:spring-data-jpa:1.4.3.RELEASE')
     compile('org.springframework:spring-orm:4.0.0.RELEASE')
     compile('org.thymeleaf:thymeleaf-spring4:2.1.2.RELEASE')
+    compile('org.apache.commons:commons-lang3:3.2.1')
     testCompile('junit:junit:4.11')
 }
 

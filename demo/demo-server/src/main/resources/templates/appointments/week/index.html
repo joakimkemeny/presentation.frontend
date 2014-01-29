@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<meta charset="utf-8"/>
+	<title>Callista Care 1.0</title>
+
+	<link rel="stylesheet" th:href="@{/css/style.css}"/>
+
+</head>
+<body>
+	<div class="l-main">
+
+		<div th:include="layout :: head"></div>
+
+		<header class="l-mainHeader">
+			<h2>Tidbok</h2>
+
+			<div class="btn-group" style="margin: -3px 0 0 10px;">
+				<button class="btn"><i class="fa fa-chevron-left"></i></button>
+				<button class="btn"><i class="fa fa-chevron-right"></i></button>
+			</div>
+
+			<ul class="pull-right g-segmented-control" style="margin-left:10px;">
+				<li>
+					<a th:href="@{/appointments/week/create}">
+						<i class="fa fa-plus"></i> Ny
+					</a>
+				</li>
+			</ul>
+			<ul class="pull-right g-segmented-control" style="margin-left:10px;">
+				<li>
+					<a th:href="@{/appointments/day}">
+						Dag
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/appointments/week}" class="active">
+						Vecka
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/appointments/month}">
+						Månad
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/appointments/year}">
+						År
+					</a>
+				</li>
+			</ul>
+		</header>
+
+		<div class="l-workspace">
+			<section class="l-mainContent">
+				<div id="calendar"></div>
+			</section>
+		</div>
+	</div>
+
+	<script th:src="@{/js/libs.js}"></script>
+	<script th:src="@{/js/app.js}"></script>
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+
+		$('#calendar').calendar({
+			height: 455,
+			width: 940,
+			startDate: /*[[${#calendars.format(startDate,'yyyy-MM-dd')}]]*/,
+			endDate: /*[[${#calendars.format(endDate,'yyyy-MM-dd')}]]*/,
+			startTime: '07:00',
+			endTime: '18:00',
+			data: /*[[${appointments}]]*/,
+
+			click: function (e, id) {
+				document.location = '/appointments/week/edit/' + id;
+			}
+		});
+		/*]]>*/
+	</script>
+
+</body>
+</html>

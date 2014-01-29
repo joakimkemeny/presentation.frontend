@@ -35,5 +35,46 @@
 		</nav>
 	</div>
 
+	<div th:fragment="calendar">
+
+		<h2>Tidbok</h2>
+
+		<div class="btn-group" style="margin: -3px 0 0 10px;">
+			<button class="btn"><i class="fa fa-chevron-left"></i></button>
+			<button class="btn"><i class="fa fa-chevron-right"></i></button>
+		</div>
+
+		<ul class="pull-right g-segmented-control" style="margin-left:10px;">
+			<li>
+				<a th:href="@{/appointments/create}" th:class="${subsection == 'create'} ? 'active'"
+						th:if="${subsection == 'day'}">
+					<i class="fa fa-plus"></i> Ny
+				</a>
+			</li>
+		</ul>
+		<ul class="pull-right g-segmented-control" style="margin-left:10px;">
+			<li>
+				<a th:href="@{/appointments/day}" th:class="${subsection == 'day'} ? 'active'">
+					Dag
+				</a>
+			</li>
+			<li>
+				<a th:href="@{/appointments/week}" th:class="${subsection == 'week'} ? 'active'">
+					Vecka
+				</a>
+			</li>
+			<li>
+				<a th:href="@{/appointments/month}" th:class="${subsection == 'month'} ? 'active'">
+					Månad
+				</a>
+			</li>
+			<li>
+				<a th:href="@{/appointments/year}" th:class="${subsection == 'year'} ? 'active'">
+					År
+				</a>
+			</li>
+		</ul>
+	</div>
+
 </body>
 </html>

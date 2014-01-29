@@ -9,6 +9,7 @@ import frontend.events.patient.*;
 import frontend.web.domain.Note;
 import frontend.web.domain.Patient;
 import frontend.web.domain.PatientFilter;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,11 +34,38 @@ public class PatientController {
 
 		AllPatientsEvent allEvent = patientService.requestAllPatients(new RequestAllPatientsEvent());
 
-		// TODO: Search...
+		// Really stupid way of doing this.
+		String civicRegNr = null;
+		String firstName = null;
+		String lastName = null;
+		String city = null;
+
+		if (filter != null) {
+			if (StringUtils.isNotBlank(filter.getCivicRegNr())) {
+				civicRegNr = filter.getCivicRegNr().toLowerCase();
+			}
+			if (StringUtils.isNotBlank(filter.getFirstName())) {
+				firstName = filter.getFirstName().toLowerCase();
+			}
+			if (StringUtils.isNotBlank(filter.getLastName())) {
+				lastName = filter.getLastName().toLowerCase();
+			}
+			if (StringUtils.isNotBlank(filter.getCity())) {
+				city = filter.getCity().toLowerCase();
+			}
+		}
 
 		List<Patient> patients = new ArrayList<>();
 		for (PatientDetails details : allEvent.getPatientsDetails()) {
-			patients.add(Patient.fromPatientDetails(details));
+			if ((civicRegNr == null ||
+					details.getCivicRegNr() != null && details.getCivicRegNr().toLowerCase().contains(civicRegNr)) &&
+					(firstName == null || details.getFirstName() != null &&
+							details.getFirstName().toLowerCase().contains(firstName)) &&
+					(lastName == null ||
+							details.getLastName() != null && details.getLastName().toLowerCase().contains(lastName)) &&
+					(city == null || details.getCity() != null && details.getCity().toLowerCase().contains(city))) {
+				patients.add(Patient.fromPatientDetails(details));
+			}
 		}
 
 		model.addAttribute("section", "patients");

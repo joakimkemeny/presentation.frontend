@@ -56,7 +56,7 @@ App.AppointmentsController = Ember.ArrayController.extend({
 
 		var startDate = moment(this.get('startDateFilter'));
 		var endDate = moment(this.get('endDateFilter'));
-		var text = new RegExp(this.get('textFilter'));
+		var text = new RegExp(this.get('textFilter'), 'i');
 
 		var excludeStartDate = true; //!this.get('startDateFilter') || !startDate.isValid();
 		var excludeEndDate = true; // !this.get('endDateFilter') || !endDate.isValid();
